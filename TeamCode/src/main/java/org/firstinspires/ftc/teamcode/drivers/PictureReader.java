@@ -18,7 +18,6 @@ import org.firstinspires.ftc.robotcore.internal.opmode.TelemetryImpl;
  * FiringMechanism 1.0.0
 */
 
-@TeleOp(name="Autotomomus Picture Reader", group="2017")
 public class PictureReader {
 
     public String readPicture(Telemetry telemetry, HardwareMap hardwareMap) {
