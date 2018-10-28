@@ -19,16 +19,11 @@ public class TestMotorfl extends LinearOpMode {
         }
         try {
             waitForStart();
+            m.setPower(1);
+            Thread.sleep(5000);
+            m.setPower(0);
         }catch (Exception e) {
             e.printStackTrace();
-        }
-        while (opModeIsActive()) {
-            if(System.currentTimeMillis()%2000 == 0){
-                m.setPower(-1);
-            }
-            if(System.currentTimeMillis()%2000 == 1000){
-                m.setPower(1);
-            }
         }
     }
 }
