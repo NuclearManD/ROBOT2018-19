@@ -1,0 +1,34 @@
+package org.firstinspires.ftc.teamcode.drivers;
+
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+
+import com.qualcomm.robotcore.hardware.HardwareMap;
+
+public class SensorUtil implements SensorEventListener {
+    public static SensorManager sensorService;
+    public static Sensor magSensor, accelerometer, gyroscope;
+    public static SensorUtil util;
+
+
+
+    public static void setup(HardwareMap hardwareMap){
+        sensorService = (SensorManager) hardwareMap.appContext.getSystemService(Context.SENSOR_SERVICE);
+        magSensor = sensorService.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+        accelerometer = sensorService.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        gyroscope = sensorService.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+        util = new SensorUtil();
+    }
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+
+    }
+}
