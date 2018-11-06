@@ -15,7 +15,7 @@ public class SensorUtil implements SensorEventListener {
 
 
 
-    public static void setup(HardwareMap hardwareMap){
+    public void setup(HardwareMap hardwareMap){
         sensorService = (SensorManager) hardwareMap.appContext.getSystemService(Context.SENSOR_SERVICE);
         magSensor = sensorService.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
         accelerometer = sensorService.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -26,7 +26,7 @@ public class SensorUtil implements SensorEventListener {
     }
     @Override
     public void onSensorChanged(SensorEvent event) {
-        Sensor mySensor = sensorEvent.sensor;
+        Sensor mySensor = event.sensor;
         if (mySensor.getType() == Sensor.TYPE_ACCELEROMETER) {
 
         }
