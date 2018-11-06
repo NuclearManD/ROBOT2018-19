@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -14,6 +15,7 @@ import org.firstinspires.ftc.teamcode.drivers.MovementDriver;
  * Created by SCRoboticsDev on 11/5/2018.
  */
 
+@TeleOp(name="Servo teszgt", group="2018")
 public class ServoTest extends LinearOpMode {
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
@@ -31,13 +33,7 @@ public class ServoTest extends LinearOpMode {
 
         dc.setPower(1);
         try{
-            Thread.sleep(2100);
-        }catch(Exception e){
-
-        }
-        dc.setPower(-1);
-        try{
-            Thread.sleep(2100);
+            Thread.sleep(3200);
         }catch(Exception e){
 
         }
