@@ -49,7 +49,7 @@ public class ClubRush extends LinearOpMode {
             if(gamepad2.a!=ls){
                 ls=gamepad2.a;
                 if(ls==true){
-                    if(state){
+                     if(state){
                         arm.setPosition(180);
                     }else
                         arm.setPosition(0);
