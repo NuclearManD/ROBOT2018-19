@@ -33,13 +33,7 @@ public class ServoTest extends LinearOpMode {
 
         dc.setPower(1);
         try{
-            Thread.sleep(2100);
-        }catch(Exception e){
-
-        }
-        dc.setPower(-1);
-        try{
-            Thread.sleep(2100);
+            Thread.sleep(3200);
         }catch(Exception e){
 
         }
