@@ -20,11 +20,16 @@ public class SensorUtil implements SensorEventListener {
         magSensor = sensorService.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
         accelerometer = sensorService.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         gyroscope = sensorService.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+        sensorService.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+        sensorService.registerListener(this, gyroscope, SensorManager.SENSOR_DELAY_NORMAL);
         util = new SensorUtil();
     }
     @Override
     public void onSensorChanged(SensorEvent event) {
+        Sensor mySensor = sensorEvent.sensor;
+        if (mySensor.getType() == Sensor.TYPE_ACCELEROMETER) {
 
+        }
     }
 
     @Override
