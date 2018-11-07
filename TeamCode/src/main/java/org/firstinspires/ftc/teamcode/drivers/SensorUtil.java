@@ -36,6 +36,20 @@ public float[] gyroVal;
             gyroVal = event.values;
         }
     }
+    public static void main(String args[]) {
+        int x =[]
+        for (int i = 0; i < 3; i++)x[i]=accelVal[i]+gyroVal[i];
+        x=accelVal;
+        x=accelVal+x;
+       // adds values in the accelVal array
+    }
+    public static void main(String args[]) {
+        int x =[]
+        for (int i = 0; i < 3; i++)x[i]=accelVal[i]+gyroVal[i];
+        x=gyroVal;
+        x=gyroVal+x;
+        // adds values in the gyroVal array
+    }
     public float[] getacellVal() {
         return acellVal;
     }
