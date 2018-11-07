@@ -40,12 +40,14 @@ public class SensorUtil implements SensorEventListener {
     }
     public float[] getacellVal() {
         float[] tmp = acellVal;
-        return acellVal;
+        acellVal = new float[acellVal.length];
+        return tmp;
 
     }
     public float[] getGyroValVal() {
         float[] tmp = gyroVal;
-        return gyroVal;
+        gyroVal = new float[gyroVal.length];
+        return tmp;
     }
     public void onAccuracyChanged(Sensor sensor, int i) {
 
