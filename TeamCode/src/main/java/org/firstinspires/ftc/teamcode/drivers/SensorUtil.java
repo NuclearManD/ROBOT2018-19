@@ -30,30 +30,26 @@ public float[] gyroVal;
     public void onSensorChanged(SensorEvent event) {
         Sensor mySensor = event.sensor;
         if (mySensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-        acellVal = event.values;
+            for (int i = 0; i <event.values.length; i++){
+                acellVal[i] = event.values[i] + acellVal[i];
+            }
         }
         if (mySensor.getType() == Sensor.TYPE_GYROSCOPE) {
-            gyroVal = event.values;
+        for (int i = 0; i <event.values.length; i++){
+            gyroVal[i] = event.values[i] + gyroVal[i];
+            }
         }
     }
-    public static void main(String args[]) {
-        int x =[]
-        for (int i = 0; i < 3; i++)x[i]=accelVal[i]+gyroVal[i];
-        x=accelVal;
-        x=accelVal+x;
-       // adds values in the accelVal array
-    }
-    public static void main(String args[]) {
-        int x =[]
-        for (int i = 0; i < 3; i++)x[i]=accelVal[i]+gyroVal[i];
-        x=gyroVal;
-        x=gyroVal+x;
-        // adds values in the gyroVal array
+
+
     }
     public float[] getacellVal() {
+        float[] tmp = acellVal;
         return acellVal;
+
     }
     public float[] getGyroValVal() {
+        float[] tmp = gyroVal;
         return gyroVal;
     }
 
