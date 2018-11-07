@@ -24,15 +24,13 @@ public class SensorUtil implements SensorEventListener {
         sensorService.registerListener(this, gyroscope, SensorManager.SENSOR_DELAY_NORMAL);
         util = new SensorUtil();
     }
-    @Override
     public void onSensorChanged(SensorEvent event) {
         Sensor mySensor = event.sensor;
         if (mySensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-
+            event.values;
         }
     }
 
-    @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
 
     }
