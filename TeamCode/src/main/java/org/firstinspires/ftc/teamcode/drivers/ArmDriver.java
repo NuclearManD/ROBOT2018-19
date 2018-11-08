@@ -6,10 +6,23 @@ public class ArmDriver {
 
     public static void main() {
 
+    }
 
-        void extend(float distance);{
+
+        void extend(float distance){
+
         }
-        void openClaw()
+        void openClaw() {
+        }
+
+    
+        void cloeClaw(){
+
+        }
+        void  rotate(float degrees){
+
+        }
+
 
     }
 }
