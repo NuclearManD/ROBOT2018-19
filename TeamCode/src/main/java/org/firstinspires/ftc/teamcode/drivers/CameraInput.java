@@ -10,10 +10,10 @@ import android.hardware.camera2.CameraDevice;
 public class CameraInput {
     CameraDevice cam;
     public CameraInput() {
-        cam.createCaptureSession();
+        //cam.createCaptureSession();
     }
 
     public Bitmap takePic(){
-
+        return null;
     }
 }
