@@ -48,7 +48,7 @@ public float[] gyroVal;
         return acellVal;
 
     }
-    public float[] getGyroValVal() {
+    public float[] getGyroVal() {
         float[] tmp = gyroVal;
         return gyroVal;
     }
