@@ -13,8 +13,8 @@ public class SensorUtil implements SensorEventListener {
     public static Sensor magSensor, accelerometer, gyroscope;
     public static SensorUtil util;
 
-public float[] acellVal;
-public float[] gyroVal;
+    public float[] acellVal;
+    public float[] gyroVal;
 
 
     public void setup(HardwareMap hardwareMap){
@@ -26,34 +26,29 @@ public float[] gyroVal;
         sensorService.registerListener(this, gyroscope, SensorManager.SENSOR_DELAY_NORMAL);
         util = new SensorUtil();
     }
-    @Override
     public void onSensorChanged(SensorEvent event) {
         Sensor mySensor = event.sensor;
         if (mySensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             for (int i = 0; i <event.values.length; i++){
                 acellVal[i] = event.values[i] + acellVal[i];
             }
-        }
-        if (mySensor.getType() == Sensor.TYPE_GYROSCOPE) {
-        for (int i = 0; i <event.values.length; i++){
-            gyroVal[i] = event.values[i] + gyroVal[i];
+        }else if (mySensor.getType() == Sensor.TYPE_GYROSCOPE) {
+            for (int i = 0; i <event.values.length; i++){
+                gyroVal[i] = event.values[i] + gyroVal[i];
             }
         }
     }
-
-
-    }
     public float[] getacellVal() {
         float[] tmp = acellVal;
-        return acellVal;
+        acellVal = new float[acellVal.length];
+        return tmp;
 
     }
     public float[] getGyroValVal() {
         float[] tmp = gyroVal;
-        return gyroVal;
+        gyroVal = new float[gyroVal.length];
+        return tmp;
     }
-
-    @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
 
     }
