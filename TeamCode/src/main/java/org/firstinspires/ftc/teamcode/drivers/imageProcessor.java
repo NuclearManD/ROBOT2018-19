@@ -16,4 +16,3 @@ public class imageProcessor {
         return -1;
     }
 }
-
