@@ -10,10 +10,6 @@ import org.firstinspires.ftc.teamcode.drivers.PictureReader;
 public class TestMotorfl extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         // edit
-        PictureReader picture = new PictureReader();
-        telemetry.addData();
-        System.out.print(picture.readPicture());
-        // edit
         DcMotor m = null;
         try {
             m = hardwareMap.dcMotor.get("fl");
