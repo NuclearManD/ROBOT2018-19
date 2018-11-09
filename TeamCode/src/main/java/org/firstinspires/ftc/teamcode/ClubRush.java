@@ -63,7 +63,7 @@ public class ClubRush extends LinearOpMode {
             if(gamepad2.a!=ls){
                 ls=gamepad2.a;
                 if(ls==true){
-                    // state was =to false but if gamepad2 is = to ls then state=true
+                    // state was =to false but if gamepad2 is =to ls then state=true
                      if(state){
                         arm.setPosition(180);
                         // if state=true then it moves the arm 180 degrees
