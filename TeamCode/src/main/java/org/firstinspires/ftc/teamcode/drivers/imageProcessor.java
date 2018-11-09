@@ -9,11 +9,11 @@ public class imageProcessor {
     }
 
     int getLandingSpot(){
-        
+        return -1;
     }
 
     int getMineralLocation(){
-
+        return -1;
     }
 }
 
