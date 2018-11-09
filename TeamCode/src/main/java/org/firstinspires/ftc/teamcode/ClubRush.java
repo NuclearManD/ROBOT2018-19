@@ -18,7 +18,6 @@ import org.firstinspires.ftc.teamcode.drivers.ServoFlapDriver1712;
  * FiringMechanism 1.0.0
 */
 
-@TeleOp(name="Club Rush", group="2018")
 public class ClubRush extends LinearOpMode {
     private MovementDriver drive;
     Servo arm;
