@@ -62,7 +62,6 @@ public class AutoMainOp extends LinearOpMode {
 
         }
         drive.setSpeed(0);
-
         while (opModeIsActive() && (runtime.seconds() < 8.0)) {
             System.out.println("Firing mode");
             gun.setPower(1);
@@ -71,13 +70,6 @@ public class AutoMainOp extends LinearOpMode {
             sleep(100);
         }
         gun.setPower(0);
-        //sleep(100);
-
-
-
-
-
-
     }
     void moveArm0(float value){
         float power=0.1f;
