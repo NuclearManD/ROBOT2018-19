@@ -44,7 +44,7 @@ public class SensorUtil implements SensorEventListener {
         return tmp;
 
     }
-    public float[] getGyroValVal() {
+    public float[] getGyroVal() {
         float[] tmp = gyroVal;
         gyroVal = new float[gyroVal.length];
         return tmp;

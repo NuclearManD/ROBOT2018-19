@@ -24,13 +24,13 @@ public class Mecanum4WheelDriver extends Driver {
     }
     private static double round (double value, int precision) {
         int scale = (int) Math.pow(10, precision);
-        return (double) Math.round(value * scale) / scale;
+        return (double) (Math.round(value * scale) / scale);
     }
     public void motorUpdate(){
         fl.setPower(y+x+R);
         bl.setPower(y-x+R);
-        fr.setPower(y-x-R);
-        br.setPower(y+x-R);
+        fr.setPower(-(y-x-R));
+        br.setPower(-(y+x-R));
     }
     public void setX(double q){
         x=q;

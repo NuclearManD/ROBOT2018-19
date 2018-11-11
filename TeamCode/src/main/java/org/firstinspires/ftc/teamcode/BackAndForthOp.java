@@ -29,16 +29,15 @@ public class BackAndForthOp extends LinearOpMode {
         }
         for(int i=0;i<3;i++) {
             try {
-                driver.setY(1);
+                driver.setX(1);
                 Thread.sleep(1000);
-                driver.setY(-1);
+                driver.setX(-1);
                 Thread.sleep(1000);
             }catch(Exception e){
                 telemetry.addLine("ERROR IN MAIN CODE!!!!");
                 return;
             }
         }
-        driver.setY(0);
-
+        driver.setX(0);
     }
 }
