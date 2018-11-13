@@ -33,13 +33,13 @@ public class UltimateDriver extends Mecanum4WheelDriver {
     }
     public static void autoTurn(boolean turnLeft, boolean turnRight){//turn the robot in place; combined with motion it will turn?
         if (turnLeft&&!turnRight){
-            vflFinal, vbrFinal = vf1+.25;
-            vfrFinal, vblFinal = vfr-.25;
+            vflFinal, vblFinal = vf1-.25;//.25 is the amount out of 1 that the wheels dedicate to rotation instead of directional movement
+            vfrFinal, vbrFinal = vfr+.25;
             motorSet(vflFinal, vblFinal, vfrFinal, vbrFinal);
         }
         if (turnRight&&!turnLeft){
-            vflFinal, vbrFinal = vf1-.25;
-            vfrFinal, vblFinal = vfr+.25;
+            vflFinal, vblFinal = vf1+.25;
+            vfrFinal, vbrFinal = vfr-.25;
             motorSet(vflFinal, vblFinal, vfrFinal, vbrFinal);
         }
     }
