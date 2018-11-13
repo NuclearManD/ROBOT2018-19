@@ -27,8 +27,8 @@ public class BackAndForthOp extends LinearOpMode {
             e.printStackTrace();
 
         }
-        for(int i=0;i<3;i++) {
-            try {
+        for(int i=0;i<3;i++) {//robot runs the commands 3 times
+            try {//forwards, backwards
                 driver.setX(1);
                 Thread.sleep(1000);
                 driver.setX(-1);
