@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode.drivers;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.hardware.Camera;
 import android.hardware.camera2.CameraDevice;
 
 /**
@@ -8,12 +10,22 @@ import android.hardware.camera2.CameraDevice;
  */
 // https://developer.android.com/reference/android/hardware/camera2/CameraCaptureSession
 public class CameraInput {
-    CameraDevice cam;
+    Camera cam;
     public CameraInput() {
-        //cam.createCaptureSession();
+        cam=Camera.open();
     }
+    byte[] data=null;
 
     public Bitmap takePic(){
-        return null;
+        data=null;
+        Camera.PictureCallback raw = new Camera.PictureCallback() {
+            @Override
+            public void onPictureTaken(byte[] bytes, Camera camera) {
+                data=bytes;
+            }
+        };
+        cam.takePicture(null, raw, null);
+        while(data==null);
+        return BitmapFactory.decodeByteArray(data,0,data.length);
     }
 }
