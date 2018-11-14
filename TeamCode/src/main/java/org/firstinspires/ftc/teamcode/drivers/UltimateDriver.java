@@ -15,7 +15,7 @@ public class UltimateDriver extends Mecanum4WheelDriver {
     public void autoDrive(double angleInDegrees, double speed) {//move the robot in any straight direction in any given angle (in degrees) and speed (0 to 1)
         double angleInRadians = angleInDegrees*2*Math.PI/360;//converts degrees to radians
         //0 radians is moving the robot straight ahead (+y direction) angleInRadians changes counter-clockwise from 0; @param angleInRadians must be [0, 6.28) radians
-        if (angleInRadians >= 0 || angleInRadians < 2*Math.PI) {//if @param angleInRadians falls within 0 to 2pi
+        if (angleInRadians >= 0 && angleInRadians < 2*Math.PI) {//if @param angleInRadians falls within 0 to 2pi
             robotAngle = angleInRadians+(Math.PI/4);
             vfl = .75*(speed * Math.cos(robotAngle));
             vbl = .75*(speed * Math.sin(robotAngle));

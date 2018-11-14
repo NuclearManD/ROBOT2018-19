@@ -44,7 +44,7 @@ public class Mecanum4WheelDriver extends Driver {
         R=q;
         motorUpdate();
     }
-    public static void motorSet(double flSpeed, double blSpeed, double frSpeed, double brSpeed){
+    public void motorSet(double flSpeed, double blSpeed, double frSpeed, double brSpeed){
         fl.setPower(flSpeed);
         bl.setPower(blSpeed);
         fr.setPower(-(frSpeed));
