@@ -2,20 +2,25 @@ package org.firstinspires.ftc.teamcode;
 
 /**
  * Created by SCRoboticsDev on 11/14/2018.
+ * GamePad Documentation: ftckey...com
  */
-
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.drivers.Mecanum4WheelDriver;
 import org.firstinspires.ftc.teamcode.drivers.UltimateDriver;
+import com.qualcomm.robotcore.hardware.Gamepad;
 
-
-@TeleOp(name="Strafe", group="2018")
-public class StrafingBoi extends LinearOpMode {
+@TeleOp(name="GamepadTest", group="2018")
+public class GamepadTest extends LinearOpMode {
+    static final float FORWARD_SPEED = -0.6f;
     public void runOpMode(){
         UltimateDriver driver = new UltimateDriver();
+        Gamepad movePad = gamepad1;
+        Gamepad liftPad = gamepad2;
         try {
             DcMotor[] motors = {hardwareMap.dcMotor.get("fl"),hardwareMap.dcMotor.get("fr"),hardwareMap.dcMotor.get("bl"),hardwareMap.dcMotor.get("br")};
             driver.init(motors);
@@ -27,21 +32,13 @@ public class StrafingBoi extends LinearOpMode {
             waitForStart();
         }catch (Exception e) {
             e.printStackTrace();
-
         }
-        for(int i=0;i<3;i++) {//robot runs the commands 3 times
+        while (true) {
             try {
-                driver.autoDrive(0, 1);
-                Thread.sleep(1000);
-                driver.autoDrive(0, .5);
-                Thread.sleep(2000);
-                driver.autoDrive(0, 0);
-                Thread.sleep(1000);
-                driver.autoDrive(90, .5);
-                Thread.sleep(1000);
-                driver.autoDrive(270, .5);
-                Thread.sleep(1000);
-            }catch(Exception e){
+                driver.manualDrive(movePad.left_stick_x, movePad.left_stick_y);
+                driver.manualTurn(movePad.left_trigger, movePad.right_trigger);
+            }
+            catch (Exception e){
                 telemetry.addLine("ERROR IN MAIN CODE!!!!");
                 return;
             }
