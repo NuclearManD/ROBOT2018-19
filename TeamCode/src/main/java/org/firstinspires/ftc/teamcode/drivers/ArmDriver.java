@@ -25,7 +25,7 @@ public class ArmDriver {
        Servo colect;
         void openScoop() {
 
-                rot. = 0;;
+                //rot = 0;;
         }
 
 
