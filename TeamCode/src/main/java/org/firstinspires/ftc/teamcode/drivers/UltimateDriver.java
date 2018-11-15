@@ -24,7 +24,7 @@ public class UltimateDriver extends Mecanum4WheelDriver {
             motorSet(vfl, vbl, vfr, vbr);
         }
     }
-    public void manualDrive(double gamepadX, double gamepadY){//put in gamepad inputs for gamepadX and gamepadY
+    public void manualDrive(float gamepadX, float gamepadY){//put in gamepad inputs for gamepadX and gamepadY
         double hypotenuse = Math.hypot(gamepadX, gamepadY);//finds the overall velocity desired based on the controller inputs
         robotAngle = Math.atan2(gamepadY, gamepadX) - Math.PI / 4;//turns the angle pi/4 clockwise to adjust for the orientation of the mecanum wheels
         vfl = .75*(hypotenuse * (Math.cos(robotAngle)));
@@ -42,14 +42,27 @@ public class UltimateDriver extends Mecanum4WheelDriver {
             motorSet(vflFinal, vblFinal, vfrFinal, vbrFinal);
         }
         if (turnRight&&!turnLeft){
-            vflFinal = vfl-.25;
-            vblFinal = vbl-.25;
-            vfrFinal = vfr+.25;
-            vbrFinal = vbr+.25;
+            vflFinal = vfl+.25;
+            vblFinal = vbl+.25;
+            vfrFinal = vfr-.25;
+            vbrFinal = vbr-.25;
             motorSet(vflFinal, vblFinal, vfrFinal, vbrFinal);
         }
     }
-    public void manualTurn(boolean left_bumper, boolean right_bumper){
-        autoTurn(left_bumper, right_bumper);
+    public void manualTurn(float left_trigger, float right_trigger){
+        if (left_trigger>right_trigger){
+            vflFinal = vfl-.25*left_trigger;//.25 is the amount out of 1 that the wheels dedicate to rotation instead of directional movement
+            vblFinal = vbl-.25*left_trigger;
+            vfrFinal = vfr+.25*left_trigger;
+            vbrFinal = vbr+.25*left_trigger;
+            motorSet(vflFinal, vblFinal, vfrFinal, vbrFinal);
+        }
+        if (right_trigger>left_trigger) {
+            vflFinal = vfl + .25 * right_trigger;
+            vblFinal = vbl + .25 * right_trigger;
+            vfrFinal = vfr - .25 * right_trigger;
+            vbrFinal = vbr - .25 * right_trigger;
+            motorSet(vflFinal, vblFinal, vfrFinal, vbrFinal);
+        }
     }
 }

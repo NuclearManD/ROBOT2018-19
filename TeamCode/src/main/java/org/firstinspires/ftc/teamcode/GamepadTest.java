@@ -36,6 +36,7 @@ public class GamepadTest extends LinearOpMode {
         while (true) {
             try {
                 driver.manualDrive(movePad.left_stick_x, movePad.left_stick_y);
+                driver.manualTurn(movePad.left_trigger, movePad.right_trigger);
             }
             catch (Exception e){
                 telemetry.addLine("ERROR IN MAIN CODE!!!!");
