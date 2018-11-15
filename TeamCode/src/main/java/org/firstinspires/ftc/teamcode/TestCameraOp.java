@@ -3,15 +3,18 @@ package org.firstinspires.ftc.teamcode;
 import android.graphics.Bitmap;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.drivers.CameraInput;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+@TeleOp(name="Camera Dxdiag", group="2018")
 public class TestCameraOp extends LinearOpMode {
 
     public void runOpMode(){
+        System.out.println("BE GONE DIE ERREURS!!!!!!!  !@#%$^$%^*&^&%$^#$#$*&%(^&*%*^$%#$^@#%$#&%^%$*&%^^&&*^$%#$^@%$#&^%*$^%(&*^&%%^$%&#$^#@&#%*$^%&^%&^$%&$^");
         CameraInput inp = new CameraInput();
         Bitmap img = inp.takePic();
         try (FileOutputStream out = new FileOutputStream("iphonexfootage.png")) {
