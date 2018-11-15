@@ -23,12 +23,6 @@ Thumbs.db
 .idea
 build/
 
-<<<<<<< HEAD
 *ASUS_PC_01*
 *.lock
-=======
-
-*ASUS_PC_01*
-
-
->>>>>>> 0f5861d6d21462a8fa23733093a1b965c65fa95b
+*.bin
