@@ -35,12 +35,8 @@ public class StrafingBoi extends LinearOpMode {
                 driver.autoDrive(0, 1);
                 Thread.sleep(1000);
                 driver.autoDrive(0, .5);
-                Thread.sleep(1000);
+                Thread.sleep(2000);
                 driver.autoDrive(0, 0);
-                Thread.sleep(1000);
-                driver.autoDrive(180, .5);
-                Thread.sleep(1000);
-                driver.autoDrive(0, 1);
                 Thread.sleep(1000);
                 driver.autoDrive(90, .5);
                 Thread.sleep(1000);
