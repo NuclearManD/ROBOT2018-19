@@ -10,7 +10,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.drivers.UltimateDriver;
-import org.firstinspires.ftc.teamcode.drivers.MovementDriver;
 
 
 @TeleOp(name="Strafe", group="2018")
