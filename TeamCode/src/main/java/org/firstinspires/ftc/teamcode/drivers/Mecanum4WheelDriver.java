@@ -16,9 +16,8 @@ public class Mecanum4WheelDriver extends Driver {
         bl = l[2];
         br = l[3];
     }
-    public void update() {
+    public void update() {}
 
-    }
     private float torad(float x){
         return x/57.2958f;
     }
