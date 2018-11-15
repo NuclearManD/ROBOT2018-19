@@ -16,9 +16,8 @@ public class Mecanum4WheelDriver extends Driver {
         bl = l[2];
         br = l[3];
     }
-    public void update() {
+    public void update() {}
 
-    }
     private float torad(float x){
         return x/57.2958f;
     }
@@ -44,7 +43,7 @@ public class Mecanum4WheelDriver extends Driver {
         R=q;
         motorUpdate();
     }
-    public static void motorSet(double flSpeed, double blSpeed, double frSpeed, double brSpeed){
+    public void motorSet(double flSpeed, double blSpeed, double frSpeed, double brSpeed){
         fl.setPower(flSpeed);
         bl.setPower(blSpeed);
         fr.setPower(-(frSpeed));
