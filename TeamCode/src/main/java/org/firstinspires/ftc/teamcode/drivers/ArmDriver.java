@@ -8,6 +8,17 @@ public class ArmDriver {
 
         DcMotor pully;
         DcMotor ang;
+
+    /**
+     *
+     * @param a  Pully motor
+     * @param b  Angle Motor
+     */
+    public ArmDriver(DcMotor a, DcMotor b){
+            pully=a;
+            ang=b;
+        }
+
         void extend(float distance){
              try {
                      pully.setPower(1);
@@ -18,7 +29,7 @@ public class ArmDriver {
 
              pully.setPower(0);
         }
-        public static final float DIS_COVERSION= 1;
+        public static final float DIS_COVERSION = 71.423f;
         // this constant is tmp plz change and test
 
        Servo rot;

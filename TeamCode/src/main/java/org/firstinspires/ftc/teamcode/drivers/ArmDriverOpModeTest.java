@@ -14,12 +14,10 @@ public class ArmDriverOpModeTest extends LinearOpMode {
     public void runOpMode () {
         try {
             pully = hardwareMap.dcMotor.get("fl");
-            pully.setPower(.5);
-            Thread.sleep(4300);
+            ArmDriver driver = new ArmDriver(pully,null);
+            driver.extend(60);
         } catch (Exception e) {
             System.out.println("oog something got gooned");
         }
-
-        pully.setPower(0);
     }
 }
