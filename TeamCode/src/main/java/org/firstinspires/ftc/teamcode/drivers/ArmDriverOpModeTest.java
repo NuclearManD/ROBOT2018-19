@@ -15,7 +15,7 @@ public class ArmDriverOpModeTest extends LinearOpMode {
         try {
             pully = hardwareMap.dcMotor.get("fl");
             pully.setPower(.5);
-            Thread.sleep(500);
+            Thread.sleep(4300);
         } catch (Exception e) {
             System.out.println("oog something got gooned");
         }
