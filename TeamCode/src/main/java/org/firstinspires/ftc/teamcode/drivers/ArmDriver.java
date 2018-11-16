@@ -49,9 +49,9 @@ public class ArmDriver {
         }
 
 
-        void  rotate(float degrees){
+    void rotate(float angle){
             try {
-                ang.setPower(1);
+                ang.setPower(.5);
                 Thread.sleep(500);
             }catch (Exception e){
                 System.out.println("oog something got gooned");
