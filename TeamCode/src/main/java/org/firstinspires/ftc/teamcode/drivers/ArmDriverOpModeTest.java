@@ -19,5 +19,6 @@ public class ArmDriverOpModeTest extends LinearOpMode {
         } catch (Exception e) {
             System.out.println("oog something got gooned");
         }
+        // it's fine everthing is fine
     }
 }
