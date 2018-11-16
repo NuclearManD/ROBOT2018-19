@@ -28,9 +28,18 @@ public class ArmDriver {
              }
 
              pully.setPower(0);
+            try {
+                pully.setPower(-1);
+                Thread.sleep((long)(distance*DIS_COVERSION));
+            } catch (Exception e){
+                System.out.println("oog something got gooned");
+            }
+
+            pully.setPower(0);
+
         }
         public static final float DIS_COVERSION = 71.423f;
-        // this constant is tmp plz change and test
+
 
        Servo rot;
        Servo colect;
@@ -41,6 +50,13 @@ public class ArmDriver {
 
 
         void  rotate(float degrees){
-
+            try {
+                ang.setPower(1);
+                Thread.sleep(500);
+            }catch (Exception e){
+                System.out.println("oog something got gooned");
+            }
+            ang.setPower(0);
         }
+    public static final float ANG_COVERSION = 1;
 }
