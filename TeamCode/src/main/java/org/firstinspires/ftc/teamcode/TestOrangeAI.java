@@ -13,7 +13,7 @@ public class TestOrangeAI extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        Database db = new DatabaseFolder("/AIdir/");
+        Database db = new DatabaseFolder("./");
         Object loaded = db.read_node("rec_orange");
         if(loaded instanceof NetFeedForward){
             NetFeedForward ai = (NetFeedForward)loaded;

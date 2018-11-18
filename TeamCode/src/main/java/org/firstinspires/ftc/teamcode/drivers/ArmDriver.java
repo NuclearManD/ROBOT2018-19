@@ -47,8 +47,7 @@ public class ArmDriver {
         void ColectBoi() {
             try {
                 ColAng.setPosition(0);
-            }catch (Exception e){
-
+            }catch (Exception e) {
             }
         }
 

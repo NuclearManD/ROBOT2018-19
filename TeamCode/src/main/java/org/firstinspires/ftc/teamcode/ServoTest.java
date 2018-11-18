@@ -30,7 +30,6 @@ public class ServoTest extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
         runtime.reset();
-
         dc.setPower(1);
         try{
             Thread.sleep(3200);
