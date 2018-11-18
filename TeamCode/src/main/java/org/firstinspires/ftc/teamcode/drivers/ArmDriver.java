@@ -1,6 +1,5 @@
 
 package org.firstinspires.ftc.teamcode.drivers;
-
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -15,8 +14,10 @@ public class ArmDriver {
      * @param b  Angle Motor
      */
     public ArmDriver(DcMotor a, DcMotor b){
-            pully=a;
-            ang=b;
+        ang.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        ang.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        pully=a;
+        ang=b;
         }
 
         void extend(float distance){
@@ -41,22 +42,19 @@ public class ArmDriver {
         public static final float DIS_COVERSION = 71.423f;
 
 
-       Servo rot;
-       Servo colect;
-        void openScoop() {
+       Servo ColAng;
+       Servo Rotcol;
+        void ColectBoi() {
+            try {
+                ColAng.setPosition();
+            }catch (){
 
-                //rot = 0;;
+            }
         }
 
 
     void rotate(float angle){
-            try {
-                ang.setPower(.5);
-                Thread.sleep(500);
-            }catch (Exception e){
-                System.out.println("oog something got gooned");
-            }
-            ang.setPower(0);
-        }
-    public static final float ANG_COVERSION = 1;
+        ang.setTargetPosition((int)(ANG_COVERSION*angle));
+    }
+    public static final float ANG_COVERSION = 6.22f;
 }

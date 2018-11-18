@@ -15,12 +15,12 @@ public class ArmDriverOpModeTest extends LinearOpMode {
         try {
             pully = hardwareMap.dcMotor.get("fl");
             ArmDriver driver = new ArmDriver(pully, hardwareMap.dcMotor.get("fr"));
-            driver.rotate(60);
+            driver.rotate(215);
         } catch (Exception e) {
             System.out.println("oog something got gooned");
         }
         try {
-            Thread.sleep(2000);
+            Thread.sleep(4000);
         } catch (Exception e) {
             System.out.println("oog something got gooned");
 
