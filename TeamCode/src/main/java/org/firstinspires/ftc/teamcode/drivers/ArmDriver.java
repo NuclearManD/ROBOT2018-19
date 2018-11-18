@@ -45,11 +45,11 @@ public class ArmDriver {
        Servo ColAng;
        Servo Rotcol;
         void ColectBoi() {
-            try {
+            /*try {
                 ColAng.setPosition();
             }catch (){
 
-            }
+            }*/
         }
 
 
