@@ -54,7 +54,8 @@ public class ArmDriver {
 
     void rotate(float angle){
         ang.setTargetPosition((int)(ANG_COVERSION*angle));
+        ang.setPower(.5);
     }
     
-    public static final float ANG_COVERSION = 6.22f;
+    public static final float ANG_COVERSION = 46.666f;
 }

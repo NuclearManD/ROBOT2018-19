@@ -11,5 +11,5 @@
 // Include common definitions from above.
 apply from: '../build.common.gradle'
 dependencies {
-    implementation files('src/main/res/psg_dev_1.1.jar')
+    //implementation files('src/main/res/psg_dev_1.1.jar')
 }
