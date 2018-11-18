@@ -14,10 +14,10 @@ public class ArmDriver {
      * @param b  Angle Motor
      */
     public ArmDriver(DcMotor a, DcMotor b){
-        ang.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        ang.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         pully=a;
         ang=b;
+        ang.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        ang.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
 
         void extend(float distance){
@@ -46,8 +46,8 @@ public class ArmDriver {
        Servo Rotcol;
         void ColectBoi() {
             try {
-                ColAng.setPosition();
-            }catch (){
+                ColAng.setPosition(0);
+            }catch (Exception e){
 
             }
         }
@@ -56,5 +56,6 @@ public class ArmDriver {
     void rotate(float angle){
         ang.setTargetPosition((int)(ANG_COVERSION*angle));
     }
+    
     public static final float ANG_COVERSION = 6.22f;
 }
