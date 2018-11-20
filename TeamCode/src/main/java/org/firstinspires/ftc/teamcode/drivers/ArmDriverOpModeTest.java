@@ -12,10 +12,11 @@ public class ArmDriverOpModeTest extends LinearOpMode {
     DcMotor ang;
 
     public void runOpMode() {
+
         try {
             pully = hardwareMap.dcMotor.get("fl");
-            ArmDriver driver = new ArmDriver(pully, hardwareMap.dcMotor.get("fr"));
-            driver.rotate(215);
+            ArmDriver driver = new ArmDriver(pully, hardwareMap.dcMotor.get("fl"));
+            pully.setPower(1);
         } catch (Exception e) {
             System.out.println("oog something got gooned");
         }
