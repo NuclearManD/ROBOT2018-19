@@ -44,10 +44,20 @@ public class ArmDriver {
 
        Servo ColAng;
        Servo Rotcol;
-        void ColectBoi() {
+       int pos;
+       int neoPos;
+        void ColectBoiSet() {
             try {
-                ColAng.setPosition(0);
+                ColAng.setPosition(pos);
+            } catch (Exception e) {
+                System.out.println("oog something got gooned");
+            }
+        }
+        void ColectBoiMove() {
+            try {
+                ColAng.setPosition(neoPos);
             }catch (Exception e) {
+                System.out.println("oog something got gooned");
             }
         }
 
