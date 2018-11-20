@@ -25,13 +25,12 @@ public class BackAndForthOp extends LinearOpMode {
             waitForStart();
         }catch (Exception e) {
             e.printStackTrace();
-
         }
         for(int i=0;i<3;i++) {//robot runs the commands 3 times
             try {//forwards, backwards
-                driver.setX(1);
+                driver.setY(1);
                 Thread.sleep(1000);
-                driver.setX(-1);
+                driver.setY(-1);
                 Thread.sleep(1000);
             }catch(Exception e){
                 telemetry.addLine("ERROR IN MAIN CODE!!!!");
