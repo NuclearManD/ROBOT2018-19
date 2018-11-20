@@ -37,6 +37,8 @@ public class BackAndForthOp extends LinearOpMode {
                 return;
             }
         }
+        driver.setY(0);
         driver.setX(0);
+        driver.setR(0);
     }
 }
