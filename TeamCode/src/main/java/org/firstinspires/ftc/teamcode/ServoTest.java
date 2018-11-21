@@ -31,5 +31,10 @@ public class ServoTest extends LinearOpMode {
         waitForStart();
         runtime.reset();
         ColAng.setPosition(.5);
+       try {
+           Thread.sleep(4000);
+       }catch (Exception e){
+           System.out.println("oog something got gooned");
+       }
     }
 }
