@@ -19,23 +19,17 @@ import org.firstinspires.ftc.teamcode.drivers.MovementDriver;
 public class ServoTest extends LinearOpMode {
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
-    private DcMotor dc = null;
+    private Servo ColAng = null;
 
     @Override
     public void runOpMode() {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
-        dc = hardwareMap.get(DcMotor.class, "Core Hex Motor");
+        ColAng =hardwareMap.servo.get("ColAng");
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
         runtime.reset();
-        dc.setPower(1);
-        try{
-            Thread.sleep(3200);
-        }catch(Exception e){
-
-        }
-        dc.setPower(0);
+        ColAng.setPosition(.5);
     }
 }
