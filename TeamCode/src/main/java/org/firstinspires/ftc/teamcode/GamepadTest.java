@@ -23,7 +23,7 @@ public class GamepadTest extends LinearOpMode {
         Gamepad movePad = gamepad1;
         try {
             motors = {hardwareMap.dcMotor.get("fl"),hardwareMap.dcMotor.get("fr"),hardwareMap.dcMotor.get("bl"),hardwareMap.dcMotor.get("br")};
-            driver.init(motors);
+            driver.init(motors, -1);
         }catch (Exception e){
             System.out.println("\n------    HARDWARE ERROR IN INIT!   ------\n");
             e.printStackTrace();
