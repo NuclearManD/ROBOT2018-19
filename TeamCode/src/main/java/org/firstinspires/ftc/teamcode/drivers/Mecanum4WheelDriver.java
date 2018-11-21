@@ -10,8 +10,12 @@ public class Mecanum4WheelDriver extends Driver {
     private double x=0;
     private double y=0;
     private double R=0;
+    private double targx=0;
+    private double targy=0;
+    private double targR=0;
 
     private float strafeCoef = 1;
+    private float agility = 1;
 
     /**
      * init with default strafing coefficient
@@ -36,6 +40,24 @@ public class Mecanum4WheelDriver extends Driver {
         br = l[3];
         this.strafeCoef=strafeCoef;
     }
+    /**
+     * Init with specified strafing coefficient
+     * @param l  all the motors in the order of fl, fr, bl, br
+     * @param strafeCoef specified strafing coefficient
+     * @param agility 
+     */
+    public void init(DcMotor[] l, float strafeCoef, float agility) {
+        fl = l[0];
+        fr = l[1];
+        bl = l[2];
+        br = l[3];
+        this.strafeCoef=strafeCoef;
+        this.agility = agility;
+    }
+
+    public void stopDriver(){
+
+    }
     public void update() {}
 
     public float torad(float x){
@@ -52,15 +74,15 @@ public class Mecanum4WheelDriver extends Driver {
         br.setPower(-(y+x-R));
     }
     public void setX(double q){
-        x=q*strafeCoef;
+        targx=q*strafeCoef;
         motorUpdate();
     }
     public void setY(double q){
-        y=q;
+        targy=q;
         motorUpdate();
     }
     public void setR(double q){
-        R=q;
+        targR=q;
         motorUpdate();
     }
     public void motorSet(double flSpeed, double blSpeed, double frSpeed, double brSpeed){
