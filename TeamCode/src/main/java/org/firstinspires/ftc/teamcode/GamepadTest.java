@@ -19,11 +19,11 @@ public class GamepadTest extends LinearOpMode {
     static final float FORWARD_SPEED = -0.6f;
     public void runOpMode(){
         UltimateDriver driver = new UltimateDriver();
+        DcMotor[] motors;
         Gamepad movePad = gamepad1;
-        Gamepad liftPad = gamepad2;
         try {
-            DcMotor[] motors = {hardwareMap.dcMotor.get("fl"),hardwareMap.dcMotor.get("fr"),hardwareMap.dcMotor.get("bl"),hardwareMap.dcMotor.get("br")};
-            driver.init(motors);
+            motors = {hardwareMap.dcMotor.get("fl"),hardwareMap.dcMotor.get("fr"),hardwareMap.dcMotor.get("bl"),hardwareMap.dcMotor.get("br")};
+            driver.init(motors, -1);
         }catch (Exception e){
             System.out.println("\n------    HARDWARE ERROR IN INIT!   ------\n");
             e.printStackTrace();
@@ -33,7 +33,7 @@ public class GamepadTest extends LinearOpMode {
         }catch (Exception e) {
             e.printStackTrace();
         }
-        while (true) {
+        while (opModeIsActive()) {
             try {
                 driver.manualDrive(movePad.left_stick_x, movePad.left_stick_y);
                 driver.manualTurn(movePad.left_trigger, movePad.right_trigger);

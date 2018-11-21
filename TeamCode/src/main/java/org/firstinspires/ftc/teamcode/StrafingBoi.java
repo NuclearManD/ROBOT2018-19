@@ -18,7 +18,7 @@ public class StrafingBoi extends LinearOpMode {
         UltimateDriver driver = new UltimateDriver();
         try {
             DcMotor[] motors = {hardwareMap.dcMotor.get("fl"),hardwareMap.dcMotor.get("fr"),hardwareMap.dcMotor.get("bl"),hardwareMap.dcMotor.get("br")};
-            driver.init(motors);
+            driver.init(motors, -1);
         }catch (Exception e){
             System.out.println("\n------    HARDWARE ERROR IN INIT!   ------\n");
             e.printStackTrace();
@@ -29,7 +29,7 @@ public class StrafingBoi extends LinearOpMode {
             e.printStackTrace();
 
         }
-        for(int i=0;i<3;i++) {//robot runs the commands 3 times
+        for(int i=0;i<2;i++) {//robot runs the commands 3 times
             try {
                 driver.autoDrive(0, 1);
                 Thread.sleep(1000);

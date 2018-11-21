@@ -13,14 +13,13 @@ public class UltimateDriver extends Mecanum4WheelDriver {
     private double vbrFinal;
     private double robotAngle;
     public void autoDrive(double angleInDegrees, double speed) {//move the robot in any straight direction in any given angle (in degrees) and speed (0 to 1)
-        double angleInRadians = angleInDegrees*2*(Math.PI)/360;//converts degrees to radians
-        //0 radians is moving the robot straight ahead (+y direction) angleInRadians changes counter-clockwise from 0; @param angleInRadians must be [0, 6.28) radians
-        if (angleInRadians >= 0 && angleInRadians < 2*(Math.PI)) {//if @param angleInRadians falls within 0 to 2pi
-            robotAngle = angleInRadians+((Math.PI)/4);
-            vfl = .75*(speed * (Math.cos(robotAngle)));//front left wheel
-            vbl = .75*(speed * (Math.sin(robotAngle)));//back left wheel
-            vfr = .75*(speed * (Math.sin(robotAngle)));//front right wheel
-            vbr = .75*(speed * (Math.cos(robotAngle)));//back right wheel
+        if (angleInDegrees >= 0 && angleInDegrees < 360) {//if @param angleInDegrees falls within 0 to 360 degrees
+            robotAngle = angleInDegrees+45;
+            double angleInRadians = robotAngle*2*(Math.PI)/360;//converts degrees to radians
+            vfl = .75*(speed * (Math.cos(angleInRadians)));//front left wheel
+            vbl = .75*(speed * (Math.sin(angleInRadians)));//back left wheel
+            vfr = .75*(speed * (Math.sin(angleInRadians)));//front right wheel
+            vbr = .75*(speed * (Math.cos(angleInRadians)));//back right wheel
             motorSet(vfl, vbl, vfr, vbr);
         }
     }
