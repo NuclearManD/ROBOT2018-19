@@ -49,6 +49,7 @@ public class ArmDriver {
         void ColectBoiSet() {
             try {
                 ColAng.setPosition(pos);
+
             } catch (Exception e) {
                 System.out.println("oog something got gooned");
             }
