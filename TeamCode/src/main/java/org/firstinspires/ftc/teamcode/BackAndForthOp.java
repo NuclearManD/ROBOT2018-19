@@ -16,7 +16,7 @@ public class BackAndForthOp extends LinearOpMode {
         Mecanum4WheelDriver driver = new Mecanum4WheelDriver();
         try {
             DcMotor[] motors = {hardwareMap.dcMotor.get("fl"),hardwareMap.dcMotor.get("fr"),hardwareMap.dcMotor.get("bl"),hardwareMap.dcMotor.get("br")};
-            driver.init(motors);
+            driver.init(motors,-1);
         }catch (Exception e){
             System.out.println("\n------    HARDWARE ERROR IN INIT!   ------\n");
             e.printStackTrace();
@@ -25,10 +25,11 @@ public class BackAndForthOp extends LinearOpMode {
             waitForStart();
         }catch (Exception e) {
             e.printStackTrace();
-
         }
-        for(int i=0;i<3;i++) {//robot runs the commands 3 times
-            try {//forwards, backwards
+        for(int i=0;i<3;i++){
+            //robot runs the commands 3 times
+            try{
+                //forwards, backwards
                 driver.setX(1);
                 Thread.sleep(1000);
                 driver.setX(-1);
@@ -38,6 +39,8 @@ public class BackAndForthOp extends LinearOpMode {
                 return;
             }
         }
+        driver.setY(0);
         driver.setX(0);
+        driver.setR(0);
     }
 }
