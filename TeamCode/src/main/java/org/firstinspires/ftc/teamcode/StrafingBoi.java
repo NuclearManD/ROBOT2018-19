@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.drivers.UltimateDriver;
 
 
-@TeleOp(name="Strafe", group="2018")
+@TeleOp(name="StrafingBoi", group="2018")
 public class StrafingBoi extends LinearOpMode {
     public void runOpMode(){
         UltimateDriver driver = new UltimateDriver();

@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
  * Created by SCRoboticsDev on 11/18/2018.
  */
 
-@TeleOp(name="AI test", group="2018")
+//@TeleOp(name="AI test", group="2018")
 public class TestOrangeAI extends LinearOpMode {
 
     @Override
