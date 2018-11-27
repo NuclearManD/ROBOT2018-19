@@ -34,13 +34,15 @@ public class GamepadTest extends LinearOpMode {
         }
         while (opModeIsActive()) {
             try {
-                driver.manualDrive(movePad.left_stick_x, movePad.left_stick_y);
-                driver.manualTurn(movePad.left_trigger, movePad.right_trigger);
+                /*driver.manualDrive(movePad.left_stick_x, movePad.left_stick_y);
+                driver.manualTurn(movePad.left_trigger, movePad.right_trigger);*/
+                driver.setY(movePad.left_stick_y);
             }
             catch (Exception e){
                 telemetry.addLine("ERROR IN MAIN CODE!!!!");
                 return;
             }
         }
+        driver.stopDriver();
     }
 }

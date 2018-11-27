@@ -85,10 +85,4 @@ public class Mecanum4WheelDriver extends Driver {
         targR=q;
         motorUpdate();
     }
-    public void motorSet(double flSpeed, double blSpeed, double frSpeed, double brSpeed){
-        fl.setPower(flSpeed);
-        bl.setPower(blSpeed);
-        fr.setPower(-(frSpeed));
-        br.setPower(-(brSpeed));
-    }
 }
