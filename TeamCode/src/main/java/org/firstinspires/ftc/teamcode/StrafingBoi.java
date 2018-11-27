@@ -32,15 +32,15 @@ public class StrafingBoi extends LinearOpMode {
         for(int i=0;i<2;i++) {//robot runs the commands 3 times
             try {
                 driver.autoDrive(0, 1);
-                Thread.sleep(1000);
+                Thread.sleep(500);
                 driver.autoDrive(0, .5);
-                Thread.sleep(2000);
+                Thread.sleep(1000);
                 driver.autoDrive(0, 0);
-                Thread.sleep(1000);
+                Thread.sleep(500);
                 driver.autoDrive(90, .5);
-                Thread.sleep(1000);
+                Thread.sleep(500);
                 driver.autoDrive(270, .5);
-                Thread.sleep(1000);
+                Thread.sleep(500);
             }catch(Exception e){
                 telemetry.addLine("ERROR IN MAIN CODE!!!!");
                 return;
