@@ -46,5 +46,6 @@ public class StrafingBoi extends LinearOpMode {
                 return;
             }
         }
+        driver.stopDriver();
     }
 }
