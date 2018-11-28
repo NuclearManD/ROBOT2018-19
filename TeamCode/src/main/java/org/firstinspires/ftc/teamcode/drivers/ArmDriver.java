@@ -21,6 +21,7 @@ public class ArmDriver {
         }
 
         void extend(float distance){
+        if (){}
              try {
                      pully.setPower(1);
                      Thread.sleep((long)(distance*DIS_COVERSION));
@@ -39,16 +40,16 @@ public class ArmDriver {
             pully.setPower(0);
 
         }
-        public static final float DIS_COVERSION = 71.423f;
+        public static final float DIS_COVERSION = 1f;
 
 
-       Servo ColAng;
-       Servo Rotcol;
+       Servo angServo;
+       Servo goboi;
        float pos = .5f;
        float neoPos = .1f;
         void ColectBoiSet() {
             try {
-                ColAng.setPosition(pos);
+                angServo.setPosition(pos);
 
             } catch (Exception e) {
                 System.out.println("oog something got gooned");
@@ -56,7 +57,7 @@ public class ArmDriver {
         }
         void ColectBoiMove() {
             try {
-                ColAng.setPosition(neoPos);
+                angServo.setPosition(neoPos);
             }catch (Exception e) {
                 System.out.println("oog something got gooned");
             }
@@ -64,7 +65,7 @@ public class ArmDriver {
 
         void ColectBoiRot() {
             try {
-                Rotcol.setPosition(1);
+                goboi.setPosition(1);
             }catch (Exception e) {
                 System.out.println("oog something got gooned");
             }
