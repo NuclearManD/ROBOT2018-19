@@ -64,16 +64,19 @@ public class ArmDriver {
 
         void ColectBoiRot() {
             try {
+                Rotcol.setPosition(1);
+            }catch (Exception e) {
+                System.out.println("oog something got gooned");
 
             }catch (Exception e){
-
+                System.out.println("oog something got gooned");
             }
         }
 
 
     void rotate(float angle){
         ang.setTargetPosition((int)(ANG_COVERSION*angle));
-        ang.setPower(.1);
+        ang.setPower(Math.copySign(.1,angle));
     }
     
     public static final float ANG_COVERSION = 46.666f;
