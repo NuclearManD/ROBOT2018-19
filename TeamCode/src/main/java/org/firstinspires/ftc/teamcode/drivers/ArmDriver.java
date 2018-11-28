@@ -65,6 +65,8 @@ public class ArmDriver {
         void ColectBoiRot() {
             try {
 
+            }catch (Exception e){
+
             }
         }
 
