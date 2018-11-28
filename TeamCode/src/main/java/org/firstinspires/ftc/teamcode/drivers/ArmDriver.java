@@ -67,6 +67,9 @@ public class ArmDriver {
                 Rotcol.setPosition(1);
             }catch (Exception e) {
                 System.out.println("oog something got gooned");
+
+            }catch (Exception e){
+                System.out.println("oog something got gooned");
             }
         }
 
