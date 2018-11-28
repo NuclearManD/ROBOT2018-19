@@ -36,7 +36,7 @@ public class Multitasker {
     }
     public void waitTime(long time){
         time+=System.currentTimeMillis();
-        while(master.opModeIsActive()&&time<System.currentTimeMillis()){
+        while(master.opModeIsActive()&&time>System.currentTimeMillis()){
             yield();
             if(master.isStopRequested()){
                 return;
