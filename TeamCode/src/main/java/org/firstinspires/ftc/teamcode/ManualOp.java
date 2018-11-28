@@ -28,6 +28,8 @@ public class ManualOp extends LinearOpMode {
             driver.setY(y);
             driver.setX(x);
             driver.setR(R);
+            multi.yield();
         }
+        driver.motorSet(0,0,0,0);
     }
 }

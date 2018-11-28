@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.drivers.Multitasker;
 import org.firstinspires.ftc.teamcode.drivers.UltimateDriver;
 
 
@@ -16,6 +17,8 @@ import org.firstinspires.ftc.teamcode.drivers.UltimateDriver;
 public class StrafingBoi extends LinearOpMode {
     public void runOpMode(){
         UltimateDriver driver = new UltimateDriver();
+        Multitasker multi = new Multitasker(this);
+        multi.addTask(driver);
         try {
             DcMotor[] motors = {hardwareMap.dcMotor.get("fl"), hardwareMap.dcMotor.get("fr"), hardwareMap.dcMotor.get("bl"), hardwareMap.dcMotor.get("br")};
             driver.init(motors);
