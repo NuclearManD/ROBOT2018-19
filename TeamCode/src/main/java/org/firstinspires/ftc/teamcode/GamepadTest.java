@@ -43,6 +43,5 @@ public class GamepadTest extends LinearOpMode {
                 return;
             }
         }
-        driver.stopDriver();
     }
 }

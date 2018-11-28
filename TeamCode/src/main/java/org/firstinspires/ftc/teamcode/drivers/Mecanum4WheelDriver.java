@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.drivers;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import java.lang.Runnable;
 
-public class Mecanum4WheelDriver extends Driver implements Runnable{
+public class Mecanum4WheelDriver extends Task{
     public DcMotor fl=null;
     public DcMotor fr=null;
     public DcMotor bl=null;
@@ -18,8 +18,6 @@ public class Mecanum4WheelDriver extends Driver implements Runnable{
     private float strafeCoef = 1;
     private float agility = 0.01f;
 
-    private boolean running = true;
-
     /**
      * init with default strafing coefficient
      * @param l  all the motors in the order of fl, fr, bl, br
@@ -29,8 +27,6 @@ public class Mecanum4WheelDriver extends Driver implements Runnable{
         fr = l[1];
         bl = l[2];
         br = l[3];
-
-        startThread();
     }
 
     /**
@@ -44,8 +40,6 @@ public class Mecanum4WheelDriver extends Driver implements Runnable{
         bl = l[2];
         br = l[3];
         this.strafeCoef=strafeCoef;
-
-        startThread();
     }
     /**
      * Init with specified strafing coefficient
@@ -60,20 +54,7 @@ public class Mecanum4WheelDriver extends Driver implements Runnable{
         br = l[3];
         this.strafeCoef=strafeCoef;
         agility=agilityVal;
-
-        startThread();
     }
-
-    protected void startThread(){
-        Thread t = new Thread(this);
-        t.setDaemon(true);
-        t.start();
-    }
-
-    public void stopDriver(){
-        running = false;
-    }
-    public void update() {}
 
     public float torad(float x){
         return x/57.2958f;
@@ -104,20 +85,12 @@ public class Mecanum4WheelDriver extends Driver implements Runnable{
         fr.setPower(-(frSpeed));
         br.setPower(-(brSpeed));
     }
-
-    @Override
-    public void run() {
+    public void update(Multitasker man) {
         // this will run the Agile Movement thread.
-        while(running){
-            x+=Math.copySign(agility,targx-x);
-            y+=Math.copySign(agility,targy-y);
-            R+=Math.copySign(agility,targR-R);
-            motorUpdate();
-            try{
-                Thread.sleep(10);
-            }catch(Exception e){
-                break;
-            }
-        }
+        x+=Math.copySign(agility,targx-x);
+        y+=Math.copySign(agility,targy-y);
+        R+=Math.copySign(agility,targR-R);
+        motorUpdate();
+        man.taskSleep(10);
     }
 }
