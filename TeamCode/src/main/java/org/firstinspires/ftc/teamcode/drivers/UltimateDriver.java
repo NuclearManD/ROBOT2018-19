@@ -8,14 +8,14 @@ public class UltimateDriver extends Mecanum4WheelDriver {
     public DcMotor fr=null;
     public DcMotor bl=null;
     public DcMotor br=null;
-    private double vfl;//vfl = "velocity front left" wheel before adding rotational movement; vbl, vfr, and vbr follow the same scheme
-    private double vbl;
-    private double vfr;
-    private double vbr;
-    private double vflRot;//velocity of a wheel AFTER rotational movement is added
-    private double vblRot;
-    private double vfrRot;
-    private double vbrRot;
+    private double vfl=0;//vfl = "velocity front left" wheel before adding rotational movement; vbl, vfr, and vbr follow the same scheme
+    private double vbl=0;
+    private double vfr=0;
+    private double vbr=0;
+    private double vflRot=0;//velocity of a wheel AFTER rotational movement is added
+    private double vblRot=0;
+    private double vfrRot=0;
+    private double vbrRot=0;
     public void init(DcMotor[] l){
         fl = l[0];
         fr = l[1];
@@ -80,4 +80,5 @@ public class UltimateDriver extends Mecanum4WheelDriver {
             motorUpdate();
         }
     }
+    public void update() {}
 }
