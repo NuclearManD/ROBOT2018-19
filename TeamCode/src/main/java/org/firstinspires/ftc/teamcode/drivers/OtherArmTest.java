@@ -19,7 +19,7 @@ public class OtherArmTest extends LinearOpMode{
         try {
             pully = hardwareMap.dcMotor.get("pully");
             ArmDriver driver = new ArmDriver(pully, hardwareMap.dcMotor.get("angle"));
-            driver.extend(30);
+            driver.extend(40);
         } catch (Exception e) {
             System.out.println("oog something got gooned");
         }

@@ -39,9 +39,12 @@ public class ArmDriver {
             pully.setPower(0);
 
         }
-        public static final float DIS_COVERSION = 1f;
+        public static final float DIS_COVERSION = 10.3f;
 
+        void  power() {
 
+            pully.setPower(1);
+        }
        Servo angServo;
        Servo goboi;
        float pos = .5f;
