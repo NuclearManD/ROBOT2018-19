@@ -21,22 +21,21 @@ public class ArmDriver {
         }
 
         void extend(float distance){
-        if (){}
-             try {
-                     pully.setPower(1);
-                     Thread.sleep((long)(distance*DIS_COVERSION));
-             } catch (Exception e){
-                     System.out.println("oog something got gooned");
-             }
-
-             pully.setPower(0);
-            try {
-                pully.setPower(-1);
-                Thread.sleep((long)(distance*DIS_COVERSION));
-            } catch (Exception e){
-                System.out.println("oog something got gooned");
+            if (distance>0) {
+                try {
+                    pully.setPower(1);
+                    Thread.sleep((long) (distance * DIS_COVERSION));
+                } catch (Exception e) {
+                    System.out.println("oog something got gooned");
+                }
+            } else {
+                try {
+                    pully.setPower(-1);
+                    Thread.sleep((long) (distance * -DIS_COVERSION));
+                } catch (Exception e) {
+                    System.out.println("oog something got gooned");
+                }
             }
-
             pully.setPower(0);
 
         }
