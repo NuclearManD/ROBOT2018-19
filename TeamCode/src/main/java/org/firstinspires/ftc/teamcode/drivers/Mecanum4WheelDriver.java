@@ -86,9 +86,18 @@ public class Mecanum4WheelDriver extends Task{
     }
     public void update(Multitasker man) {
         // this will run the Agile Movement thread.
-        x+=Math.copySign(agility,targx-x);
-        y+=Math.copySign(agility,targy-y);
-        R+=Math.copySign(agility,targR-R);
+        if(Math.abs(targx-x)>agility*3)
+            x+=Math.copySign(agility,targx-x);
+        else
+            x=targx;
+        if(Math.abs(targy-y)>agility*3)
+            y+=Math.copySign(agility,targy-y);
+        else
+            y=targy;
+        if(Math.abs(targR-R)>agility*3)
+            R+=Math.copySign(agility,targR-R);
+        else
+            R=targR;
         motorUpdate();
         man.taskSleep(10);
     }
