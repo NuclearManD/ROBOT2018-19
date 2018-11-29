@@ -18,7 +18,9 @@ public class ArmDriver extends Task{
         ang=b;
         ang.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         ang.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        }
+        lsEncoderVal = ang.getCurrentPosition();
+        targetAngle = lsEncoderVal;
+    }
 
         void extend(float distance){
             if (distance>0) {
@@ -78,8 +80,20 @@ public class ArmDriver extends Task{
         ang.setTargetPosition((int)(ANG_COVERSION*angle));
         ang.setPower(Math.copySign(.1,angle));
     }
+    int targetAngle;
+    float maxAngleSpeed = 0.2f;
+
+
+    float currentSpeed = 0;
+    int lsEncoderVal;
     public void update(Multitasker man){
-        
+        int encoderVal = ang.getCurrentPosition();
+        int dEncoder = encoderVal-lsEncoderVal;
+        lsEncoderVal = encoderVal;
+
+        float speed = dEncoder/10.0f;
+
+
     }
 
     public static final float ANG_COVERSION = 46.666f;
