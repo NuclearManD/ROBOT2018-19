@@ -20,10 +20,9 @@ public class GamepadTest extends LinearOpMode {
     public void runOpMode(){
         UltimateDriver driver = new UltimateDriver();
         Gamepad movePad = gamepad1;
-        Gamepad liftPad = gamepad2;
         try {
             DcMotor[] motors = {hardwareMap.dcMotor.get("fl"),hardwareMap.dcMotor.get("fr"),hardwareMap.dcMotor.get("bl"),hardwareMap.dcMotor.get("br")};
-            driver.init(motors);
+            driver.init(motors, -1);
         }catch (Exception e){
             System.out.println("\n------    HARDWARE ERROR IN INIT!   ------\n");
             e.printStackTrace();
@@ -33,10 +32,11 @@ public class GamepadTest extends LinearOpMode {
         }catch (Exception e) {
             e.printStackTrace();
         }
-        while (true) {
+        while (opModeIsActive()) {
             try {
-                driver.manualDrive(movePad.left_stick_x, movePad.left_stick_y);
-                driver.manualTurn(movePad.left_trigger, movePad.right_trigger);
+                /*driver.manualDrive(movePad.left_stick_x, movePad.left_stick_y);
+                driver.manualTurn(movePad.left_trigger, movePad.right_trigger);*/
+                driver.setY(movePad.left_stick_y);
             }
             catch (Exception e){
                 telemetry.addLine("ERROR IN MAIN CODE!!!!");

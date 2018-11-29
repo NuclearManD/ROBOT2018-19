@@ -13,6 +13,8 @@ public class CameraInput {
     Camera cam;
     public CameraInput() {
         cam=Camera.open();
+        cam.startPreview();
+
     }
     byte[] data=null;
 
