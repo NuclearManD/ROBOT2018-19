@@ -92,8 +92,6 @@ public class ArmDriver extends Task{
         lsEncoderVal = encoderVal;
 
         float speed = dEncoder/10.0f;
-
-
     }
 
     public static final float ANG_COVERSION = 46.666f;
