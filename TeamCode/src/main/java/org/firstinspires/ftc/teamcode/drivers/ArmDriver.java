@@ -79,7 +79,6 @@ public class ArmDriver extends Task{
         ang.setPower(Math.copySign(.1,angle));
     }
     public void update(Multitasker man){
-        
     }
 
     public static final float ANG_COVERSION = 46.666f;
