@@ -2,6 +2,7 @@
 package org.firstinspires.ftc.teamcode.drivers;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 
 public class ArmDriver {
 
@@ -10,30 +11,24 @@ public class ArmDriver {
         void extend(float distance){
              try {
                      pully.setPower(1);
-
-                     Thread.sleep(200);
-
+                     Thread.sleep((long)(distance*DIS_COVERSION));
              } catch (Exception e){
-                     
+                     System.out.println("oog something got gooned");
              }
 
+             pully.setPower(0);
+        }
+        public static final float DIS_COVERSION= 1;
+        // this constant is tmp plz change and test
 
+       Servo rot;
+       Servo colect;
+        void openScoop() {
 
-<<<<<<< HEAD
                 //rot = 0;;
-=======
-
-
-
-
-        }
-        void openClaw() {
->>>>>>> parent of 6673175... hey i did a thing
         }
 
-        void closeClaw(){
 
-        }
         void  rotate(float degrees){
 
         }
