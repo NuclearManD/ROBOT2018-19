@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.drivers;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-public class ArmDriver {
+public class ArmDriver extends Task{
 
         DcMotor pully;
         DcMotor ang;
@@ -78,6 +78,9 @@ public class ArmDriver {
         ang.setTargetPosition((int)(ANG_COVERSION*angle));
         ang.setPower(Math.copySign(.1,angle));
     }
-    
+    public void update(Multitasker man){
+        
+    }
+
     public static final float ANG_COVERSION = 46.666f;
 }
