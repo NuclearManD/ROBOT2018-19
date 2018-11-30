@@ -10,7 +10,7 @@ public class imageProcessor {
         image = camera.takePic();
     }
 
-    int getLandingSpot(){
+    public int getLandingSpot(){
         return -1;
     }
 
