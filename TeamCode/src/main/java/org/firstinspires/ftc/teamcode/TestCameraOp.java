@@ -6,14 +6,21 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.drivers.CameraInput;
+import org.firstinspires.ftc.teamcode.drivers.imageProcessor;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-@TeleOp(name="Camera Dxdiag", group="2018")
+@TeleOp(name="Camera Test", group="2018")
 public class TestCameraOp extends LinearOpMode {
 
     public void runOpMode(){
+        imageProcessor processor = new imageProcessor();
+        int spot = processor.getLandingSpot();
+        if(spot == 1){
+
+        }
+        else if(spot == -1)
         System.out.println("BE GONE DIE ERREURS!!!!!!!  !@#%$^$%^*&^&%$^#$#$*&%(^&*%*^$%#$^@#%$#&%^%$*&%^^&&*^$%#$^@%$#&^%*$^%(&*^&%%^$%&#$^#@&#%*$^%&^%&^$%&$^");
         CameraInput inp = new CameraInput();
         Bitmap img = inp.takePic();
