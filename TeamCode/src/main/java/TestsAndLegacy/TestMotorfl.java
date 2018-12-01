@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.drivers.PictureReader;
 
-@TeleOp(name="Test fl", group="2018")
+//@TeleOp(name="Test fl", group="2018")
 public class TestMotorfl extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         // edit

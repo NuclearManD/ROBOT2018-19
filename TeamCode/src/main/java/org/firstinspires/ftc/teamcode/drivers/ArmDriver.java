@@ -1,5 +1,6 @@
 
 package org.firstinspires.ftc.teamcode.drivers;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -9,75 +10,77 @@ public class ArmDriver extends Task{
         DcMotor ang;
 
     /**
-     *
-     * @param a  Pully motor
+     *  @param a  Pully motor
      * @param b  Angle Motor
+     * @param goboi
      */
-    public ArmDriver(DcMotor a, DcMotor b){
+    public ArmDriver(DcMotor a, DcMotor b, CRServo goboi){
         pully=a;
         ang=b;
         ang.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         ang.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        this.goboi=goboi;
+
         lsEncoderVal = ang.getCurrentPosition();
         targetAngle = lsEncoderVal;
         lastTime=System.currentTimeMillis();
     }
 
-        void extend(float distance){
-            if (distance>0) {
-                try {
-                    pully.setPower(1);
-                    Thread.sleep((long) (distance * DIS_COVERSION));
-                } catch (Exception e) {
-                    System.out.println("oog something got gooned");
-                }
-            } else {
-                try {
-                    pully.setPower(-1);
-                    Thread.sleep((long) (distance * -DIS_COVERSION));
-                } catch (Exception e) {
-                    System.out.println("oog something got gooned");
-                }
-            }
-            pully.setPower(0);
-
-        }
-        public static final float DIS_COVERSION = 10.3f;
-
-        void  power() {
-
-            pully.setPower(1);
-        }
-       Servo angServo;
-       Servo goboi;
-       float pos = .5f;
-       float neoPos = .1f;
-        void ColectBoiSet() {
+    @Deprecated
+    public void extend(float distance){
+        if (distance>0) {
             try {
-                angServo.setPosition(pos);
-
+                pully.setPower(1);
+                Thread.sleep((long) (distance * DIS_COVERSION));
+            } catch (Exception e) {
+                System.out.println("oog something got gooned");
+            }
+        } else {
+            try {
+                pully.setPower(-1);
+                Thread.sleep((long) (distance * -DIS_COVERSION));
             } catch (Exception e) {
                 System.out.println("oog something got gooned");
             }
         }
-        void ColectBoiMove() {
-            try {
-                angServo.setPosition(neoPos);
-            }catch (Exception e) {
-                System.out.println("oog something got gooned");
-            }
-        }
+        pully.setPower(0);
 
-        void ColectBoiRot() {
-            try {
-                goboi.setPosition(1);
-            }catch (Exception e) {
-                System.out.println("oog something got gooned");
-            }
-        }
+    }
+    public static final float DIS_COVERSION = 10.3f;
+
+    public void  extend() {
+        pully.setPower(1);
+    }
+    public void  retract() {
+        pully.setPower(-1);
+    }
+    public void  pullyoff() {
+        pully.setPower(0);
+    }
+    Servo angServo;
+    CRServo goboi;
+    float pos = .5f;
+    float neoPos = .1f;
+    void ColectBoiSet() {
+        angServo.setPosition(pos);
+    }
+    void ColectBoiMove() {
+        angServo.setPosition(neoPos);
+    }
+
+    public void ColectBoiOn() {
+        goboi.setPower(1);
+    }
+    public void ColectBoiOff() {
+        goboi.setPower(0);
+    }
+    public void ColectBoiBack() {
+        goboi.setPower(-1);
+    }
 
     // Angle Control configuration
-    static final float angleAgility = 0.01f;        // change in motor power per 10ms
+    static final float angleAgility = 0.05f;        // change in motor power per 10ms
     static final float ANG_CONVERSION = 9f;         // degrees to encoder units conversion factor
     static final float maxAnglePower = 0.6f;        // maximum motor power
     static final float maxAngleEncoderSpeed = 1200; // motor target speed in encoder units per 1s

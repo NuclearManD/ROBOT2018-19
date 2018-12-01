@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.drivers.Mecanum4WheelDriver;
 import org.firstinspires.ftc.teamcode.drivers.UltimateDriver;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
-@TeleOp(name="GamepadTest", group="2018")
+//@TeleOp(name="GamepadTest", group="2018")
 public class GamepadTest extends LinearOpMode {
     static final float FORWARD_SPEED = -0.6f;
     public void runOpMode(){

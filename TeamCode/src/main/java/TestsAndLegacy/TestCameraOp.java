@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.drivers.imageProcessor;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-@TeleOp(name="Camera Test", group="2018")
+//@TeleOp(name="Camera Test", group="2018")
 public class TestCameraOp extends LinearOpMode {
 
     public void runOpMode(){

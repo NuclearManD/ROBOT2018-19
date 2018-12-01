@@ -1,8 +1,10 @@
-package org.firstinspires.ftc.teamcode.drivers;
+package TestsAndLegacy;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
+import org.firstinspires.ftc.teamcode.drivers.ArmDriver;
 
 
 /**
@@ -18,7 +20,7 @@ public class OtherArmTest extends LinearOpMode{
 
         try {
             pully = hardwareMap.dcMotor.get("pully");
-            ArmDriver driver = new ArmDriver(pully, hardwareMap.dcMotor.get("angle"));
+            ArmDriver driver = new ArmDriver(pully, hardwareMap.dcMotor.get("angle"),hardwareMap.crservo.get("goboi"));
             driver.extend(40);
         } catch (Exception e) {
             System.out.println("oog something got gooned");

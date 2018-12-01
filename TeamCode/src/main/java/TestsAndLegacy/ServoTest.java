@@ -15,7 +15,7 @@ import org.firstinspires.ftc.teamcode.drivers.MovementDriver;
  * Created by SCRoboticsDev on 11/5/2018.
  */
 
-@TeleOp(name="Servo Tegszt", group="2018")
+//@TeleOp(name="Servo Tegszt", group="2018")
 public class ServoTest extends LinearOpMode {
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
