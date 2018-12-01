@@ -1,14 +1,16 @@
 package org.firstinspires.ftc.teamcode.drivers;
 
 
+import android.graphics.Bitmap;
+
 public class imageProcessor {
-
-    public imageProcessor(CameraInput yeet){
-
-
+    public Bitmap image;
+    public imageProcessor(){
+        CameraInput camera = new CameraInput();
+        image = camera.takePic();
     }
 
-    int getLandingSpot(){
+    public int getLandingSpot(){
         return -1;
     }
 
