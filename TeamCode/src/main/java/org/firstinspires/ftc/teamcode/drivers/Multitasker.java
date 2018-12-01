@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import java.util.ArrayList;
 
 public class Multitasker {
-    private LinearOpMode master;
+    public LinearOpMode master;
 
     private ArrayList<Long> taskTimes = new ArrayList<Long>();
     private ArrayList<Task> tasks = new ArrayList<Task>();

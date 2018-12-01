@@ -17,9 +17,10 @@ public class ArmDriver extends Task{
         pully=a;
         ang=b;
         ang.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        ang.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        ang.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         lsEncoderVal = ang.getCurrentPosition();
         targetAngle = lsEncoderVal;
+        lastTime=System.currentTimeMillis();
     }
 
         void extend(float distance){
@@ -76,11 +77,12 @@ public class ArmDriver extends Task{
         }
 
     // Angle Control configuration
-    static final float angleAgility = 0.05f;        // change in motor power per 10ms
-    static final float ANG_CONVERSION = .5833f;     // degrees to encoder units conversion factor
-    static final float maxAnglePower = 0.4f;        // maximum motor power
-    static final float maxAngleEncoderSpeed = 0;    // motor target speed
-
+    static final float angleAgility = 0.01f;        // change in motor power per 10ms
+    static final float ANG_CONVERSION = 9f;         // degrees to encoder units conversion factor
+    static final float maxAnglePower = 0.6f;        // maximum motor power
+    static final float maxAngleEncoderSpeed = 1200; // motor target speed in encoder units per 1s
+    static final float maxAngleEncoderSpeedNearTarget = 100;  // motor target speed when near target in encoder units per 1s
+    static final float nearDistance = 200;          // distance regarded as near target
     /**
      * make the arm rotate to a position
      * @param angle the target angle, in degrees
@@ -94,17 +96,32 @@ public class ArmDriver extends Task{
     float currentPower = 0; // current angle motor power
     int lsEncoderVal; // last encoder value in encoder units
 
+    long lastTime = 0; // last time we updated.
+
     public void update(Multitasker man){
+
+        // keep track of time; Multitasker cannot garantee that time will be kept.
+        float dt = System.currentTimeMillis()-lastTime;
+        lastTime=System.currentTimeMillis();
+
+        man.master.telemetry.addLine("UPDATE;");
         int encoderVal = ang.getCurrentPosition();
-        if(Math.abs(targetAngle-encoderVal)<100) {
-            man.taskSleep(10);
-            return;
-        }
+
         int dEncoder = encoderVal-lsEncoderVal;
         lsEncoderVal = encoderVal;
 
-        float vel = dEncoder/10.0f;
+        if(Math.abs(targetAngle-encoderVal)<5) {
+            man.taskSleep(10);
+            return;
+        }
+
+        float vel = dEncoder*1000f/dt;
         float targVel = maxAngleEncoderSpeed;
+
+        if(Math.abs(targetAngle-encoderVal)<nearDistance){
+            targVel=maxAngleEncoderSpeedNearTarget;
+        }
+
         if(targetAngle<encoderVal){
             targVel=-targVel;
         }
@@ -114,6 +131,11 @@ public class ArmDriver extends Task{
         else if(currentPower>-maxAnglePower)
             currentPower-=angleAgility;
         ang.setPower(currentPower);
-        man.taskSleep(10);
+
+        man.taskSleep(3);
+        man.master.telemetry.addLine("Val: "+encoderVal);
+        man.master.telemetry.addLine("Trg: "+targetAngle);
+        man.master.telemetry.addLine("Vel: "+vel);
+        man.master.telemetry.addLine("Pwr: "+currentPower);
     }
 }
