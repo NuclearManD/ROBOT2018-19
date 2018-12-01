@@ -77,7 +77,7 @@ public class ArmDriver extends Task{
 
     // Angle Control configuration
     static final float angleAgility = 0.05f;        // change in motor power per 10ms
-    static final float ANG_CONVERSION = 46.666f;    // degrees to encoder units conversion factor
+    static final float ANG_CONVERSION = .5833f;     // degrees to encoder units conversion factor
     static final float maxAnglePower = 0.4f;        // maximum motor power
     static final float maxAngleEncoderSpeed = 0;    // motor target speed
 

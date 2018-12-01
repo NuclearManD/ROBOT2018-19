@@ -9,24 +9,16 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 public class ArmDriverOpModeTest extends LinearOpMode {
 
     DcMotor pully;
-    DcMotor ang;
 
 
     public void runOpMode() {
-
-        try {
-            pully = hardwareMap.dcMotor.get("pully");
-            ArmDriver driver = new ArmDriver(pully, hardwareMap.dcMotor.get("angle"));
-           driver.rotate(90);
-        } catch (Exception e) {
-            System.out.println("oog something got gooned");
-        }
+        Multitasker man = new Multitasker(this);
+        pully = hardwareMap.dcMotor.get("pully");
+        ArmDriver driver = new ArmDriver(pully, hardwareMap.dcMotor.get("angle"));
+        man.addTask(driver);
+        driver.rotate(90);
         // it's fine everthing is fine
-        try {
-            Thread.sleep(4000);
-        } catch (Exception e) {
-            System.out.println("oog something got gooned");
-
-        }
+        waitForStart();
+        while(opModeIsActive())man.yield();
     }
 }
