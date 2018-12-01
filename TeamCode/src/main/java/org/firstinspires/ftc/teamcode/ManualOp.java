@@ -26,7 +26,7 @@ public class ManualOp extends LinearOpMode {
         while(opModeIsActive()){
             float y = -gamepad1.right_stick_y;
             float x = -gamepad1.right_stick_x;
-            float R = gamepad1.left_stick_x*.8f;
+            float R = gamepad1.left_stick_x*.5f;
 
             if(Math.abs(y)<0.1)y=0;
             if(Math.abs(x)<0.1)x=0;

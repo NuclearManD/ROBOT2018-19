@@ -17,6 +17,11 @@ public class ColorTestOp extends LinearOpMode {
         ColorSensor sensor = hardwareMap.colorSensor.get("color");
         while(true) {
             telemetry.addLine("Blu: " + sensor.blue());
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

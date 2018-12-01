@@ -15,9 +15,9 @@ public class ArmDriverOpModeTest extends LinearOpMode {
     public void runOpMode() {
 
         try {
-            pully = hardwareMap.dcMotor.get("fl");
-            ArmDriver driver = new ArmDriver(pully, hardwareMap.dcMotor.get("fr"));
-           driver.rotate(-15);
+            pully = hardwareMap.dcMotor.get("pully");
+            ArmDriver driver = new ArmDriver(pully, hardwareMap.dcMotor.get("angle"));
+           driver.rotate(90);
         } catch (Exception e) {
             System.out.println("oog something got gooned");
         }

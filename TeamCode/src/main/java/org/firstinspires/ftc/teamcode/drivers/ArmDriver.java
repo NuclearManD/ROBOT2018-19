@@ -75,24 +75,45 @@ public class ArmDriver extends Task{
             }
         }
 
+    // Angle Control configuration
+    static final float angleAgility = 0.05f;        // change in motor power per 10ms
+    static final float ANG_CONVERSION = 46.666f;    // degrees to encoder units conversion factor
+    static final float maxAnglePower = 0.4f;        // maximum motor power
+    static final float maxAngleEncoderSpeed = 0;    // motor target speed
 
+    /**
+     * make the arm rotate to a position
+     * @param angle the target angle, in degrees
+     */
     void rotate(float angle){
-        ang.setTargetPosition((int)(ANG_COVERSION*angle));
-        ang.setPower(Math.copySign(.1,angle));
+        targetAngle=(int)(angle*ANG_CONVERSION);
     }
-    int targetAngle;
-    float maxAngleSpeed = 0.2f;
+    int targetAngle; // measured in encoder units
 
 
-    float currentSpeed = 0;
-    int lsEncoderVal;
+    float currentPower = 0; // current angle motor power
+    int lsEncoderVal; // last encoder value in encoder units
+
     public void update(Multitasker man){
         int encoderVal = ang.getCurrentPosition();
+        if(Math.abs(targetAngle-encoderVal)<100) {
+            man.taskSleep(10);
+            return;
+        }
         int dEncoder = encoderVal-lsEncoderVal;
         lsEncoderVal = encoderVal;
 
-        float speed = dEncoder/10.0f;
-    }
+        float vel = dEncoder/10.0f;
+        float targVel = maxAngleEncoderSpeed;
+        if(targetAngle<encoderVal){
+            targVel=-targVel;
+        }
 
-    public static final float ANG_COVERSION = 46.666f;
+        if(targVel>vel && currentPower<maxAnglePower)
+            currentPower+=angleAgility;
+        else if(currentPower>-maxAnglePower)
+            currentPower-=angleAgility;
+        ang.setPower(currentPower);
+        man.taskSleep(10);
+    }
 }
