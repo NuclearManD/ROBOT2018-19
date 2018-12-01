@@ -87,7 +87,7 @@ public class ArmDriver extends Task{
      * make the arm rotate to a position
      * @param angle the target angle, in degrees
      */
-    void rotate(float angle){
+    public void rotate(float angle){
         targetAngle=(int)(angle*ANG_CONVERSION);
     }
     int targetAngle; // measured in encoder units
@@ -111,7 +111,7 @@ public class ArmDriver extends Task{
         lsEncoderVal = encoderVal;
 
         if(Math.abs(targetAngle-encoderVal)<5) {
-            man.taskSleep(10);
+            man.taskSleep(6);
             return;
         }
 
@@ -132,7 +132,7 @@ public class ArmDriver extends Task{
             currentPower-=angleAgility;
         ang.setPower(currentPower);
 
-        man.taskSleep(3);
+        man.taskSleep(6);
         man.master.telemetry.addLine("Val: "+encoderVal);
         man.master.telemetry.addLine("Trg: "+targetAngle);
         man.master.telemetry.addLine("Vel: "+vel);

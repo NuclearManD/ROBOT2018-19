@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package TestsAndLegacy;
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cColorSensor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
