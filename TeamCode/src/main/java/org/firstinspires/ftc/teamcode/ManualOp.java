@@ -49,15 +49,15 @@ public class ManualOp extends LinearOpMode {
                 arm.ColectBoiBack();
             }
 
-            if(gamepad2.dpad_left){
+            if(gamepad2.right_trigger>.5){
                 arm.rotate(lastAngle--);
-            }else if(gamepad2.dpad_right){
+            }else if(gamepad2.left_trigger>.5){
                 arm.rotate(lastAngle++);
             }
 
-            if(gamepad2.dpad_up){
+            if(gamepad2.right_bumper){
                 arm.extend();
-            }else if(gamepad2.dpad_down){
+            }else if(gamepad2.left_bumper){
                 arm.retract();
             }else
                 arm.pullyoff();
