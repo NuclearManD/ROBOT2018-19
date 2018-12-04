@@ -113,7 +113,6 @@ public class ArmDriver extends Task{
         int dEncoder = encoderVal-lsEncoderVal;
         lsEncoderVal = encoderVal;
 
-        if(Math.abs(targetAngle-encoderVal)<5) {
         if(Math.abs(targetAngle-encoderVal)<(10*ANG_CONVERSION)) {
             man.taskSleep(6);
             return;
