@@ -81,9 +81,10 @@ public class ArmDriver extends Task{
 
     // Angle Control configuration
     static final float angleAgility = 0.05f;        // change in motor power per 10ms
+    static final float angleAgilityNear = 0.03f;        // change in motor power per 10ms when n34r
     static final float ANG_CONVERSION = 9f;         // degrees to encoder units conversion factor
     static final float maxAnglePower = 0.6f;        // maximum motor power
-    static final float maxAngleEncoderSpeed = 1200; // motor target speed in encoder units per 1s
+    static final float maxAngleEncoderSpeed = 300; // motor target speed in encoder units per 1s
     static final float maxAngleEncoderSpeedNearTarget = 100;  // motor target speed when near target in encoder units per 1s
     static final float nearDistance = 200;          // distance regarded as near target
     /**
@@ -107,13 +108,13 @@ public class ArmDriver extends Task{
         float dt = System.currentTimeMillis()-lastTime;
         lastTime=System.currentTimeMillis();
 
-        man.master.telemetry.addLine("UPDATE;");
         int encoderVal = ang.getCurrentPosition();
 
         int dEncoder = encoderVal-lsEncoderVal;
         lsEncoderVal = encoderVal;
 
         if(Math.abs(targetAngle-encoderVal)<5) {
+        if(Math.abs(targetAngle-encoderVal)<(10*ANG_CONVERSION)) {
             man.taskSleep(6);
             return;
         }
@@ -128,14 +129,17 @@ public class ArmDriver extends Task{
         if(targetAngle<encoderVal){
             targVel=-targVel;
         }
-
+         float lmao = angleAgility;
+        if(Math.abs(targetAngle-encoderVal)<nearDistance){
+            targVel=angleAgilityNear;
+        }
         if(targVel>vel && currentPower<maxAnglePower)
             currentPower+=angleAgility;
         else if(currentPower>-maxAnglePower)
             currentPower-=angleAgility;
         ang.setPower(currentPower);
 
-        man.taskSleep(6);
+        man.taskSleep(3);
         man.master.telemetry.addLine("Val: "+encoderVal);
         man.master.telemetry.addLine("Trg: "+targetAngle);
         man.master.telemetry.addLine("Vel: "+vel);
