@@ -94,6 +94,19 @@ public class ColorSensorTest extends LinearOpMode {
 
         // Note we use opModeIsActive() as our loop condition because it is an interruptible method.
         while (opModeIsActive()) {
+            //----
+            if(sensorDistance.getDistance(DistanceUnit.CM)>4) {
+                driver.setY(0.1);
+            }
+            if(values[0]==0 && values[1]==0 && values[2]==0/*yellow value*/){
+                driver.setY(0.1);
+                try {
+                    multi.wait(10);
+                } catch (Exception e){}
+                opModeIsActive() = false;
+            }
+            else()
+            //----
             // convert the RGB values to HSV values.
             // multiply by the SCALE_FACTOR.
             // then cast it back to int (SCALE_FACTOR is a double)
