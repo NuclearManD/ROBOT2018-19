@@ -29,21 +29,27 @@ public class ManualOp extends LinearOpMode {
         float lastAngle = 0;
 
         while(opModeIsActive()){
-            float y = -gamepad1.right_stick_y;
-            float x = -gamepad1.right_stick_x;
-            float R = gamepad1.left_stick_x*.5f;
+            float y = -gamepad1.left_stick_y;
+            float x = -gamepad1.left_stick_x;
+            float R = gamepad1.right_stick_x*.5f;
 
             if(Math.abs(y)<0.1)y=0;
             if(Math.abs(x)<0.1)x=0;
             if(Math.abs(R)<0.1)R=0;
 
+            if(gamepad1.right_trigger>0.01){
+                y*=1.5-gamepad1.right_trigger;
+                x*=1.5-gamepad1.right_trigger;
+                R*=1.5-gamepad1.right_trigger;
+            }
+
             driver.setY(y);
             driver.setX(x);
             driver.setR(R);
 
-            if(gamepad2.a){
+            if(gamepad2.x){
                 arm.ColectBoiOn();
-            }else if(gamepad2.x){
+            }else if(gamepad2.a){
                 arm.ColectBoiBack();
             }else{
                 arm.ColectBoiOff();
