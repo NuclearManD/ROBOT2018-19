@@ -37,16 +37,18 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.ColorSensor;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+
+import java.util.Locale;
+
+import com.qualcomm.robotcore.hardware.DcMotor;
+
 import org.firstinspires.ftc.teamcode.drivers.ArmDriver;
 import org.firstinspires.ftc.teamcode.drivers.Mecanum4WheelDriver;
 import org.firstinspires.ftc.teamcode.drivers.Multitasker;
 import org.firstinspires.ftc.teamcode.drivers.TelemetryUpdater;
-
-import java.util.Locale;
 
 /*
  * This is an example LinearOpMode that shows how to use
@@ -57,7 +59,7 @@ import java.util.Locale;
  * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list.
  */
-//@TeleOp(name = "Sensor: REVColorDistance", group = "Sensor")
+@TeleOp(name = "Sensor: REVColorDistance", group = "Sensor")
 public class ColorSensorTest extends LinearOpMode {
 
     ColorSensor sensorColor;
@@ -76,60 +78,44 @@ public class ColorSensorTest extends LinearOpMode {
 
         sensorColor = hardwareMap.get(ColorSensor.class, "sensor_color_distance");
         sensorDistance = hardwareMap.get(DistanceSensor.class, "sensor_color_distance");
-
-        // hsvValues is an array that will hold the hue, saturation, and value information.
         float hsvValues[] = {0F, 0F, 0F};
-        // values is a reference to the hsvValues array.
         final float values[] = hsvValues;
-        // to amplify/attentuate the measured values.
         final double SCALE_FACTOR = 255;
-
-        // get a reference to the RelativeLayout so we can change the background
-        // color of the Robot Controller app to match the hue detected by the RGB sensor.
         int relativeLayoutId = hardwareMap.appContext.getResources().getIdentifier("RelativeLayout", "id", hardwareMap.appContext.getPackageName());
         final View relativeLayout = ((Activity) hardwareMap.appContext).findViewById(relativeLayoutId);
 
-        // wait for the start button to be pressed.
         waitForStart();
 
-        // Note we use opModeIsActive() as our loop condition because it is an interruptible method.
         while (opModeIsActive()) {
-            //----
-            if(sensorDistance.getDistance(DistanceUnit.CM)>4) {
-                driver.setY(0.1);
-            }
-            if(values[0]==0 && values[1]==0 && values[2]==0/*yellow value*/){
-                driver.setY(0.1);
-                try {
-                    multi.wait(10);
-                } catch (Exception e){}
-            }
-            //----
-            // convert the RGB values to HSV values.
-            // multiply by the SCALE_FACTOR.
-            // then cast it back to int (SCALE_FACTOR is a double)
             Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
                     (int) (sensorColor.green() * SCALE_FACTOR),
                     (int) (sensorColor.blue() * SCALE_FACTOR),
                     hsvValues);
 
-            // send the info back to driver station using telemetry function.
-            telemetry.addData("Distance (cm)",
+            /*telemetry.addData("Distance (cm)",
                     String.format(Locale.US, "%.02f", sensorDistance.getDistance(DistanceUnit.CM)));
             telemetry.addData("Alpha", sensorColor.alpha());
             telemetry.addData("Red  ", sensorColor.red());
             telemetry.addData("Green", sensorColor.green());
             telemetry.addData("Blue ", sensorColor.blue());
-            telemetry.addData("Hue", hsvValues[0]);
+            telemetry.addData("Hue", hsvValues[0]);*/
 
-            // change the background color to match the color detected by the RGB sensor.
-            // pass a reference to the hue, saturation, and value array as an argument
-            // to the HSVToColor method.
             relativeLayout.post(new Runnable() {
                 public void run() {
                     relativeLayout.setBackgroundColor(Color.HSVToColor(0xff, values));
                 }
             });
+
+            if(sensorDistance.getDistance(DistanceUnit.CM)<20 && hsvValues[0]<65f && hsvValues[0]>61f){//if the color is white
+                driver.setY(.5);
+                multi.waitTime(250);
+                driver.setY(0);
+            }
+            if(sensorDistance.getDistance(DistanceUnit.CM)<20 && hsvValues[0]<30f && hsvValues[0]>25f){//if the color is yellow
+                driver.setY(.5);
+                multi.waitTime(250);
+                driver.setY(0);
+            }
 
             telemetry.update();
         }
