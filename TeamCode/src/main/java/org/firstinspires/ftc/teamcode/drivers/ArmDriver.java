@@ -50,10 +50,10 @@ public class ArmDriver extends Task{
     public static final float DIS_COVERSION = 10.3f;
 
     public void  extend() {
-        pully.setPower(1);
+        pully.setPower(.7);
     }
     public void  retract() {
-        pully.setPower(-1);
+        pully.setPower(-.7);
     }
     public void  pullyoff() {
         pully.setPower(0);
