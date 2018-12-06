@@ -41,12 +41,12 @@ public class ManualOp extends LinearOpMode {
             driver.setX(x);
             driver.setR(R);
 
-            if(gamepad2.x){
+            if(gamepad2.a){
                 arm.ColectBoiOn();
-            }else if(gamepad2.y){
-                arm.ColectBoiOff();
-            }else if(gamepad2.a){
+            }else if(gamepad2.x){
                 arm.ColectBoiBack();
+            }else{
+                arm.ColectBoiOff();
             }
 
             if(gamepad2.right_trigger>.01){
