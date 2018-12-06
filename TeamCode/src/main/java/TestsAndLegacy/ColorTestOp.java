@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.ModernRoboticsI2cColorSensor2;
  * Created by SCRoboticsDev on 11/27/2018.
  */
 
-@TeleOp(name="ColorTegzt", group="2018")
+//@TeleOp(name="ColorTegzt", group="2018")
 public class ColorTestOp extends LinearOpMode {
     public void runOpMode(){
         ColorSensor sensor = hardwareMap.colorSensor.get("color");

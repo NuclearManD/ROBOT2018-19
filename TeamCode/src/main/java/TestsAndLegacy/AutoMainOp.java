@@ -15,7 +15,7 @@ import org.firstinspires.ftc.teamcode.drivers.MovementDriver;
  * FiringMechanism 1.0.0
 */
 
-@TeleOp(name="Auto Main Op", group="2017")
+//@TeleOp(name="Auto Main Op", group="2017")
 public class AutoMainOp extends LinearOpMode {
     private MovementDriver drive;
     private DcMotor gun;

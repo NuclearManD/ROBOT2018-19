@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.drivers.ArmDriver;
 /**
  * Created by SCRoboticsDev on 11/26/2018.
  */
-@TeleOp(name="Other Arm Test Op", group="2018")
+//@TeleOp(name="Other Arm Test Op", group="2018")
 public class OtherArmTest extends LinearOpMode{
 
     DcMotor pully;
