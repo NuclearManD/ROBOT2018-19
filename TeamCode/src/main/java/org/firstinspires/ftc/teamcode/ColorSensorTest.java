@@ -57,7 +57,7 @@ import java.util.Locale;
  * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list.
  */
-@TeleOp(name = "Sensor: REVColorDistance", group = "Sensor")
+//@TeleOp(name = "Sensor: REVColorDistance", group = "Sensor")
 public class ColorSensorTest extends LinearOpMode {
 
     ColorSensor sensorColor;
@@ -103,9 +103,7 @@ public class ColorSensorTest extends LinearOpMode {
                 try {
                     multi.wait(10);
                 } catch (Exception e){}
-                opModeIsActive() = false;
             }
-            else()
             //----
             // convert the RGB values to HSV values.
             // multiply by the SCALE_FACTOR.
