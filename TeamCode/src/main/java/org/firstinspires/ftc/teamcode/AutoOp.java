@@ -42,6 +42,7 @@ public class AutoOp extends LinearOpMode{
         driver.setY(.5);
         multi.waitTime(450);
         driver.setY(0);
+        multi.waitTime(100);
 
         float x;
         float r;
@@ -54,9 +55,8 @@ public class AutoOp extends LinearOpMode{
         x = r+b+g;
         v = x/3;
         v-=r;
-        while (opModeIsActive()){
             telemetry.addLine("isyellow" + (v < -25));
-        }
+            telemetry.update();
 
     }
 }
