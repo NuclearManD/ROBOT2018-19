@@ -40,11 +40,23 @@ public class AutoOp extends LinearOpMode{
         // run the autonomous pgm
 
         driver.setY(.5);
-        multi.waitTime(500);
+        multi.waitTime(450);
         driver.setY(0);
 
-        //sensorColor.green();
-
+        float x;
+        float r;
+        float b;
+        float g;
+        float v;
+        r = sensorColor.green();
+        b = sensorColor.blue();
+        g = sensorColor.red();
+        x = r+b+g;
+        v = x/3;
+        v-=r;
+        while (opModeIsActive()){
+            telemetry.addLine("isyellow" + (v < -25));
+        }
 
     }
 }
