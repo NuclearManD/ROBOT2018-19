@@ -63,7 +63,7 @@ public class AutoOp extends LinearOpMode{
         // tells wether it is white or not
 
         //if it is white then ...
-        if (v < -15){
+        if (v < -40){
             telemetry.addLine("going to next block");
             telemetry.update();
             multi.waitTime(1000);
@@ -94,7 +94,7 @@ public class AutoOp extends LinearOpMode{
             telemetry.update();
 
             // if it's white again ...
-            if (v < -15){
+            if (v < -40){
                 telemetry.addLine("executing move to yellow");
                 telemetry.update();
                 multi.waitTime(1000);
@@ -130,7 +130,7 @@ public class AutoOp extends LinearOpMode{
             }else {
                 telemetry.addLine("found yellow");
                 telemetry.update();
-                multi.waitTime(500);
+                multi.waitTime(1000);
 
                 driver.setY(.5);
                 multi.waitTime(900);
@@ -151,7 +151,7 @@ public class AutoOp extends LinearOpMode{
         }else{
             telemetry.addLine("found yellow");
             telemetry.update();
-            multi.waitTime(500);
+            multi.waitTime(1000);
 
             driver.setY(.5);
             multi.waitTime(900);
