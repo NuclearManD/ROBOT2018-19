@@ -97,6 +97,9 @@ public class AutoOp extends LinearOpMode{
             multi.waitTime(200);
             driver.setY(0);
         }
-
+        multi.waitTime(200);
+        driver.setY(0);
+        driver.setX(0);
+        multi.waitTime(1000);
     }
 }
