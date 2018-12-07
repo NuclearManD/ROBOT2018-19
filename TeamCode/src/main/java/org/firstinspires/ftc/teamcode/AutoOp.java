@@ -90,7 +90,7 @@ public class AutoOp extends LinearOpMode{
             telemetry.addLine("executing color check");
             telemetry.update();
             multi.waitTime(1000);
-            telemetry.addData("isWhite", (v < -25));
+            telemetry.addData("isWhite", (v < -40));
             telemetry.update();
 
             // if it's white again ...
@@ -142,7 +142,7 @@ public class AutoOp extends LinearOpMode{
                 arm.rotate(-50);
                 multi.waitTime(5000);
 
-                // extend some
+                // extend some`
                 arm.extend();
                 multi.waitTime(1000);
                 arm.pullyoff();
