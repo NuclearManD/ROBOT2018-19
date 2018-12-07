@@ -39,20 +39,22 @@ public class SamplingAutoOpBasic extends LinearOpMode {
         waitForStart();
 
         driver.setY(.5);
+        driver.setX(.5);
         multi.waitTime(1100);
         driver.setY(0);
+        driver.setX(0);
 
         multi.waitTime(1500);
 
         arm.rotate(-100);
-        multi.waitTime(5000);
+        multi.waitTime(3000);
 
         arm.extend();
         multi.waitTime(1000);
         arm.pullyoff();
 
         multi.waitTime(1000);
-        arm.rotate(20);
+        arm.rotate(-20);
 
         multi.waitTime(15000);
     }
