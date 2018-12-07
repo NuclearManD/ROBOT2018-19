@@ -108,20 +108,31 @@ public class AutoOp extends LinearOpMode{
                 driver.setY(.5);
                 multi.waitTime(1000);
                 driver.setY(0);
-                //
+                // hopefully it should go to the last block
+
+                driver.setY(.5);
+                multi.waitTime(200);
+                driver.setY(0);
+                // it drives in to the last block
+
+            //if not ...
             }else {
                 driver.setY(.5);
                 multi.waitTime(200);
                 driver.setY(0);
+                // if it's not white then it's yellow so it runs into it
             }
+        // if not ALL that then ...
         }else{
             driver.setY(.5);
             multi.waitTime(200);
             driver.setY(0);
+            // if the very first one is not white then it's yellow so it runs into it
         }
         multi.waitTime(200);
         driver.setY(0);
         driver.setX(0);
         multi.waitTime(1000);
+        // the drivers turn off
     }
 }
