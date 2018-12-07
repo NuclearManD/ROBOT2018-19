@@ -37,7 +37,7 @@ public class ClaimingAutoOp extends LinearOpMode {
         waitForStart();
 
         driver.setY(.5);
-        multi.waitTime(445);
+        multi.waitTime(800);
         driver.setY(0);
 
         multi.waitTime(1500);
