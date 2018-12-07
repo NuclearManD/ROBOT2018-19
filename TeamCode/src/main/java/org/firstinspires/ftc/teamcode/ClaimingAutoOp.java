@@ -1,3 +1,5 @@
+package org.firstinspires.ftc.teamcode;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.ColorSensor;
@@ -42,7 +44,7 @@ public class ClaimingAutoOp extends LinearOpMode {
 
         multi.waitTime(1500);
 
-        arm.rotate(30);
+        arm.rotate(-50);
         multi.waitTime(5000);
 
         arm.extend();
@@ -50,7 +52,7 @@ public class ClaimingAutoOp extends LinearOpMode {
         arm.pullyoff();
 
         arm.ColectBoiOn();
-        multi.waitTime(5000);
+        multi.waitTime(1000);
 
         arm.ColectBoiOff();
 
