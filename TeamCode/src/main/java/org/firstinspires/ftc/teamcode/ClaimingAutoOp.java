@@ -45,10 +45,12 @@ public class ClaimingAutoOp extends LinearOpMode {
 
         multi.waitTime(300);
 
+        // extend some
         arm.extend();
         multi.waitTime(500);
         arm.pullyoff();
 
+        // drop token thingy
         arm.ColectBoiBack();
         multi.waitTime(1000);
 

@@ -110,24 +110,64 @@ public class AutoOp extends LinearOpMode{
                 driver.setY(0);
                 // hopefully it should go to the last block
 
+                // go forward
                 driver.setY(.5);
-                multi.waitTime(200);
+                multi.waitTime(900);
                 driver.setY(0);
-                // it drives in to the last block
+
+                multi.waitTime(1500);
+
+                // rotate arm and wait for finish
+                arm.rotate(-50);
+                multi.waitTime(5000);
+
+                // extend some
+                arm.extend();
+                multi.waitTime(1000);
+                arm.pullyoff();
 
             //if not ...
             }else {
+                telemetry.addLine("found yellow");
+                telemetry.update();
+                multi.waitTime(500);
+
                 driver.setY(.5);
-                multi.waitTime(200);
+                multi.waitTime(900);
                 driver.setY(0);
-                // if it's not white then it's yellow so it runs into it
+
+                multi.waitTime(1500);
+
+                // rotate arm and wait for finish
+                arm.rotate(-50);
+                multi.waitTime(5000);
+
+                // extend some
+                arm.extend();
+                multi.waitTime(1000);
+                arm.pullyoff();
             }
         // if not ALL that then ...
         }else{
+            telemetry.addLine("found yellow");
+            telemetry.update();
+            multi.waitTime(500);
+
             driver.setY(.5);
-            multi.waitTime(200);
+            multi.waitTime(900);
             driver.setY(0);
-            // if the very first one is not white then it's yellow so it runs into it
+
+            multi.waitTime(1500);
+
+            // rotate arm and wait for finish
+            arm.rotate(-50);
+            multi.waitTime(5000);
+
+            // extend some
+            arm.extend();
+            multi.waitTime(1000);
+            arm.pullyoff();
+            // if the very first one is not white then it's yellow so it runs into it and extends arm
         }
         multi.waitTime(200);
         driver.setY(0);
