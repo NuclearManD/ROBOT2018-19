@@ -31,18 +31,18 @@ public class AutoOp extends LinearOpMode{
         driver.init(motors,-1,.1f);
         multi.addTask(driver);
         multi.addTask(arm);
-        multi.addTask(new TelemetryUpdater());
+        //multi.addTask(new TelemetryUpdater());
         sensorColor = hardwareMap.get(ColorSensor.class, "sensor_color_distance");
 
 
         waitForStart();
 
-        // run the autonomous pgm
 
         driver.setY(.5);
         multi.waitTime(445);
         driver.setY(0);
-        multi.waitTime(100);
+        multi.waitTime(800);
+        // it goes forward
 
         float x;
         float r;
@@ -55,19 +55,29 @@ public class AutoOp extends LinearOpMode{
         x = r + b + g;
         v = x / 3;
         v -= r;
-        telemetry.addData("isWhite", (v < -25));
-        telemetry.update();
+        // it scans the minaral for color
 
-        if (v < -25){
-            driver.setY(.5);
+        telemetry.addData("isWhite", (v < -25));
+        telemetry.addLine("is White??"+ (v < -25));
+        telemetry.update();
+        // tells wether it is white or not
+
+        //if it is white then ...
+        if (v < -15){
+            telemetry.addLine("going to next block");
+            telemetry.update();
+            multi.waitTime(1000);
+
+            driver.setY(-.5);
             multi.waitTime(300);
             driver.setY(0);
             driver.setX(.5);
-            multi.waitTime(100);
+            multi.waitTime(600);
             driver.setX(0);
             driver.setY(.5);
             multi.waitTime(300);
             driver.setY(0);
+            //it goes back then strafes then stops then goes forward (hopefully to next block)
 
             r = sensorColor.green();
             b = sensorColor.blue();
@@ -75,31 +85,54 @@ public class AutoOp extends LinearOpMode{
             x = r + b + g;
             v = x / 3;
             v -= r;
+            // it dose another color check
+
+            telemetry.addLine("executing color check");
+            telemetry.update();
+            multi.waitTime(1000);
             telemetry.addData("isWhite", (v < -25));
             telemetry.update();
-            if (v < -25){
-                driver.setY(.5);
+
+            // if it's white again ...
+            if (v < -15){
+                telemetry.addLine("executing move to yellow");
+                telemetry.update();
+                multi.waitTime(1000);
+                
+                driver.setY(-.5);
                 multi.waitTime(300);
                 driver.setY(0);
-                driver.setX(.5);
-                multi.waitTime(-200);
+                driver.setX(-.5);
+                multi.waitTime(1200);
                 driver.setX(0);
                 driver.setY(.5);
                 multi.waitTime(1000);
                 driver.setY(0);
+                // hopefully it should go to the last block
+
+                driver.setY(.5);
+                multi.waitTime(200);
+                driver.setY(0);
+                // it drives in to the last block
+
+            //if not ...
             }else {
                 driver.setY(.5);
                 multi.waitTime(200);
                 driver.setY(0);
+                // if it's not white then it's yellow so it runs into it
             }
+        // if not ALL that then ...
         }else{
             driver.setY(.5);
             multi.waitTime(200);
             driver.setY(0);
+            // if the very first one is not white then it's yellow so it runs into it
         }
         multi.waitTime(200);
         driver.setY(0);
         driver.setX(0);
         multi.waitTime(1000);
+        // the drivers turn off
     }
 }
