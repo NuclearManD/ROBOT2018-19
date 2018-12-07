@@ -38,19 +38,23 @@ public class ClaimingAutoOp extends LinearOpMode {
 
         waitForStart();
 
+        // go forward
         driver.setY(.5);
         multi.waitTime(900);
         driver.setY(0);
 
         multi.waitTime(1500);
 
+        // rotate arm and wait for finish
         arm.rotate(-50);
         multi.waitTime(5000);
 
+        // extend some
         arm.extend();
         multi.waitTime(500);
         arm.pullyoff();
 
+        // drop token thingy
         arm.ColectBoiBack();
         multi.waitTime(1000);
 
