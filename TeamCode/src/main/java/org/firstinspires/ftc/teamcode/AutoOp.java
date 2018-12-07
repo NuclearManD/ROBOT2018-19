@@ -63,7 +63,7 @@ public class AutoOp extends LinearOpMode{
         // tells wether it is white or not
 
         //if it is white then ...
-        if (v < -40){
+        if (v > -10){
             telemetry.addLine("going to next block");
             telemetry.update();
             multi.waitTime(1000);
@@ -72,10 +72,10 @@ public class AutoOp extends LinearOpMode{
             multi.waitTime(300);
             driver.setY(0);
             driver.setX(.5);
-            multi.waitTime(600);
+            multi.waitTime(1200);
             driver.setX(0);
             driver.setY(.5);
-            multi.waitTime(300);
+            multi.waitTime(225);
             driver.setY(0);
             //it goes back then strafes then stops then goes forward (hopefully to next block)
 
@@ -94,7 +94,7 @@ public class AutoOp extends LinearOpMode{
             telemetry.update();
 
             // if it's white again ...
-            if (v < -40){
+            if (v > -10){
                 telemetry.addLine("executing move to yellow");
                 telemetry.update();
                 multi.waitTime(1000);
@@ -103,10 +103,10 @@ public class AutoOp extends LinearOpMode{
                 multi.waitTime(300);
                 driver.setY(0);
                 driver.setX(-.5);
-                multi.waitTime(1200);
+                multi.waitTime(2400);
                 driver.setX(0);
                 driver.setY(.5);
-                multi.waitTime(1000);
+                multi.waitTime(800);
                 driver.setY(0);
                 // hopefully it should go to the last block
 
