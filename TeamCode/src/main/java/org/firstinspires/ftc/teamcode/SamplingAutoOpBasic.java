@@ -15,8 +15,8 @@ import org.firstinspires.ftc.teamcode.drivers.TelemetryUpdater;
  * Created by SCRoboticsDev on 12/6/2018.
  */
 
-@TeleOp(name="Claiming Auto Op Basic", group="2018")
-public class ClaimingAutoOp extends LinearOpMode {
+@TeleOp(name="Sampling Auto Op Basic", group="2018")
+public class SamplingAutoOpBasic extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -38,27 +38,21 @@ public class ClaimingAutoOp extends LinearOpMode {
 
         waitForStart();
 
-        // go forward
         driver.setY(.5);
         multi.waitTime(1100);
         driver.setY(0);
 
         multi.waitTime(1500);
 
-        // rotate arm and wait for finish
-        arm.rotate(-50);
+        arm.rotate(-100);
         multi.waitTime(5000);
 
-        // extend some
         arm.extend();
-        multi.waitTime(500);
+        multi.waitTime(1000);
         arm.pullyoff();
 
-        // drop token thingy
-        arm.ColectBoiBack();
         multi.waitTime(1000);
-
-        arm.ColectBoiOff();
+        arm.rotate(20);
 
         multi.waitTime(15000);
     }
