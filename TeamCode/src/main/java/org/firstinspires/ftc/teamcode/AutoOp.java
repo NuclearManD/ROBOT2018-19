@@ -78,6 +78,7 @@ public class AutoOp extends LinearOpMode{
             multi.waitTime(225);
             driver.setY(0);
             //it goes back then strafes then stops then goes forward (hopefully to next block)
+            // fix strafes is too long
 
             r = sensorColor.green();
             b = sensorColor.blue();
@@ -109,6 +110,7 @@ public class AutoOp extends LinearOpMode{
                 multi.waitTime(800);
                 driver.setY(0);
                 // hopefully it should go to the last block
+                // fix stafes is too long
 
                 // go forward
                 driver.setY(.5);
