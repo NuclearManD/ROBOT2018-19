@@ -163,7 +163,6 @@ public class AutoOp extends LinearOpMode{
     }
 
     public boolean getColorIsWhite() {
-
         telemetry.addLine("executing color check");
         telemetry.update();
         float r = sensorColor.green();
