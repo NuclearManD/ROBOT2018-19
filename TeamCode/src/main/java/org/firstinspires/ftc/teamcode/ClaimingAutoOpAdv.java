@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import android.graphics.Color;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.ColorSensor;
@@ -154,16 +156,13 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
         // the drivers turn off
     }
 
+
     public boolean getColorIsWhite() {
+        telemetry.addLine("executing color check");
+        telemetry.update();
+        float hsvValues[] = {0F, 0F, 0F};
+        Color.RGBToHSV((int) (sensorColor.red() * 255.0), (int) (sensorColor.green() * 255.0), (int) (sensorColor.blue() * 255.0), hsvValues);
 
-        //telemetry.addLine("executing color check");
-        //telemetry.update();
-        float r = sensorColor.red();
-        float b = sensorColor.blue();
-
-        telemetry.addLine("R="+r+" && B="+b);
-        //telemetry.update();
-        float x = r-b;
-        return x<15;
+        return hsvValues[0]>50;
     }
 }
