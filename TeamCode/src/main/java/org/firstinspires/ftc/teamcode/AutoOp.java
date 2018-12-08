@@ -63,21 +63,22 @@ public class AutoOp extends LinearOpMode{
         // tells wether it is white or not
 
         //if it is white then ...
-        if (v < -15){
+        if (v > -10){
             telemetry.addLine("going to next block");
             telemetry.update();
             multi.waitTime(1000);
 
-            driver.setY(-.5);
-            multi.waitTime(300);
+            driver.setY(-.4);
+            multi.waitTime(200);
             driver.setY(0);
             driver.setX(.5);
-            multi.waitTime(600);
+            multi.waitTime(1000);
             driver.setX(0);
-            driver.setY(.5);
-            multi.waitTime(300);
+            driver.setY(.4);
+            multi.waitTime(200);
             driver.setY(0);
             //it goes back then strafes then stops then goes forward (hopefully to next block)
+            // fix strafes is too long
 
             r = sensorColor.green();
             b = sensorColor.blue();
@@ -90,25 +91,26 @@ public class AutoOp extends LinearOpMode{
             telemetry.addLine("executing color check");
             telemetry.update();
             multi.waitTime(1000);
-            telemetry.addData("isWhite", (v < -25));
+            telemetry.addData("isWhite", (v < -40));
             telemetry.update();
 
             // if it's white again ...
-            if (v < -15){
+            if (v > -10){
                 telemetry.addLine("executing move to yellow");
                 telemetry.update();
                 multi.waitTime(1000);
                 
-                driver.setY(-.5);
-                multi.waitTime(300);
+                driver.setY(-.4);
+                multi.waitTime(200);
                 driver.setY(0);
                 driver.setX(-.5);
-                multi.waitTime(1200);
+                multi.waitTime(2000);
                 driver.setX(0);
                 driver.setY(.5);
-                multi.waitTime(1000);
+                multi.waitTime(800);
                 driver.setY(0);
                 // hopefully it should go to the last block
+                // fix stafes is too long
 
                 // go forward
                 driver.setY(.5);
@@ -130,7 +132,7 @@ public class AutoOp extends LinearOpMode{
             }else {
                 telemetry.addLine("found yellow");
                 telemetry.update();
-                multi.waitTime(500);
+                multi.waitTime(1000);
 
                 driver.setY(.5);
                 multi.waitTime(900);
@@ -142,7 +144,7 @@ public class AutoOp extends LinearOpMode{
                 arm.rotate(-50);
                 multi.waitTime(5000);
 
-                // extend some
+                // extend some`
                 arm.extend();
                 multi.waitTime(1000);
                 arm.pullyoff();
@@ -151,7 +153,7 @@ public class AutoOp extends LinearOpMode{
         }else{
             telemetry.addLine("found yellow");
             telemetry.update();
-            multi.waitTime(500);
+            multi.waitTime(1000);
 
             driver.setY(.5);
             multi.waitTime(900);
