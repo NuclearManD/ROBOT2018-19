@@ -136,6 +136,7 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
             multi.waitTime(100);
             // if the very first one is not white then it's yellow so it runs into it and extends arm
         }
+        telemetry.update();
 
         multi.waitTime(300);
 
@@ -151,18 +152,16 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
         multi.waitTime(200);
         driver.setY(0);
         driver.setX(0);
-        telemetry.update();
         multi.waitTime(60000);
         // the drivers turn off
     }
 
 
     public boolean getColorIsWhite() {
-        telemetry.addLine("executing color check");
-        telemetry.update();
         float hsvValues[] = {0F, 0F, 0F};
         Color.RGBToHSV((int) (sensorColor.red() * 255.0), (int) (sensorColor.green() * 255.0), (int) (sensorColor.blue() * 255.0), hsvValues);
 
+        telemetry.addLine("hue = "+hsvValues[0]);
         return hsvValues[0]>50;
     }
 }

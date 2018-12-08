@@ -44,20 +44,20 @@ public class AutoOp extends LinearOpMode{
         driver.setY(.5);
         multi.waitTime(500);
         driver.setY(0);
-        multi.waitTime(800);
+        multi.waitTime(1000);
         // it goes forward
 
         boolean isWhite = getColorIsWhite();
         // it scans the minaral for color
 
-        telemetry.addData("isWhite", isWhite);
-        telemetry.update();
+        //telemetry.addData("isWhite", isWhite);
+        //telemetry.update();
         // tells wether it is white or not
 
         //if it is white then ...
         if (isWhite){
-            telemetry.addLine("going to next block");
-            telemetry.update();
+            //telemetry.addLine("going to next block");
+            //telemetry.update();
             multi.waitTime(1000);
 
             driver.setY(-.4);
@@ -73,16 +73,14 @@ public class AutoOp extends LinearOpMode{
             driver.setY(0);
             //it goes back then strafes then stops then goes forward (hopefully to next block)
 
-            isWhite = getColorIsWhite();
             // it dose another color check
             multi.waitTime(1000);
-            telemetry.addData("isWhite", isWhite);
-            telemetry.update();
+            isWhite = getColorIsWhite();
 
             // if it's white again ...
             if (isWhite){
-                telemetry.addLine("executing move to yellow");
-                telemetry.update();
+                //telemetry.addLine("executing move to yellow");
+                //telemetry.update();
                 multi.waitTime(1000);
                 
                 driver.setY(-.4);
@@ -116,8 +114,8 @@ public class AutoOp extends LinearOpMode{
 
             //if not ...
             }else {
-                telemetry.addLine("found yellow");
-                telemetry.update();
+                //telemetry.addLine("found yellow");
+                //telemetry.update();
                 multi.waitTime(1000);
 
                 driver.setY(.5);
@@ -137,8 +135,8 @@ public class AutoOp extends LinearOpMode{
             }
         // if not ALL that then ...
         }else{
-            telemetry.addLine("found yellow");
-            telemetry.update();
+            //telemetry.addLine("found yellow");
+            //telemetry.update();
             multi.waitTime(1000);
 
             driver.setY(.5);
@@ -157,6 +155,7 @@ public class AutoOp extends LinearOpMode{
             arm.pullyoff();
             // if the very first one is not white then it's yellow so it runs into it and extends arm
         }
+        telemetry.update();
         multi.waitTime(200);
         driver.setY(0);
         driver.setX(0);
@@ -165,11 +164,10 @@ public class AutoOp extends LinearOpMode{
     }
 
     public boolean getColorIsWhite() {
-        telemetry.addLine("executing color check");
-        telemetry.update();
         float hsvValues[] = {0F, 0F, 0F};
         Color.RGBToHSV((int) (sensorColor.red() * 255.0), (int) (sensorColor.green() * 255.0), (int) (sensorColor.blue() * 255.0), hsvValues);
 
+        telemetry.addLine("hue = "+hsvValues[0]);
         return hsvValues[0]>50;
     }
 }
