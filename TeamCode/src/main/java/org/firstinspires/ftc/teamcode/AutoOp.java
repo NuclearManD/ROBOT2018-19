@@ -17,12 +17,13 @@ import org.firstinspires.ftc.teamcode.drivers.TelemetryUpdater;
 @TeleOp(name="Sampling Auto Op", group="2018")
 public class AutoOp extends LinearOpMode{
 
+    ColorSensor sensorColor;
+    DistanceSensor sensorDistance;
+
     @Override
     public void runOpMode() throws InterruptedException {
 
         // initailize here
-        ColorSensor sensorColor;
-        DistanceSensor sensorDistance;
 
         Mecanum4WheelDriver driver = new Mecanum4WheelDriver();
         ArmDriver arm = new ArmDriver(hardwareMap.dcMotor.get("pully"),hardwareMap.dcMotor.get("angle"),hardwareMap.crservo.get("goboi"));
@@ -44,26 +45,15 @@ public class AutoOp extends LinearOpMode{
         multi.waitTime(800);
         // it goes forward
 
-        float x;
-        float r;
-        float b;
-        float g;
-        float v;
-        r = sensorColor.green();
-        b = sensorColor.blue();
-        g = sensorColor.red();
-        x = r + b + g;
-        v = x / 3;
-        v -= r;
+        boolean isWhite = getColorIsWhite();
         // it scans the minaral for color
 
-        telemetry.addData("isWhite", (v < -10));
-        telemetry.addLine("is White??"+ (v < -10));
+        telemetry.addData("isWhite", isWhite);
         telemetry.update();
         // tells wether it is white or not
 
         //if it is white then ...
-        if (v < -10){
+        if (isWhite){
             telemetry.addLine("going to next block");
             telemetry.update();
             multi.waitTime(1000);
@@ -81,22 +71,14 @@ public class AutoOp extends LinearOpMode{
             driver.setY(0);
             //it goes back then strafes then stops then goes forward (hopefully to next block)
 
-            r = sensorColor.green();
-            b = sensorColor.blue();
-            g = sensorColor.red();
-            x = r + b + g;
-            v = x / 3;
-            v -= r;
+            isWhite = getColorIsWhite();
             // it dose another color check
-
-            telemetry.addLine("executing color check");
-            telemetry.update();
             multi.waitTime(1000);
-            telemetry.addData("isWhite", (v < -10));
+            telemetry.addData("isWhite", isWhite);
             telemetry.update();
 
             // if it's white again ...
-            if (v < -10){
+            if (isWhite){
                 telemetry.addLine("executing move to yellow");
                 telemetry.update();
                 multi.waitTime(1000);
@@ -178,5 +160,18 @@ public class AutoOp extends LinearOpMode{
         driver.setX(0);
         multi.waitTime(60000);
         // the drivers turn off
+    }
+
+    public boolean getColorIsWhite() {
+
+        telemetry.addLine("executing color check");
+        telemetry.update();
+        float r = sensorColor.green();
+        float b = sensorColor.blue();
+        float g = sensorColor.red();
+        float x = r + b + g;
+        float v = x / 3;
+        v -= r;
+        return v>-15;
     }
 }
