@@ -68,14 +68,14 @@ public class AutoOp extends LinearOpMode{
             telemetry.update();
             multi.waitTime(1000);
 
-            driver.setY(-.5);
-            multi.waitTime(300);
+            driver.setY(-.4);
+            multi.waitTime(200);
             driver.setY(0);
             driver.setX(.5);
             multi.waitTime(1000);
             driver.setX(0);
-            driver.setY(.5);
-            multi.waitTime(225);
+            driver.setY(.4);
+            multi.waitTime(200);
             driver.setY(0);
             //it goes back then strafes then stops then goes forward (hopefully to next block)
             // fix strafes is too long
@@ -100,8 +100,8 @@ public class AutoOp extends LinearOpMode{
                 telemetry.update();
                 multi.waitTime(1000);
                 
-                driver.setY(-.5);
-                multi.waitTime(300);
+                driver.setY(-.4);
+                multi.waitTime(200);
                 driver.setY(0);
                 driver.setX(-.5);
                 multi.waitTime(2000);
