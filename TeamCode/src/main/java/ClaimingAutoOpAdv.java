@@ -14,8 +14,8 @@ import org.firstinspires.ftc.teamcode.drivers.TelemetryUpdater;
 /**
  * Created by SCRoboticsDev on 12/5/2018.
  */
-@TeleOp(name="Sampling Auto Op", group="2018")
-public class AutoOp extends LinearOpMode{
+@TeleOp(name="Claiming Auto Op", group="2018")
+public class ClaimingAutoOpAdv extends LinearOpMode{
 
     ColorSensor sensorColor;
     DistanceSensor sensorDistance;
@@ -48,14 +48,14 @@ public class AutoOp extends LinearOpMode{
         boolean isWhite = getColorIsWhite();
         // it scans the minaral for color
 
-        telemetry.addData("isWhite", isWhite);
-        telemetry.update();
+        //telemetry.addData("isWhite", isWhite);
+        //telemetry.update();
         // tells wether it is white or not
 
         //if it is white then ...
         if (isWhite){
-            telemetry.addLine("going to next block");
-            telemetry.update();
+            //telemetry.addLine("going to next block");
+            //telemetry.update();
             multi.waitTime(1000);
 
             driver.setY(-.4);
@@ -74,15 +74,15 @@ public class AutoOp extends LinearOpMode{
             isWhite = getColorIsWhite();
             // it dose another color check
             multi.waitTime(1000);
-            telemetry.addData("isWhite", isWhite);
-            telemetry.update();
+            //telemetry.addData("isWhite", isWhite);
+            //telemetry.update();
 
             // if it's white again ...
             if (isWhite){
-                telemetry.addLine("executing move to yellow");
-                telemetry.update();
+                //telemetry.addLine("executing move to yellow");
+                //telemetry.update();
                 multi.waitTime(1000);
-                
+
                 driver.setY(-.4);
                 multi.waitTime(110);
                 driver.setY(0);
@@ -112,10 +112,10 @@ public class AutoOp extends LinearOpMode{
                 multi.waitTime(1000);
                 arm.pullyoff();
 
-            //if not ...
+                //if not ...
             }else {
-                telemetry.addLine("found yellow");
-                telemetry.update();
+                //telemetry.addLine("found yellow");
+                //telemetry.update();
                 multi.waitTime(1000);
 
                 driver.setY(.5);
@@ -133,10 +133,10 @@ public class AutoOp extends LinearOpMode{
                 multi.waitTime(1000);
                 arm.pullyoff();
             }
-        // if not ALL that then ...
+            // if not ALL that then ...
         }else{
-            telemetry.addLine("found yellow");
-            telemetry.update();
+            //telemetry.addLine("found yellow");
+            //telemetry.update();
             multi.waitTime(1000);
 
             driver.setY(.5);
@@ -158,19 +158,21 @@ public class AutoOp extends LinearOpMode{
         multi.waitTime(200);
         driver.setY(0);
         driver.setX(0);
+        telemetry.update();
         multi.waitTime(60000);
         // the drivers turn off
     }
 
     public boolean getColorIsWhite() {
-        telemetry.addLine("executing color check");
-        telemetry.update();
+
+        //telemetry.addLine("executing color check");
+        //telemetry.update();
         float r = sensorColor.green();
         float b = sensorColor.blue();
-        float g = sensorColor.red();
-        float x = r + b + g;
-        float v = x / 3;
-        v -= r;
-        return v>-15;
+
+        telemetry.addLine("R="+r+" && B="+b);
+        //telemetry.update();
+        float x = r-b;
+        return x<15;
     }
 }
