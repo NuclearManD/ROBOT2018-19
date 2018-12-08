@@ -46,7 +46,7 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
         driver.setY(.5);
         multi.waitTime(450);
         driver.setY(0);
-        multi.waitTime(800);
+        multi.waitTime(1000);
         // it goes forward
 
         boolean isWhite = getColorIsWhite();
@@ -75,9 +75,9 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
             driver.setY(0);
             //it goes back then strafes then stops then goes forward (hopefully to next block)
 
-            isWhite = getColorIsWhite();
             // it dose another color check
             multi.waitTime(1000);
+            isWhite = getColorIsWhite();
             //telemetry.addData("isWhite", isWhite);
             //telemetry.update();
 
