@@ -42,7 +42,7 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
         telemetry.update();
 
         driver.setY(.5);
-        multi.waitTime(500);
+        multi.waitTime(450);
         driver.setY(0);
         multi.waitTime(800);
         // it goes forward
@@ -103,16 +103,7 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
                 multi.waitTime(900);
                 driver.setY(0);
 
-                multi.waitTime(1500);
-
-                // rotate arm and wait for finish
-                arm.rotate(-50);
-                multi.waitTime(5000);
-
-                // extend some
-                arm.extend();
-                multi.waitTime(1000);
-                arm.pullyoff();
+                multi.waitTime(150);
 
                 //if not ...
             }else {
@@ -121,7 +112,9 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
                 multi.waitTime(1000);
 
                 driver.setY(.5);
-                multi.waitTime(900);
+                driver.setR(-.15);
+                multi.waitTime(1000);
+                driver.setR(0);
                 driver.setY(0);
 
                 multi.waitTime(100);
@@ -132,16 +125,15 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
             //telemetry.update();
             multi.waitTime(1000);
 
+            driver.setR(.15);
             driver.setY(.5);
-            multi.waitTime(900);
+            multi.waitTime(1000);
             driver.setY(0);
+            driver.setR(0);
 
             multi.waitTime(100);
             // if the very first one is not white then it's yellow so it runs into it and extends arm
         }
-        arm.rotate(-50);
-        multi.waitTime(600);
-        driver.setY(0);
 
         multi.waitTime(300);
 
@@ -149,7 +141,7 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
         arm.ColectBoiBack();
         multi.waitTime(1000);
 
-        driver.setY(-1);
+        driver.setY(-.7);
         multi.waitTime(500);
         driver.setY(0);
         arm.ColectBoiOff();
@@ -166,7 +158,7 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
 
         //telemetry.addLine("executing color check");
         //telemetry.update();
-        float r = sensorColor.green();
+        float r = sensorColor.red();
         float b = sensorColor.blue();
 
         telemetry.addLine("R="+r+" && B="+b);
