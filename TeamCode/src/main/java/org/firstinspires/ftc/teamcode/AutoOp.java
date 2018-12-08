@@ -39,7 +39,7 @@ public class AutoOp extends LinearOpMode{
 
 
         driver.setY(.5);
-        multi.waitTime(445);
+        multi.waitTime(500);
         driver.setY(0);
         multi.waitTime(800);
         // it goes forward
@@ -63,22 +63,23 @@ public class AutoOp extends LinearOpMode{
         // tells wether it is white or not
 
         //if it is white then ...
-        if (v > -10){
+        if (v > -40){
             telemetry.addLine("going to next block");
             telemetry.update();
             multi.waitTime(1000);
 
             driver.setY(-.4);
-            multi.waitTime(200);
+            multi.waitTime(110);
             driver.setY(0);
+            multi.waitTime(50);
             driver.setX(.5);
-            multi.waitTime(1000);
+            multi.waitTime(800);
             driver.setX(0);
+            multi.waitTime(50);
             driver.setY(.4);
             multi.waitTime(200);
             driver.setY(0);
             //it goes back then strafes then stops then goes forward (hopefully to next block)
-            // fix strafes is too long
 
             r = sensorColor.green();
             b = sensorColor.blue();
@@ -95,22 +96,23 @@ public class AutoOp extends LinearOpMode{
             telemetry.update();
 
             // if it's white again ...
-            if (v > -10){
+            if (v > -40){
                 telemetry.addLine("executing move to yellow");
                 telemetry.update();
                 multi.waitTime(1000);
                 
                 driver.setY(-.4);
-                multi.waitTime(200);
+                multi.waitTime(110);
                 driver.setY(0);
+                multi.waitTime(50);
                 driver.setX(-.5);
-                multi.waitTime(2000);
+                multi.waitTime(1600);
                 driver.setX(0);
+                multi.waitTime(50);
                 driver.setY(.5);
                 multi.waitTime(800);
                 driver.setY(0);
                 // hopefully it should go to the last block
-                // fix stafes is too long
 
                 // go forward
                 driver.setY(.5);
