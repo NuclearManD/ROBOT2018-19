@@ -81,6 +81,8 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
             //telemetry.addData("isWhite", isWhite);
             //telemetry.update();
 
+            boolean q = false;
+
             // if it's white again ...
             if (isWhite){
                 //telemetry.addLine("executing move to yellow");
