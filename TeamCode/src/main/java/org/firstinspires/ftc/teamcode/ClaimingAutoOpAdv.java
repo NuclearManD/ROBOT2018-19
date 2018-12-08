@@ -38,6 +38,8 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
 
         waitForStart();
 
+        telemetry.addLine("STARTED ADVANCED CLAIMING");
+        telemetry.update();
 
         driver.setY(.5);
         multi.waitTime(500);
@@ -122,19 +124,10 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
                 multi.waitTime(900);
                 driver.setY(0);
 
-                multi.waitTime(1500);
-
-                // rotate arm and wait for finish
-                arm.rotate(-50);
-                multi.waitTime(5000);
-
-                // extend some`
-                arm.extend();
-                multi.waitTime(1000);
-                arm.pullyoff();
+                multi.waitTime(100);
             }
             // if not ALL that then ...
-        }else{
+        }else {
             //telemetry.addLine("found yellow");
             //telemetry.update();
             multi.waitTime(1000);
@@ -143,18 +136,24 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
             multi.waitTime(900);
             driver.setY(0);
 
-            multi.waitTime(1500);
-
-            // rotate arm and wait for finish
-            arm.rotate(-50);
-            multi.waitTime(5000);
-
-            // extend some
-            arm.extend();
-            multi.waitTime(1000);
-            arm.pullyoff();
+            multi.waitTime(100);
             // if the very first one is not white then it's yellow so it runs into it and extends arm
         }
+        arm.rotate(-50);
+        multi.waitTime(600);
+        driver.setY(0);
+
+        multi.waitTime(300);
+
+        // drop token thingy
+        arm.ColectBoiBack();
+        multi.waitTime(1000);
+
+        driver.setY(-1);
+        multi.waitTime(500);
+        driver.setY(0);
+        arm.ColectBoiOff();
+
         multi.waitTime(200);
         driver.setY(0);
         driver.setX(0);
