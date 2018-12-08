@@ -57,13 +57,13 @@ public class AutoOp extends LinearOpMode{
         v -= r;
         // it scans the minaral for color
 
-        telemetry.addData("isWhite", (v < -25));
-        telemetry.addLine("is White??"+ (v < -25));
+        telemetry.addData("isWhite", (v < -10));
+        telemetry.addLine("is White??"+ (v < -10));
         telemetry.update();
         // tells wether it is white or not
 
         //if it is white then ...
-        if (v > -40){
+        if (v < -10){
             telemetry.addLine("going to next block");
             telemetry.update();
             multi.waitTime(1000);
@@ -92,11 +92,11 @@ public class AutoOp extends LinearOpMode{
             telemetry.addLine("executing color check");
             telemetry.update();
             multi.waitTime(1000);
-            telemetry.addData("isWhite", (v < -40));
+            telemetry.addData("isWhite", (v < -10));
             telemetry.update();
 
             // if it's white again ...
-            if (v > -40){
+            if (v < -10){
                 telemetry.addLine("executing move to yellow");
                 telemetry.update();
                 multi.waitTime(1000);
