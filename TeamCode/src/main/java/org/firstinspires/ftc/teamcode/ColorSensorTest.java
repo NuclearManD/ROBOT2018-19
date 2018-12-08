@@ -106,12 +106,27 @@ public class ColorSensorTest extends LinearOpMode {
                 }
             });
 
-            if(sensorDistance.getDistance(DistanceUnit.CM)<20 && hsvValues[0]<65f && hsvValues[0]>61f){//if the color is white
+            if(sensorDistance.getDistance(DistanceUnit.CM)>10){
+                driver.setY(.5);
+            }
+            if(sensorDistance.getDistance(DistanceUnit.CM)<10 && hsvValues[0]<65f && hsvValues[0]>61f){//if the color is white
+                driver.setY(0);
+                driver.setX(.5);
+                multi.waitTime(250);
+                driver.setX(0);
+            }
+            if(sensorDistance.getDistance(DistanceUnit.CM)<10 && hsvValues[0]<30f && hsvValues[0]>25f){//if the color is yellow
                 driver.setY(.5);
                 multi.waitTime(250);
                 driver.setY(0);
             }
-            if(sensorDistance.getDistance(DistanceUnit.CM)<20 && hsvValues[0]<30f && hsvValues[0]>25f){//if the color is yellow
+
+            if(sensorDistance.getDistance(DistanceUnit.CM)<10 && hsvValues[0]<65f && hsvValues[0]>61f){//if the color is white
+                driver.setX(-.5);
+                multi.waitTime(500);
+                driver.setY(0);
+            }
+            if(sensorDistance.getDistance(DistanceUnit.CM)<10 && hsvValues[0]<30f && hsvValues[0]>25f){//if the color is yellow
                 driver.setY(.5);
                 multi.waitTime(250);
                 driver.setY(0);
