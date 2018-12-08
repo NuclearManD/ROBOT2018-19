@@ -42,7 +42,7 @@ public class AutoOp extends LinearOpMode{
 
 
         driver.setY(.5);
-        multi.waitTime(500);
+        multi.waitTime(455);
         driver.setY(0);
         multi.waitTime(1000);
         // it goes forward
@@ -50,26 +50,26 @@ public class AutoOp extends LinearOpMode{
         boolean isWhite = getColorIsWhite();
         // it scans the minaral for color
 
-        //telemetry.addData("isWhite", isWhite);
-        //telemetry.update();
+        telemetry.addData("isWhite", isWhite);
+        telemetry.update();
         // tells wether it is white or not
 
         //if it is white then ...
         if (isWhite){
-            //telemetry.addLine("going to next block");
-            //telemetry.update();
+            telemetry.addLine("going to next block");
+            telemetry.update();
             multi.waitTime(1000);
 
             driver.setY(-.4);
-            multi.waitTime(10);
+            multi.waitTime(100);
             driver.setY(0);
             multi.waitTime(50);
             driver.setX(.5);
-            multi.waitTime(900);
+            multi.waitTime(800);
             driver.setX(0);
             multi.waitTime(50);
             driver.setY(.4);
-            multi.waitTime(200);
+            multi.waitTime(140);
             driver.setY(0);
             //it goes back then strafes then stops then goes forward (hopefully to next block)
 
@@ -79,16 +79,16 @@ public class AutoOp extends LinearOpMode{
 
             // if it's white again ...
             if (isWhite){
-                //telemetry.addLine("executing move to yellow");
-                //telemetry.update();
+                telemetry.addLine("executing move to yellow");
+                telemetry.update();
                 multi.waitTime(1000);
                 
                 driver.setY(-.4);
-                multi.waitTime(110);
+                multi.waitTime(160);
                 driver.setY(0);
                 multi.waitTime(50);
                 driver.setX(-.5);
-                multi.waitTime(1800);
+                multi.waitTime(1600);
                 driver.setX(0);
                 multi.waitTime(50);
                 driver.setY(.5);
@@ -114,8 +114,8 @@ public class AutoOp extends LinearOpMode{
 
             //if not ...
             }else {
-                //telemetry.addLine("found yellow");
-                //telemetry.update();
+                telemetry.addLine("found yellow");
+                telemetry.update();
                 multi.waitTime(1000);
 
                 driver.setY(.5);
@@ -135,8 +135,8 @@ public class AutoOp extends LinearOpMode{
             }
         // if not ALL that then ...
         }else{
-            //telemetry.addLine("found yellow");
-            //telemetry.update();
+            telemetry.addLine("found yellow");
+            telemetry.update();
             multi.waitTime(1000);
 
             driver.setY(.5);
@@ -159,7 +159,7 @@ public class AutoOp extends LinearOpMode{
         multi.waitTime(200);
         driver.setY(0);
         driver.setX(0);
-        multi.waitTime(60000);
+        multi.waitTime(5000);
         // the drivers turn off
     }
 

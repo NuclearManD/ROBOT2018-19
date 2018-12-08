@@ -37,14 +37,13 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
         //multi.addTask(new TelemetryUpdater());
         sensorColor = hardwareMap.get(ColorSensor.class, "sensor_color_distance");
 
-
         waitForStart();
 
         telemetry.addLine("STARTED ADVANCED CLAIMING");
         telemetry.update();
 
         driver.setY(.5);
-        multi.waitTime(450);
+        multi.waitTime(470);
         driver.setY(0);
         multi.waitTime(1000);
         // it goes forward
@@ -52,18 +51,18 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
         boolean isWhite = getColorIsWhite();
         // it scans the minaral for color
 
-        //telemetry.addData("isWhite", isWhite);
-        //telemetry.update();
+        telemetry.addData("isWhite", isWhite);
+        telemetry.update();
         // tells wether it is white or not
 
         //if it is white then ...
         if (isWhite){
-            //telemetry.addLine("going to next block");
-            //telemetry.update();
+            telemetry.addLine("going to next block");
+            telemetry.update();
             multi.waitTime(1000);
 
             driver.setY(-.4);
-            multi.waitTime(110);
+            multi.waitTime(100);
             driver.setY(0);
             multi.waitTime(50);
             driver.setX(.5);
@@ -71,26 +70,24 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
             driver.setX(0);
             multi.waitTime(50);
             driver.setY(.4);
-            multi.waitTime(200);
+            multi.waitTime(100);
             driver.setY(0);
             //it goes back then strafes then stops then goes forward (hopefully to next block)
 
             // it dose another color check
             multi.waitTime(1000);
             isWhite = getColorIsWhite();
-            //telemetry.addData("isWhite", isWhite);
-            //telemetry.update();
 
             boolean q = false;
 
             // if it's white again ...
             if (isWhite){
-                //telemetry.addLine("executing move to yellow");
-                //telemetry.update();
+                telemetry.addLine("executing move to yellow");
+                telemetry.update();
                 multi.waitTime(1000);
 
                 driver.setY(-.4);
-                multi.waitTime(110);
+                multi.waitTime(160);
                 driver.setY(0);
                 multi.waitTime(50);
                 driver.setX(-.5);
@@ -107,35 +104,58 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
                 multi.waitTime(900);
                 driver.setY(0);
 
-                multi.waitTime(150);
+                multi.waitTime(1500);
+
+                // rotate arm and wait for finish
+                arm.rotate(-50);
+                multi.waitTime(5000);
+
+                // extend some
+                arm.extend();
+                multi.waitTime(1000);
+                arm.pullyoff();
 
                 //if not ...
             }else {
-                //telemetry.addLine("found yellow");
-                //telemetry.update();
+                telemetry.addLine("found yellow");
+                telemetry.update();
                 multi.waitTime(1000);
 
                 driver.setY(.5);
-                driver.setR(-.15);
-                multi.waitTime(1000);
-                driver.setR(0);
+                multi.waitTime(900);
                 driver.setY(0);
 
-                multi.waitTime(100);
+                multi.waitTime(1500);
+
+                // rotate arm and wait for finish
+                arm.rotate(-50);
+                multi.waitTime(5000);
+
+                // extend some`
+                arm.extend();
+                multi.waitTime(1000);
+                arm.pullyoff();
             }
             // if not ALL that then ...
-        }else {
-            //telemetry.addLine("found yellow");
-            //telemetry.update();
+        }else{
+            telemetry.addLine("found yellow");
+            telemetry.update();
             multi.waitTime(1000);
 
-            driver.setR(.15);
             driver.setY(.5);
-            multi.waitTime(1000);
+            multi.waitTime(900);
             driver.setY(0);
-            driver.setR(0);
 
-            multi.waitTime(100);
+            multi.waitTime(1500);
+
+            // rotate arm and wait for finish
+            arm.rotate(-50);
+            multi.waitTime(5000);
+
+            // extend some
+            arm.extend();
+            multi.waitTime(1000);
+            arm.pullyoff();
             // if the very first one is not white then it's yellow so it runs into it and extends arm
         }
         telemetry.update();
@@ -154,7 +174,7 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
         multi.waitTime(200);
         driver.setY(0);
         driver.setX(0);
-        multi.waitTime(60000);
+        multi.waitTime(5000);
         // the drivers turn off
     }
 
