@@ -39,11 +39,9 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
 
         waitForStart();
 
-        telemetry.addLine("STARTED ADVANCED CLAIMING");
-        telemetry.update();
 
         driver.setY(.5);
-        multi.waitTime(470);
+        multi.waitTime(455);
         driver.setY(0);
         multi.waitTime(1000);
         // it goes forward
@@ -70,7 +68,7 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
             driver.setX(0);
             multi.waitTime(50);
             driver.setY(.4);
-            multi.waitTime(100);
+            multi.waitTime(140);
             driver.setY(0);
             //it goes back then strafes then stops then goes forward (hopefully to next block)
 
