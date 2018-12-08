@@ -69,7 +69,7 @@ public class AutoOp extends LinearOpMode{
             driver.setX(0);
             multi.waitTime(50);
             driver.setY(.4);
-            multi.waitTime(100);
+            multi.waitTime(140);
             driver.setY(0);
             //it goes back then strafes then stops then goes forward (hopefully to next block)
 
