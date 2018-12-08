@@ -87,6 +87,7 @@ public class ColorSensorTest extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
+
             Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
                     (int) (sensorColor.green() * SCALE_FACTOR),
                     (int) (sensorColor.blue() * SCALE_FACTOR),
@@ -106,31 +107,65 @@ public class ColorSensorTest extends LinearOpMode {
                 }
             });
 
-            if(sensorDistance.getDistance(DistanceUnit.CM)>10){
+            while(sensorDistance.getDistance(DistanceUnit.CM)>10){
                 driver.setY(.5);
+                multi.waitTime(2);
             }
-            if(sensorDistance.getDistance(DistanceUnit.CM)<10 && hsvValues[0]<65f && hsvValues[0]>61f){//if the color is white
-                driver.setY(0);
-                driver.setX(.5);
-                multi.waitTime(250);
-                driver.setX(0);
-            }
-            if(sensorDistance.getDistance(DistanceUnit.CM)<10 && hsvValues[0]<30f && hsvValues[0]>25f){//if the color is yellow
-                driver.setY(.5);
-                multi.waitTime(250);
-                driver.setY(0);
+            // move to far left of sampling field
+            driver.setY(0);
+            driver.setX(-.5);
+            multi.waitTime(450);
+            driver.setX(0);
+
+            for (int i = 0; i < 100000; i++) {
+                Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
+                        (int) (sensorColor.green() * SCALE_FACTOR),
+                        (int) (sensorColor.blue() * SCALE_FACTOR),
+                        hsvValues);
+                if(hsvValues[0] < 30f && hsvValues[0] > 25f){
+                    driver.setX(0);
+                    driver.setY(.5);
+                    multi.waitTime(200);
+                    driver.setY(0);
+                    i = 100000;
+                }
+                else{
+                    driver.setX(.2);
+                    multi.waitTime(25);
+                }
             }
 
-            if(sensorDistance.getDistance(DistanceUnit.CM)<10 && hsvValues[0]<65f && hsvValues[0]>61f){//if the color is white
-                driver.setX(-.5);
-                multi.waitTime(500);
-                driver.setY(0);
-            }
-            if(sensorDistance.getDistance(DistanceUnit.CM)<10 && hsvValues[0]<30f && hsvValues[0]>25f){//if the color is yellow
+/*
+            if(sensorDistance.getDistance(DistanceUnit.CM)>10){
                 driver.setY(.5);
-                multi.waitTime(250);
-                driver.setY(0);
+            } else {
+                if (hsvValues[0] < 65f && hsvValues[0] > 61f) {//if the color is white
+                    driver.setY(0);
+                    driver.setX(.5);
+                    multi.waitTime(250);
+                    driver.setX(0);
+                    position = 1;
+                }
+                if (hsvValues[0] < 30f && hsvValues[0] > 25f) {//if the color is yellow
+                    driver.setY(.5);
+                    multi.waitTime(250);
+                    driver.setY(0);
+                }
+
+                if (hsvValues[0] < 65f && hsvValues[0] > 61f) {//if the color is white
+                    driver.setX(-.5);
+                    multi.waitTime(500);
+                    driver.setY(0);
+                    position = -1;
+                }
+                if (hsvValues[0] < 30f && hsvValues[0] > 25f) {//if the color is yellow
+                    driver.setY(.5);
+                    multi.waitTime(250);
+                    driver.setY(0);
+                }
             }
+            */
+
 
             telemetry.update();
         }
@@ -141,5 +176,8 @@ public class ColorSensorTest extends LinearOpMode {
                 relativeLayout.setBackgroundColor(Color.WHITE);
             }
         });
+        driver.setY(0);
+        driver.setX(0);
+        multi.waitTime(60000);
     }
 }
