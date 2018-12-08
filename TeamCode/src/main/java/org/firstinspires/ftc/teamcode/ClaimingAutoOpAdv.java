@@ -76,6 +76,8 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
             multi.waitTime(1000);
             isWhite = getColorIsWhite();
 
+            boolean q = false;
+
             // if it's white again ...
             if (isWhite){
                 telemetry.addLine("executing move to yellow");
