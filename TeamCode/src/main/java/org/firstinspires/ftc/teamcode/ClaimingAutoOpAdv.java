@@ -37,7 +37,6 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
         //multi.addTask(new TelemetryUpdater());
         sensorColor = hardwareMap.get(ColorSensor.class, "sensor_color_distance");
 
-
         waitForStart();
 
         telemetry.addLine("STARTED ADVANCED CLAIMING");
@@ -67,7 +66,7 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
             driver.setY(0);
             multi.waitTime(50);
             driver.setX(.5);
-            multi.waitTime(900);
+            multi.waitTime(800);
             driver.setX(0);
             multi.waitTime(50);
             driver.setY(.4);
@@ -90,7 +89,7 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
                 driver.setY(0);
                 multi.waitTime(50);
                 driver.setX(-.5);
-                multi.waitTime(1800);
+                multi.waitTime(1600);
                 driver.setX(0);
                 multi.waitTime(50);
                 driver.setY(.5);
