@@ -39,6 +39,7 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
 
         waitForStart();
 
+        int pos = -1;
 
         driver.setY(.5);
         multi.waitTime(455);
@@ -76,8 +77,6 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
             multi.waitTime(1000);
             isWhite = getColorIsWhite();
 
-            boolean q = false;
-
             // if it's white again ...
             if (isWhite){
                 telemetry.addLine("executing move to yellow");
@@ -102,16 +101,7 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
                 multi.waitTime(900);
                 driver.setY(0);
 
-                multi.waitTime(1500);
-
-                // rotate arm and wait for finish
-                arm.rotate(-50);
-                multi.waitTime(5000);
-
-                // extend some
-                arm.extend();
-                multi.waitTime(1000);
-                arm.pullyoff();
+                multi.waitTime(150);
 
                 //if not ...
             }else {
@@ -123,16 +113,9 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
                 multi.waitTime(900);
                 driver.setY(0);
 
-                multi.waitTime(1500);
+                pos = 0;
 
-                // rotate arm and wait for finish
-                arm.rotate(-50);
-                multi.waitTime(5000);
-
-                // extend some`
-                arm.extend();
-                multi.waitTime(1000);
-                arm.pullyoff();
+                multi.waitTime(150);
             }
             // if not ALL that then ...
         }else{
@@ -144,25 +127,57 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
             multi.waitTime(900);
             driver.setY(0);
 
-            multi.waitTime(1500);
+            multi.waitTime(150);
 
-            // rotate arm and wait for finish
-            arm.rotate(-50);
-            multi.waitTime(5000);
-
-            // extend some
-            arm.extend();
-            multi.waitTime(1000);
-            arm.pullyoff();
+            pos=1;
             // if the very first one is not white then it's yellow so it runs into it and extends arm
         }
         telemetry.update();
 
         multi.waitTime(300);
 
-        // drop token thingy
-        arm.ColectBoiBack();
-        multi.waitTime(1000);
+        if(pos==0){
+            driver.setR(-.2);
+            driver.setY(.4);
+            multi.waitTime(800);
+            driver.setR(0);
+            driver.setY(0);
+
+            // drop token thingy
+            arm.ColectBoiBack();
+            multi.waitTime(1000);
+
+            driver.setY(-.4);
+            multi.waitTime(500);
+            driver.setY(0);
+        }else if(pos==1){
+            driver.setY(.4);
+            multi.waitTime(600);
+            driver.setY(0);
+
+            // drop token thingy
+            arm.ColectBoiBack();
+            multi.waitTime(1000);
+
+            driver.setY(-.4);
+            multi.waitTime(500);
+            driver.setY(0);
+        }else{
+            driver.setR(.2);
+            driver.setY(.4);
+            multi.waitTime(800);
+            driver.setR(0);
+            driver.setY(0);
+
+            // drop token thingy
+            arm.ColectBoiBack();
+            multi.waitTime(1000);
+
+            driver.setX(.4);
+            multi.waitTime(500);
+            driver.setX(0);
+        }
+
 
         driver.setY(-.7);
         multi.waitTime(500);
