@@ -96,11 +96,6 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
                 driver.setY(0);
                 // hopefully it should go to the last block
 
-                // go forward
-                driver.setY(.5);
-                multi.waitTime(900);
-                driver.setY(0);
-
                 multi.waitTime(150);
 
                 //if not ...
@@ -108,10 +103,6 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
                 telemetry.addLine("found yellow");
                 telemetry.update();
                 multi.waitTime(1000);
-
-                driver.setY(.5);
-                multi.waitTime(900);
-                driver.setY(0);
 
                 pos = 0;
 
@@ -123,10 +114,6 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
             telemetry.update();
             multi.waitTime(1000);
 
-            driver.setY(.5);
-            multi.waitTime(900);
-            driver.setY(0);
-
             multi.waitTime(150);
 
             pos=1;
@@ -137,7 +124,7 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
         multi.waitTime(300);
 
         if(pos==0){
-            driver.setR(-.2);
+            driver.setR(.2);
             driver.setY(.4);
             multi.waitTime(800);
             driver.setR(0);
@@ -163,7 +150,7 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
             multi.waitTime(500);
             driver.setY(0);
         }else{
-            driver.setR(.2);
+            driver.setR(-.2);
             driver.setY(.4);
             multi.waitTime(800);
             driver.setR(0);

@@ -40,7 +40,6 @@ public class ManualOp extends LinearOpMode {
             if(gamepad1.right_trigger>0.01){
                 y*=1.5-gamepad1.right_trigger;
                 x*=1.5-gamepad1.right_trigger;
-                R*=1.5-gamepad1.right_trigger;
             }
 
             driver.setY(y);
