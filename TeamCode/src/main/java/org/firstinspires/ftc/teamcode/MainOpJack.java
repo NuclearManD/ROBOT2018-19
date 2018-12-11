@@ -9,9 +9,13 @@ import org.firstinspires.ftc.teamcode.drivers.Mecanum4WheelDriver;
 import org.firstinspires.ftc.teamcode.drivers.Multitasker;
 import org.firstinspires.ftc.teamcode.drivers.TelemetryUpdater;
 
+/**
+ * Created by SCRoboticsDev on 12/9/2018.
+ */
 
-@TeleOp(name="Main Op Mode Will", group="2018")
-public class ManualOp extends LinearOpMode {
+
+@TeleOp(name="Main Op Mode Jack", group="2018")
+public class MainOpJack extends LinearOpMode {
 
     @Override
     public void runOpMode() {
@@ -29,9 +33,9 @@ public class ManualOp extends LinearOpMode {
         float lastAngle = 0;
 
         while(opModeIsActive()){
-            float y = -gamepad1.left_stick_y;
-            float x = -gamepad1.left_stick_x;
-            float R = gamepad1.right_stick_x*.5f;
+            float y = -gamepad1.right_stick_y;
+            float x = -gamepad1.right_stick_x;
+            float R = gamepad1.left_stick_x*.5f;
 
             if(Math.abs(y)<0.1)y=0;
             if(Math.abs(x)<0.1)x=0;

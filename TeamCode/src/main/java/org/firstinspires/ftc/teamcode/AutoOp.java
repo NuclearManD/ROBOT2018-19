@@ -42,7 +42,7 @@ public class AutoOp extends LinearOpMode{
 
 
         driver.setY(.5);
-        multi.waitTime(455);
+        multi.waitTime(500);
         driver.setY(0);
         multi.waitTime(1000);
         // it goes forward
