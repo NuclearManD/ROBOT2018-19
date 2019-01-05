@@ -13,37 +13,12 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 public class LiftAutoOp extends LinearOpMode{
 
     @Override
-    public void runOpMode() throws InterruptedException {
-    }
-
-    DcMotor grab;
-
-    int x = 1 ;
-    double ExLenghth = x;
-// do this bc dont kn how far to extened
-// **plz change when you figuer out
-
-
-
-    public void extend(){
-        grab.setPower(x);
-        try{
-            Thread.sleep(500);
-        }catch (Exception e) {
+    public void runOpMode(){
+        try {
+            LinerActuator driver = new LinerActuator(hardwareMap.dcMotor.get("lift"));
+            driver.extend();
+        } catch (Exception e) {
             System.out.println("oog something got gooned");
         }
-        grab.setPower(0);
     }
-
-    public void NegExtend(){
-        grab.setPower(-x);
-        try{
-            Thread.sleep(450);
-        }catch (Exception e) {
-            System.out.println("oog something got gooned");
-        }
-        grab.setPower(0);
-    }
-
-
 }

@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.drivers.ArmDriver;
+import org.firstinspires.ftc.teamcode.drivers.LinerActuator;
 import org.firstinspires.ftc.teamcode.drivers.Mecanum4WheelDriver;
 import org.firstinspires.ftc.teamcode.drivers.Multitasker;
 import org.firstinspires.ftc.teamcode.drivers.TelemetryUpdater;
@@ -20,6 +21,7 @@ public class MainOpJack extends LinearOpMode {
     @Override
     public void runOpMode() {
         Mecanum4WheelDriver driver = new Mecanum4WheelDriver();
+        LinerActuator lift = new LinerActuator(hardwareMap.dcMotor.get("lift"));
         ArmDriver arm = new ArmDriver(hardwareMap.dcMotor.get("pully"),hardwareMap.dcMotor.get("angle"),hardwareMap.crservo.get("goboi"));
         Multitasker multi = new Multitasker(this);
         DcMotor[] motors = {hardwareMap.dcMotor.get("fl"),hardwareMap.dcMotor.get("fr"),hardwareMap.dcMotor.get("bl"),hardwareMap.dcMotor.get("br")};
@@ -63,6 +65,10 @@ public class MainOpJack extends LinearOpMode {
             }else if(gamepad2.left_trigger>.01){
                 arm.rotate(lastAngle+=gamepad2.left_trigger);
             }
+
+            if(gamepad2.dpad_up)lift.setState(1);
+            else if(gamepad2.dpad_down)lift.setState(-1);
+            else lift.setState(0);
 
             if(gamepad2.right_bumper){
                 arm.extend();

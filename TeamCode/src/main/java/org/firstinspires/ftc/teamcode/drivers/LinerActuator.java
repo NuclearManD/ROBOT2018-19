@@ -10,11 +10,14 @@ public class LinerActuator {
 
     DcMotor grab;
 
-    int x;
+    double x = 1;
     double ExLenghth = x;
-// do this bc dont kn how far to extened
-// **plz change when you figuer out
+    // do this bc dont kn how far to extened
+    // **plz change when you figuer out
 
+    public LinerActuator(DcMotor motor){
+        grab=motor;
+    }
 
 
     public void extend(){
@@ -35,6 +38,10 @@ public class LinerActuator {
             System.out.println("oog something got gooned");
         }
         grab.setPower(0);
+    }
+
+    public void setState(int v){
+        grab.setPower(x*v);
     }
 
 }
