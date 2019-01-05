@@ -40,121 +40,38 @@ public class AutoOp extends LinearOpMode{
 
         waitForStart();
 
-
         driver.setY(.5);
+        driver.setX(-.5);
         multi.waitTime(500);
         driver.setY(0);
+        driver.setX(0);
         multi.waitTime(1000);
         // it goes forward
 
-        boolean isWhite = getColorIsWhite();
-        // it scans the minaral for color
-
-        telemetry.addData("isWhite", isWhite);
-        telemetry.update();
-        // tells wether it is white or not
-
-        //if it is white then ...
-        if (isWhite){
-            telemetry.addLine("going to next block");
-            telemetry.update();
-            multi.waitTime(1000);
-
-            driver.setY(-.4);
-            multi.waitTime(100);
-            driver.setY(0);
-            multi.waitTime(50);
-            driver.setX(.5);
-            multi.waitTime(800);
-            driver.setX(0);
-            multi.waitTime(50);
-            driver.setY(.4);
-            multi.waitTime(140);
-            driver.setY(0);
-            //it goes back then strafes then stops then goes forward (hopefully to next block)
-
-            // it dose another color check
-            multi.waitTime(1000);
-            isWhite = getColorIsWhite();
-
-            // if it's white again ...
-            if (isWhite){
-                telemetry.addLine("executing move to yellow");
-                telemetry.update();
-                multi.waitTime(1000);
-                
-                driver.setY(-.4);
-                multi.waitTime(160);
-                driver.setY(0);
-                multi.waitTime(50);
-                driver.setX(-.5);
-                multi.waitTime(1600);
-                driver.setX(0);
-                multi.waitTime(50);
-                driver.setY(.5);
-                multi.waitTime(800);
-                driver.setY(0);
-                // hopefully it should go to the last block
-
-                // go forward
-                driver.setY(.5);
-                multi.waitTime(900);
-                driver.setY(0);
-
-                multi.waitTime(1500);
-
-                // rotate arm and wait for finish
-                arm.rotate(-50);
-                multi.waitTime(5000);
-
-                // extend some
-                arm.extend();
-                multi.waitTime(1000);
-                arm.pullyoff();
-
-            //if not ...
-            }else {
-                telemetry.addLine("found yellow");
-                telemetry.update();
-                multi.waitTime(1000);
-
-                driver.setY(.5);
-                multi.waitTime(900);
-                driver.setY(0);
-
-                multi.waitTime(1500);
-
-                // rotate arm and wait for finish
-                arm.rotate(-50);
-                multi.waitTime(5000);
-
-                // extend some`
-                arm.extend();
-                multi.waitTime(1000);
-                arm.pullyoff();
+        long timer = 5000;
+        driver.setX(.25);
+        float highestValue = -10;
+        long highestTiming = 20;
+        float hsvValues[] = {0F, 0F, 0F};
+        long start_time = System.currentTimeMillis();
+        while(timer<System.currentTimeMillis()){
+            if(System.currentTimeMillis()%3 == 0){
+                Color.RGBToHSV((int) (sensorColor.red() * 255.0), (int) (sensorColor.green() * 255.0), (int) (sensorColor.blue() * 255.0), hsvValues);
+                float v = hsvValues[0];
+                if(v>highestValue){
+                    highestTiming = System.currentTimeMillis()-start_time;
+                    highestValue=v;
+                }
             }
-        // if not ALL that then ...
-        }else{
-            telemetry.addLine("found yellow");
-            telemetry.update();
-            multi.waitTime(1000);
-
-            driver.setY(.5);
-            multi.waitTime(900);
-            driver.setY(0);
-
-            multi.waitTime(1500);
-
-            // rotate arm and wait for finish
-            arm.rotate(-50);
-            multi.waitTime(5000);
-
-            // extend some
-            arm.extend();
-            multi.waitTime(1000);
-            arm.pullyoff();
-            // if the very first one is not white then it's yellow so it runs into it and extends arm
+            multi.waitTime(1);
         }
+        driver.agility = 1;
+        driver.setX(-.25);
+        multi.waitTime(highestTiming);
+        driver.setX(0);
+        driver.setY(.25);
+        multi.waitTime(300);
+
         telemetry.update();
         multi.waitTime(200);
         driver.setY(0);

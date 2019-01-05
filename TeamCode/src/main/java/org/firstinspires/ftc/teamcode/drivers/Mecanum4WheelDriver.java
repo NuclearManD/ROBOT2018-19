@@ -15,7 +15,7 @@ public class Mecanum4WheelDriver extends Task{
     private double targR=0;
 
     private float strafeCoef = 1;
-    private float agility = 0.01f;
+    public float agility = 0.01f;
 
     /**
      * init with default strafing coefficient
