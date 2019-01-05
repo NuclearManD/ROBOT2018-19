@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
+import com.qualcomm.robotcore.hardware.VoltageSensor;
 
 import org.firstinspires.ftc.teamcode.drivers.ArmDriver;
 import org.firstinspires.ftc.teamcode.drivers.Mecanum4WheelDriver;
@@ -36,6 +37,7 @@ public class ClaimingAutoOpAdv extends LinearOpMode{
         multi.addTask(arm);
         //multi.addTask(new TelemetryUpdater());
         sensorColor = hardwareMap.get(ColorSensor.class, "sensor_color_distance");
+        VoltageSensor voltSensor = hardwareMap.voltageSensor.get("");
 
         waitForStart();
 
