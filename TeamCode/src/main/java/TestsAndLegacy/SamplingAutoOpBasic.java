@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package TestsAndLegacy;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -15,8 +15,8 @@ import org.firstinspires.ftc.teamcode.drivers.TelemetryUpdater;
  * Created by SCRoboticsDev on 12/6/2018.
  */
 
-//@TeleOp(name="Claiming Auto Op Basic", group="2018")
-public class ClaimingAutoOp extends LinearOpMode {
+//@TeleOp(name="Sampling Auto Op Basic", group="2018")
+public class SamplingAutoOpBasic extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -38,28 +38,23 @@ public class ClaimingAutoOp extends LinearOpMode {
 
         waitForStart();
 
-        driver.setY(1);
-        arm.rotate(-50);
-        multi.waitTime(600);
+        driver.setY(.5);
+        driver.setX(-1);
+        multi.waitTime(1100);
         driver.setY(0);
+        driver.setX(0);
 
-        multi.waitTime(300);
+        multi.waitTime(1500);
 
-        // extend some
+        arm.rotate(-100);
+        multi.waitTime(3000);
+
         arm.extend();
-        multi.waitTime(500);
+        multi.waitTime(1000);
         arm.pullyoff();
 
-        // drop token thingy
-        arm.ColectBoiBack();
         multi.waitTime(1000);
-
-        driver.setY(-1);
-        multi.waitTime(500);
-        driver.setY(0);
-        arm.ColectBoiOff();
-
-
+        arm.rotate(-20);
 
         multi.waitTime(15000);
     }
