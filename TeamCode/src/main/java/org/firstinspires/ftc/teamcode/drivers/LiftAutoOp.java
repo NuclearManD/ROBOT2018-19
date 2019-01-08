@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  * Created by SCRoboticsDev on 1/5/2019.
  */
 
-@TeleOp(name="LiftAutoOp", group="2018")
+//@TeleOp(name="LiftAutoOp", group="2018")
 public class LiftAutoOp extends LinearOpMode{
 
     @Override
