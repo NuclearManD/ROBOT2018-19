@@ -15,7 +15,7 @@ import org.firstinspires.ftc.teamcode.drivers.TelemetryUpdater;
  * Created by SCRoboticsDev on 12/6/2018.
  */
 
-@TeleOp(name="Claiming Auto Op Basic", group="2018")
+//@TeleOp(name="Claiming Auto Op Basic", group="2018")
 public class ClaimingAutoOp extends LinearOpMode {
 
     @Override
