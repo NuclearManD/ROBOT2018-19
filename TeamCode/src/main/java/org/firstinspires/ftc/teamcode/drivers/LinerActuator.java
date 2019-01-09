@@ -10,7 +10,7 @@ public class LinerActuator {
 
     DcMotor grab;
 
-    double x = 1;
+    double x = .8;
     double ExLenghth = x;
     // do this bc dont kn how far to extened
     // **plz change when you figuer out

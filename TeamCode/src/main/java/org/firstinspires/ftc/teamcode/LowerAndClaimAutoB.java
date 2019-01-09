@@ -10,8 +10,8 @@ import org.firstinspires.ftc.teamcode.drivers.Mecanum4WheelDriver;
 import org.firstinspires.ftc.teamcode.drivers.Multitasker;
 import org.firstinspires.ftc.teamcode.drivers.TelemetryUpdater;
 
-@TeleOp(name="LowerAndClaimAutoOp")
-public class LowerAndClaimAuto extends LinearOpMode {
+@TeleOp(name="LowerAndClaimAutoOpb")
+public class LowerAndClaimAutoB extends LinearOpMode {
 
     @Override
     public void runOpMode() {
@@ -56,32 +56,19 @@ public class LowerAndClaimAuto extends LinearOpMode {
         multi.waitTime(1500);
         // straef out and turn
         driver.setX(-1);
-        multi.waitTime(800);
+        multi.waitTime(500);
         driver.setX(0);
-        multi.waitTime(1500);
         driver.setR(-1);
         multi.waitTime(290);
         driver.setR(0);
         multi.waitTime(400);
         driver.setY(1);
-        multi.waitTime(350);
+        multi.waitTime(400);
         driver.setY(0);
-        multi.waitTime(500);
-        arm.ColectBoiBack();
-        multi.waitTime(5000);
-        arm.ColectBoiOff();
-        multi.waitTime(500);
-        driver.setY(-1);
-        multi.waitTime(300);
-        driver.setY(0);
-        multi.waitTime(500);
-        driver.setR(1);
-        multi.waitTime(690);
-        driver.setR(0);
-        multi.waitTime(1700);
-        driver.setY(1);
-        multi.waitTime(2000);
-        driver.setY(0);
+
+        multi.waitTime(400);
+        
+
 
     }
 }

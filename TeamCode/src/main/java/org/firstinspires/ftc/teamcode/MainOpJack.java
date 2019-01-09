@@ -61,7 +61,7 @@ public class MainOpJack extends LinearOpMode {
             }
 
             if(gamepad2.right_trigger>.01){
-                arm.rotate(lastAngle-=gamepad2.right_trigger);
+                arm.rotate(lastAngle-=   gamepad2.right_trigger);
             }else if(gamepad2.left_trigger>.01){
                 arm.rotate(lastAngle+=gamepad2.left_trigger);
             }
