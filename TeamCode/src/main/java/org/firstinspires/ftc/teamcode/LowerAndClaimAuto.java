@@ -35,7 +35,7 @@ public class LowerAndClaimAuto extends LinearOpMode {
         // drop
         lift.setState(1);
         // this loop makes the linear actuator displacement independent of battery life using encoders.
-        while(opModeIsActive()&&(lm.getCurrentPosition()-ref)>-2400){
+        while(opModeIsActive()&&(lm.getCurrentPosition()-ref)>-2500){
             multi.yield();
         }
         lift.setState(0);
@@ -88,8 +88,14 @@ public class LowerAndClaimAuto extends LinearOpMode {
         driver.setR(0);
         multi.waitTime(1700);
         driver.setY(1);
-        multi.waitTime(2000);
+        multi.waitTime(1500);
         driver.setY(0);
 
+        arm.rotate(40);
+        multi.waitTime(5000);
+        arm.extend();
+        multi.waitTime(400);
+        arm.pullyoff();
+        multi.waitTime(100);
     }
 }
