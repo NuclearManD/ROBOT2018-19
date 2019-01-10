@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.drivers.Mecanum4WheelDriver;
 import org.firstinspires.ftc.teamcode.drivers.Multitasker;
 import org.firstinspires.ftc.teamcode.drivers.TelemetryUpdater;
 
-@TeleOp(name="LowerAndClaimAutoOpb")
+@TeleOp(name="LowerAndClaimAutoOp Crater")
 public class LowerAndClaimAutoB extends LinearOpMode {
 
     @Override
@@ -49,7 +49,7 @@ public class LowerAndClaimAutoB extends LinearOpMode {
 
         // retract
         lift.setState(-1);
-        while((lm.getCurrentPosition()-ref)<-100){
+        while((lm.getCurrentPosition()-ref)<-10){
             multi.yield();
         }
         lift.setState(0);
@@ -67,8 +67,5 @@ public class LowerAndClaimAutoB extends LinearOpMode {
         driver.setY(0);
 
         multi.waitTime(400);
-        
-
-
     }
 }

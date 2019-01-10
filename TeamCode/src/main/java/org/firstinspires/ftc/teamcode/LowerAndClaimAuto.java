@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.drivers.Mecanum4WheelDriver;
 import org.firstinspires.ftc.teamcode.drivers.Multitasker;
 import org.firstinspires.ftc.teamcode.drivers.TelemetryUpdater;
 
-@TeleOp(name="LowerAndClaimAutoOp")
+@TeleOp(name="LowerAndClaimAutoOp Claim")
 public class LowerAndClaimAuto extends LinearOpMode {
 
     @Override
