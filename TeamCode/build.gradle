@@ -12,4 +12,6 @@
 apply from: '../build.common.gradle'
 dependencies {
     //implementation files('src/main/res/psg_dev_1.1.jar')
+    implementation project(':openCVLibrary3')
+    implementation project(':DogeCV')
 }
