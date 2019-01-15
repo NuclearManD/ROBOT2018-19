@@ -136,8 +136,10 @@ public class ArmDriver extends Task{
             currentPower+=angleAgility;
         else if(currentPower>-maxAnglePower)
             currentPower-=angleAgility;
-        ang.setPower(currentPower);
-
+        if(targetAngle>-20)
+            ang.setPower(currentPower);
+        else
+            ang.setPower(0);
         man.taskSleep(3);
         man.master.telemetry.addLine("Val: "+encoderVal);
         man.master.telemetry.addLine("Trg: "+targetAngle);

@@ -39,7 +39,7 @@ public class LowerToOurCrater extends LinearOpMode {
         // drop
         lift.setState(1);
         // this loop makes the linear actuator displacement independent of battery life using encoders.
-        while(opModeIsActive()&&(lm.getCurrentPosition()-ref)>-2500){
+        while(opModeIsActive()&&(lm.getCurrentPosition()-ref)>-2750){
             multi.yield();
         }
         lift.setState(0);
