@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.drivers.Multitasker;
 
@@ -13,20 +14,20 @@ public class GyroTester extends AutoHelper {
     public void runOpMode() {
         
         waitForStart();
-
-        //telemetry.log().add("Gyro Calibrating. Do Not Move!");
-        //modernRoboticsI2cGyro.calibrate();
-
+        super.initHardware();
+        telemetry.log().add("Gyro Calibrating. Do Not Move!");
+        modernRoboticsI2cGyro.calibrate();
+        ElapsedTime timer = new ElapsedTime();
         // Wait until the gyro calibration is complete
-        //timer.reset();
-        //while (!isStopRequested() && modernRoboticsI2cGyro.isCalibrating())  {
-        //    telemetry.addData("calibrating", "%s", Math.round(timer.seconds())%2==0 ? "|.." : "..|");
-        //    telemetry.update();
-        //    sleep(50);
-        //}
+        timer.reset();
+        while (!isStopRequested() && modernRoboticsI2cGyro.isCalibrating())  {
+            telemetry.addData("calibrating", "%s", Math.round(timer.seconds())%2==0 ? "|.." : "..|");
+            telemetry.update();
+            sleep(50);
+        }
 
-        //telemetry.log().clear(); telemetry.log().add("Gyro Calibrated. Press Start.");
-        //telemetry.clear(); telemetry.update();
+        telemetry.log().clear(); telemetry.log().add("Gyro Calibrated. Press Start.");
+        telemetry.clear(); telemetry.update();
         int heading = modernRoboticsI2cGyro.getHeading();
 
         driver.agility = .05f;

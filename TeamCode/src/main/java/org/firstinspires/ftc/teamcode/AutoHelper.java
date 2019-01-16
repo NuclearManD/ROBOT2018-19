@@ -28,7 +28,7 @@ public class AutoHelper extends LinearOpMode {
     ModernRoboticsI2cGyro modernRoboticsI2cGyro;
     public void initHardware(){
         lm = hardwareMap.dcMotor.get("lift");
-        sensorColor = hardwareMap.get(ColorSensor.class, "sensor_color_distance");
+        //sensorColor = hardwareMap.get(ColorSensor.class, "sensor_color_distance");
         driver = new Mecanum4WheelDriver();
         lift = new LinerActuator(lm);
         arm = new ArmDriver(hardwareMap.dcMotor.get("pully"), hardwareMap.dcMotor.get("angle"), hardwareMap.crservo.get("goboi"));

@@ -11,7 +11,7 @@ public class LowerAndClaimAutoNew extends AutoHelper {
 
     @Override
     public void runOpMode() {
-        
+        super.initHardware();
         waitForStart();
 
         // save start position
