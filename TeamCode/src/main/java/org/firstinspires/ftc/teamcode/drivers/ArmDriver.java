@@ -136,7 +136,7 @@ public class ArmDriver extends Task{
             currentPower+=angleAgility;
         else if(currentPower>-maxAnglePower)
             currentPower-=angleAgility;
-        if(targetAngle>-20)
+        if(targetAngle<-20)
             ang.setPower(currentPower);
         else
             ang.setPower(0);

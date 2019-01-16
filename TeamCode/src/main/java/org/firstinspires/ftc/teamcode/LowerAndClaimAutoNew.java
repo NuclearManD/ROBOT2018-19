@@ -1,35 +1,17 @@
 package org.firstinspires.ftc.teamcode;
 
-import android.graphics.Color;
-
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.ColorSensor;
-import com.qualcomm.robotcore.hardware.DcMotor;
 
-import org.firstinspires.ftc.teamcode.drivers.ArmDriver;
-import org.firstinspires.ftc.teamcode.drivers.LinerActuator;
-import org.firstinspires.ftc.teamcode.drivers.Mecanum4WheelDriver;
 import org.firstinspires.ftc.teamcode.drivers.Multitasker;
-import org.firstinspires.ftc.teamcode.drivers.TelemetryUpdater;
 
-@TeleOp(name="LowerAndClaimAutoOp Claim")
-public class LowerAndClaimAuto extends LinearOpMode {
+
+@TeleOp(name="Lower and claim")
+public class LowerAndClaimAutoNew extends AutoHelper {
+    public Multitasker multi;
 
     @Override
     public void runOpMode() {
-        DcMotor lm = hardwareMap.dcMotor.get("lift");
-        ColorSensor sensorColor = hardwareMap.get(ColorSensor.class, "sensor_color_distance");
-        Mecanum4WheelDriver driver = new Mecanum4WheelDriver();
-        LinerActuator lift = new LinerActuator(lm);
-        ArmDriver arm = new ArmDriver(hardwareMap.dcMotor.get("pully"), hardwareMap.dcMotor.get("angle"), hardwareMap.crservo.get("goboi"));
-        Multitasker multi = new Multitasker(this);
-        DcMotor[] motors = {hardwareMap.dcMotor.get("fl"), hardwareMap.dcMotor.get("fr"), hardwareMap.dcMotor.get("bl"), hardwareMap.dcMotor.get("br")};
-        driver.init(motors, -1, .1f);
-        multi.addTask(driver);
-        multi.addTask(arm);
-        multi.addTask(new TelemetryUpdater());
-
+        
         waitForStart();
 
         // save start position

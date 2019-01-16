@@ -101,4 +101,7 @@ public class Mecanum4WheelDriver extends Task{
         motorUpdate();
         man.taskSleep(10);
     }
+    public void setAgility(int agility){
+        this.agility = agility;
+    }
 }
