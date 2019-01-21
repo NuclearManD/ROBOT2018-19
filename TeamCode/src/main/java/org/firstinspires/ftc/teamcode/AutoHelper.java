@@ -15,7 +15,7 @@ import org.firstinspires.ftc.teamcode.drivers.Mecanum4WheelDriver;
 import org.firstinspires.ftc.teamcode.drivers.Multitasker;
 import org.firstinspires.ftc.teamcode.drivers.TelemetryUpdater;
 
-public class AutoHelper extends LinearOpMode {
+public abstract class AutoHelper extends LinearOpMode {
 
     DcMotor lm;
     ColorSensor sensorColor;
@@ -35,17 +35,11 @@ public class AutoHelper extends LinearOpMode {
         multi = new Multitasker(this);
         motors = new DcMotor[]{hardwareMap.dcMotor.get("fl"), hardwareMap.dcMotor.get("fr"), hardwareMap.dcMotor.get("bl"), hardwareMap.dcMotor.get("br")};
         modernRoboticsI2cGyro = hardwareMap.get(ModernRoboticsI2cGyro.class, "gyro");
-        gyro = (IntegratingGyroscope) modernRoboticsI2cGyro;
+        //gyro = (IntegratingGyroscope) modernRoboticsI2cGyro;
         driver.init(motors, -1, .1f);
         multi.addTask(driver);
         multi.addTask(arm);
         multi.addTask(new TelemetryUpdater());
-
-    }
-
-
-    @Override
-    public void runOpMode() throws InterruptedException {
 
     }
 }
