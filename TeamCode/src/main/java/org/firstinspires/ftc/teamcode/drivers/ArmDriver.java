@@ -93,6 +93,7 @@ public class ArmDriver extends Task{
      */
     public void rotate(float angle){
         targetAngle=(int)(angle*ANG_CONVERSION);
+        on=true;
     }
     int targetAngle; // measured in encoder units
 
@@ -101,6 +102,8 @@ public class ArmDriver extends Task{
     int lsEncoderVal; // last encoder value in encoder units
 
     long lastTime = 0; // last time we updated.
+
+    boolean on = true;
 
     public void update(Multitasker man){
 
@@ -136,7 +139,7 @@ public class ArmDriver extends Task{
             currentPower+=angleAgility;
         else if(currentPower>-maxAnglePower)
             currentPower-=angleAgility;
-        if(targetAngle<-20)
+        if(on)
             ang.setPower(currentPower);
         else
             ang.setPower(0);
@@ -145,5 +148,9 @@ public class ArmDriver extends Task{
         man.master.telemetry.addLine("Trg: "+targetAngle);
         man.master.telemetry.addLine("Vel: "+vel);
         man.master.telemetry.addLine("Pwr: "+currentPower);
+    }
+
+    public void off() {
+        on=false;
     }
 }

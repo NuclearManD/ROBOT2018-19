@@ -70,6 +70,10 @@ public class MainOpJack extends LinearOpMode {
             else if(gamepad2.dpad_down)lift.setState(-1);
             else lift.setState(0);
 
+            if(gamepad2.b){
+                arm.off();
+            }
+
             if(gamepad2.right_bumper){
                 arm.extend();
             }else if(gamepad2.left_bumper){

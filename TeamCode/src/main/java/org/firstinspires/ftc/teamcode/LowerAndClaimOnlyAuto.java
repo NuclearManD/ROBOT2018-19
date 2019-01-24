@@ -14,78 +14,33 @@ import org.firstinspires.ftc.teamcode.drivers.TelemetryUpdater;
  * Created by SCRoboticsDev on 1/11/2019.
  */
 
-@TeleOp(name = "LowerAndClaimOnly")
-public class LowerAndClaimOnlyAuto extends LinearOpMode{
+@TeleOp(name = "Auto Op Claim Only")
+public class LowerAndClaimOnlyAuto extends AutoHelper{
 
     @Override
     public void runOpMode() {
-        DcMotor lm = hardwareMap.dcMotor.get("lift");
-
-        Mecanum4WheelDriver driver = new Mecanum4WheelDriver();
-        LinerActuator lift = new LinerActuator(lm);
-        ArmDriver arm = new ArmDriver(hardwareMap.dcMotor.get("pully"), hardwareMap.dcMotor.get("angle"), hardwareMap.crservo.get("goboi"));
-        Multitasker multi = new Multitasker(this);
-        DcMotor[] motors = {hardwareMap.dcMotor.get("fl"), hardwareMap.dcMotor.get("fr"), hardwareMap.dcMotor.get("bl"), hardwareMap.dcMotor.get("br")};
-        driver.init(motors, -1, .1f);
-        multi.addTask(driver);
-        multi.addTask(arm);
-        multi.addTask(new TelemetryUpdater());
-
+        initHardware();
         waitForStart();
 
-        // save start position
-        long ref = lm.getCurrentPosition();
+        lower();
 
-        // drop
-        lift.setState(1);
-        // this loop makes the linear actuator displacement independent of battery life using encoders.
-        while(opModeIsActive()&&(lm.getCurrentPosition()-ref)>-2700){
-            multi.yield();
-        }
-        lift.setState(0);
-        if(isStopRequested()){
-            return;
-        }
 
-        // unlatch
-        multi.waitTime(500);
-        driver.setY(-.5);
-        multi.waitTime(600);
-        driver.setY(0);
+        // get into position to claim
         multi.waitTime(1500);
-
-        // retract
-        lift.setState(-1);
-        while(opModeIsActive()&&(lm.getCurrentPosition()-ref)<-10){
-            multi.yield();
-        }
-        lift.setState(0);
-        if(isStopRequested()){
-            return;
-        }
-
-
-        multi.waitTime(1500);
-        // straef out and turn
-        driver.setX(-1);
-        multi.waitTime(800);
-        driver.setX(0);
-        multi.waitTime(1500);
-        driver.setR(-1);
-        multi.waitTime(290);
-        driver.setR(0);
-        multi.waitTime(400);
+        turn(-70);
+        multi.waitTime(1000);
         driver.setY(1);
-        multi.waitTime(350);
+        multi.waitTime(450);
         driver.setY(0);
-        multi.waitTime(500);
+
+        // claim
         arm.ColectBoiBack();
-        multi.waitTime(5000);
-        arm.ColectBoiOff();
-        multi.waitTime(500);
-        driver.setY(-1);
+        multi.waitTime(800);
+
+        // leave
+        driver.setY(-.75);
         multi.waitTime(300);
         driver.setY(0);
-        multi.waitTime(500);
+        multi.waitTime(1000);
     }
 }

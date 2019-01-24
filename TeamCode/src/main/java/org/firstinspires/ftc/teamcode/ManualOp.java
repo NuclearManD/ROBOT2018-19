@@ -55,6 +55,9 @@ public class ManualOp extends LinearOpMode {
             }else{
                 arm.ColectBoiOff();
             }
+            if(gamepad2.b){
+                arm.off();
+            }
 
             if(gamepad2.right_trigger>.01){
                 arm.rotate(lastAngle-=gamepad2.right_trigger);
@@ -74,6 +77,7 @@ public class ManualOp extends LinearOpMode {
                 arm.pullyoff();
 
             multi.waitTime(20);
+            telemetry.addLine("rot = "+driver.rotation);
         }
         driver.motorSet(0,0,0,0);
     }

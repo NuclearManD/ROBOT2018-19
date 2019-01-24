@@ -16,6 +16,9 @@ public class Mecanum4WheelDriver extends Task{
 
     private float strafeCoef = 1;
     public float agility = 0.01f;
+    private int fl_lspos, fr_lspos;
+
+    public float rotation = 0;
 
     /**
      * init with default strafing coefficient
@@ -26,6 +29,9 @@ public class Mecanum4WheelDriver extends Task{
         fr = l[1];
         bl = l[2];
         br = l[3];
+
+        bl.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        br.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     /**
@@ -39,6 +45,9 @@ public class Mecanum4WheelDriver extends Task{
         bl = l[2];
         br = l[3];
         this.strafeCoef=strafeCoef;
+
+        bl.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        br.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
     /**
      * Init with specified strafing coefficient
@@ -53,6 +62,9 @@ public class Mecanum4WheelDriver extends Task{
         br = l[3];
         this.strafeCoef=strafeCoef;
         agility=agilityVal;
+
+        fl.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        fr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public float torad(float x){
@@ -75,6 +87,10 @@ public class Mecanum4WheelDriver extends Task{
         targy=q;
     }
     public void setR(double q){
+        if(targR==0 && q!=0){
+            fl_lspos = fl.getCurrentPosition();
+            fr_lspos = fr.getCurrentPosition();
+        }
         targR=q;
     }
     @Deprecated
@@ -94,10 +110,11 @@ public class Mecanum4WheelDriver extends Task{
             y+=Math.copySign(agility,targy-y);
         else
             y=targy;
-        if(Math.abs(targR-R)>agility*3)
-            R+=Math.copySign(agility,targR-R);
-        else
+        if(Math.abs(targR-R)>agility*3) {
+            R += Math.copySign(agility, targR - R);
+        }else
             R=targR;
+        rotation = ((fl_lspos-fl.getCurrentPosition()) + (fr_lspos-fr.getCurrentPosition()))*.0511f;
         motorUpdate();
         man.taskSleep(10);
     }
