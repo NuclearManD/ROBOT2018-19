@@ -26,16 +26,21 @@ public class LowerAndClaimOnlyAuto extends AutoHelper{
 
 
         // get into position to claim
-        multi.waitTime(1500);
-        turn(-70);
-        multi.waitTime(1000);
+        waitShort();
+        turn(-75);
+        waitShort();
         driver.setY(1);
         multi.waitTime(450);
         driver.setY(0);
 
+        if(isStopRequested()){
+            stopMotors();
+            return;
+        }
+
         // claim
         arm.ColectBoiBack();
-        multi.waitTime(800);
+        waitLong();
 
         // leave
         driver.setY(-.75);

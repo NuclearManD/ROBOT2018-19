@@ -25,20 +25,25 @@ public class LowerToOurCrater extends AutoHelper {
         lower();
 
         // get into position to claim
-        multi.waitTime(1500);
+        waitShort();
         turn(-70);
-        multi.waitTime(1000);
+        waitShort();
 
         // go forward
         driver.setY(1);
         multi.waitTime(450);
         driver.setY(0);
 
+        if(isStopRequested()){
+            stopMotors();
+            return;
+        }
+
         // extend arm into crater
         arm.rotate(-80);
-        multi.waitTime(5000);
+        waitLong();
         arm.extend();
-        multi.waitTime(1500);
+        waitShort();
         arm.pullyoff();
         arm.off();
         multi.waitTime(1000);

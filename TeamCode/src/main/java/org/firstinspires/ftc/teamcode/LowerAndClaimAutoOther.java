@@ -1,20 +1,9 @@
 package org.firstinspires.ftc.teamcode;
 
-import android.graphics.Color;
-
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.ColorSensor;
-import com.qualcomm.robotcore.hardware.DcMotor;
 
-import org.firstinspires.ftc.teamcode.drivers.ArmDriver;
-import org.firstinspires.ftc.teamcode.drivers.LinerActuator;
-import org.firstinspires.ftc.teamcode.drivers.Mecanum4WheelDriver;
-import org.firstinspires.ftc.teamcode.drivers.Multitasker;
-import org.firstinspires.ftc.teamcode.drivers.TelemetryUpdater;
-
-@TeleOp(name="Auto Op Claim, our crater")
-public class LowerAndClaimAuto extends AutoHelper {
+@TeleOp(name="Auto Op Claim, other crater")
+public class LowerAndClaimAutoOther extends AutoHelper {
 
     @Override
     public void runOpMode() {
@@ -50,11 +39,11 @@ public class LowerAndClaimAuto extends AutoHelper {
         }
 
         // turn
-        turn(95);
+        turn(-95);
 
         // go into crater
         driver.setY(.8);
-        driver.setR(.15);
+        driver.setR(-.15);
         multi.waitTime(1300);
         driver.setY(0);
         driver.setR(0);

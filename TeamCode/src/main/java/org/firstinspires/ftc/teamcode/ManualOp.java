@@ -77,7 +77,7 @@ public class ManualOp extends LinearOpMode {
                 arm.pullyoff();
 
             multi.waitTime(20);
-            telemetry.addLine("rot = "+driver.rotation);
+            //telemetry.addLine("lift = "+lift.);
         }
         driver.motorSet(0,0,0,0);
     }

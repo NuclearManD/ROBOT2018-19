@@ -42,13 +42,13 @@ public abstract class AutoHelper extends LinearOpMode {
 
     }
     void turn(float angle){
-        float mag = (float)Math.copySign(.5,angle);
+        float mag = (float)Math.copySign(.3,angle);
         driver.setR(mag);
         multi.waitTime(10);
         angle = Math.abs(angle);
-        while(Math.abs(driver.rotation)<angle){
+        while(opModeIsActive() && Math.abs(driver.rotation)<angle){
             multi.yield();
-            if(Math.abs(driver.rotation)-angle>-.5f)driver.setR(mag/5);
+            if(Math.abs(driver.rotation)-angle>-5f)driver.setR(mag/5);
         }
         driver.setR(0);
     }
@@ -60,7 +60,7 @@ public abstract class AutoHelper extends LinearOpMode {
         // drop
         lift.setState(1);
         // this loop makes the linear actuator displacement independent of battery life using encoders.
-        while (opModeIsActive() && (lm.getCurrentPosition() - ref) > -2900) {
+        while (opModeIsActive() && (lm.getCurrentPosition() - ref) > -3050) {
             multi.yield();
         }
         lift.setState(0);
@@ -69,11 +69,10 @@ public abstract class AutoHelper extends LinearOpMode {
         }
 
         // unlatch
-        multi.waitTime(500);
+        multi.waitTime(100);
         driver.setY(-.3);
         multi.waitTime(600);
         driver.setY(0);
-        multi.waitTime(1500);
 
         // retract
         lift.setState(-1);
@@ -84,5 +83,20 @@ public abstract class AutoHelper extends LinearOpMode {
         if (isStopRequested()) {
             return;
         }
+        driver.setY(.3);
+        multi.waitTime(400);
+        driver.setY(0);
+    }
+    void stopMotors(){
+        driver.motorSet(0,0,0,0);
+        arm.off();
+        arm.pullyoff();
+        lift.setState(0);
+    }
+    void waitShort(){
+        multi.waitTime(400);
+    }
+    void waitLong(){
+        multi.waitTime(2500);
     }
 }
