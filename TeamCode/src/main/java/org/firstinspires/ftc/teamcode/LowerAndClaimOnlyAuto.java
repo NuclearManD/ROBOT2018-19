@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-
 import org.firstinspires.ftc.teamcode.drivers.ArmDriver;
 import org.firstinspires.ftc.teamcode.drivers.LinerActuator;
 import org.firstinspires.ftc.teamcode.drivers.Mecanum4WheelDriver;
@@ -66,7 +65,7 @@ public class LowerAndClaimOnlyAuto extends LinearOpMode{
 
 
         multi.waitTime(1500);
-        // straef out and turn
+        // strafe out and turn
         driver.setX(-1);
         multi.waitTime(800);
         driver.setX(0);
