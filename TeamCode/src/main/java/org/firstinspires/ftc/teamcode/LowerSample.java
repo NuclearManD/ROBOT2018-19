@@ -7,7 +7,6 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.drivers.Mecanum4WheelDriver;
 //begin stolen code
 @TeleOp(name="LowerAndSample")
-
 public class LowerSample extends OpMode {
     private SamplingOrderDetector detector;
 
@@ -38,19 +37,19 @@ public class LowerSample extends OpMode {
     @Override
     public void init_loop() {
         telemetry.addData("Last Order" , detector.getLastOrder().toString()); // The last known result
-        detector.disable();
-        String pos = detector.getLastOrder().toString();
+
     }
     @Override
     public void start() {
-    String pos = detector.getLastOrder().toString();
-    //L,C,R are based off being hooked on the lander, facing away from the lander
-    if(pos.equals("LEFT")) {
-    }
-    if(pos.equals("CENTER")) {
-    }
-    if(pos.equals("RIGHT")) {
-    }
+        detector.disable();
+        String pos = detector.getLastOrder().toString();
+        //L,C,R are based off being hooked on the lander, facing away from the lander
+        if(pos.equals("LEFT")) {
+        }
+        if(pos.equals("CENTER")) {
+        }
+        if(pos.equals("RIGHT")) {
+        }
     }
     @Override
     public void loop() {
