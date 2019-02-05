@@ -152,5 +152,7 @@ public class ArmDriver extends Task{
 
     public void off() {
         on=false;
+        targetAngle=0;
+        currentPower=0;
     }
 }

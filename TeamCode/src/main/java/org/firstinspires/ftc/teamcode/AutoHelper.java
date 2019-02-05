@@ -1,5 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.disnodeteam.dogecv.CameraViewDisplay;
+import com.disnodeteam.dogecv.DogeCV;
+import com.disnodeteam.dogecv.detectors.roverrukus.SamplingOrderDetector;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cCompassSensor;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
@@ -10,6 +13,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.IntegratingGyroscope;
 
 import org.firstinspires.ftc.robotcontroller.external.samples.SensorMRGyro;
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.drivers.ArmDriver;
 import org.firstinspires.ftc.teamcode.drivers.LinerActuator;
 import org.firstinspires.ftc.teamcode.drivers.Mecanum4WheelDriver;
@@ -25,6 +29,9 @@ public abstract class AutoHelper extends LinearOpMode {
     Multitasker multi;
     DcMotor[] motors;
     ModernRoboticsI2cCompassSensor compass;
+
+    private SamplingOrderDetector detector;
+
     public void initHardware(){
         lm = hardwareMap.dcMotor.get("lift");
         //sensorColor = hardwareMap.get(ColorSensor.class, "sensor_color_distance");
@@ -40,6 +47,24 @@ public abstract class AutoHelper extends LinearOpMode {
         multi.addTask(arm);
         multi.addTask(new TelemetryUpdater());
 
+        detector = new SamplingOrderDetector(); // Create the detector
+        detector.init(hardwareMap.appContext, CameraViewDisplay.getInstance()); // Initialize detector with app context and camera
+        detector.useDefaults(); // Set detector to use default settings
+
+        detector.downscale = 0.8; // How much to downscale the input frames
+
+        // Optional tuning
+        //detector.areaScoringMethod = DogeCV.AreaScoringMethod.MAX_AREA; // Can also be PERFECT_AREA
+        detector.perfectAreaScorer.perfectArea = 10000; // if using PERFECT_AREA scoring
+        detector.maxAreaScorer.weight = 0.001;
+
+        detector.ratioScorer.weight = 15;
+        detector.ratioScorer.perfectRatio = 1.0;
+
+        detector.enable(); // Start detector
+    }
+    String detectCube(){
+        return detector.getLastOrder().toString();
     }
     void turn(float angle){
         float mag = (float)Math.copySign(.3,angle);
@@ -98,5 +123,59 @@ public abstract class AutoHelper extends LinearOpMode {
     }
     void waitLong(){
         multi.waitTime(2500);
+    }
+    void shutdown() {
+        stopMotors();
+        detector.getLastOrder();
+        detector.disable();
+        detector.getLastOrder();
+        detector.disable();
+    }
+    void lowerAndSample(){
+
+        // save start position
+        long ref = lm.getCurrentPosition();
+
+        // drop
+        lift.setState(1);
+        // this loop makes the linear actuator displacement independent of battery life using encoders.
+        while (opModeIsActive() && (lm.getCurrentPosition() - ref) > -3050) {
+            multi.yield();
+        }
+        lift.setState(0);
+        if (isStopRequested()) {
+            return;
+        }
+        // detect before moving right or left
+        String option = detectCube();
+
+        // unlatch
+        multi.waitTime(100);
+        driver.setY(-.3);
+        multi.waitTime(600);
+        driver.setY(0);
+
+        // retract
+        lift.setState(-1);
+        while (opModeIsActive() && (lm.getCurrentPosition() - ref) < -10) {
+            multi.yield();
+        }
+        lift.setState(0);
+        if (isStopRequested()) {
+            return;
+        }
+        driver.setY(.3);
+        multi.waitTime(400);
+        driver.setY(0);
+
+        if(option.equals("LEFT")){
+            turn(-120);
+        }else if(option.equals("CENTER")){
+            turn(-85);
+        }else if(option.equals("RIGHT")){
+            turn(-60);
+        }
+        telemetry.addData("opt=",option);
+        telemetry.update();
     }
 }
