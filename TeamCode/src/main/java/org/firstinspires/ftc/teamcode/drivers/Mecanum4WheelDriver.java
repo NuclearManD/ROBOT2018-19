@@ -19,7 +19,7 @@ public class Mecanum4WheelDriver extends Task {
     private int fl_lspos, fr_lspos;
 
     public float rotation = 0;
-    public float distance = 0;
+    public double distance = 0;
     private int dist_enc = 0;
 
     /**
@@ -94,8 +94,8 @@ public class Mecanum4WheelDriver extends Task {
     }
 
     public void setY(double q) {
-        if (Math.copySign(1, q) != Math.copySign(1, targy)) {
-            dist_enc = fl.getCurrentPosition() - fl.getCurrentPosition();
+        if (targy==0 && Math.copySign(q,1)>.05) {
+            dist_enc = fl.getCurrentPosition() - fr.getCurrentPosition();
         }
         targy = q;
     }
@@ -131,7 +131,7 @@ public class Mecanum4WheelDriver extends Task {
         } else
             R = targR;
         rotation = ((fl_lspos - fl.getCurrentPosition()) + (fr_lspos - fr.getCurrentPosition())) * .0511f;
-        distance = dist_enc - fl.getCurrentPosition() + fl.getCurrentPosition();
+        distance = (dist_enc - fl.getCurrentPosition() + fr.getCurrentPosition())/1870.0;
         motorUpdate();
         man.taskSleep(10);
     }

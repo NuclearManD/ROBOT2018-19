@@ -77,6 +77,17 @@ public abstract class AutoHelper extends LinearOpMode {
         }
         driver.setR(0);
     }
+    void goY(double d){
+        float mag = (float)Math.copySign(.3,d);
+        driver.setY(mag);
+        multi.waitTime(10);
+        d = Math.abs(d);
+        while(opModeIsActive() && Math.abs(driver.distance)<d){
+            multi.yield();
+            if(Math.abs(driver.distance)-d>-.1f)driver.setY(mag/5);
+        }
+        driver.setY(0);
+    }
     void lower(){
 
         // save start position
@@ -170,6 +181,8 @@ public abstract class AutoHelper extends LinearOpMode {
 
         if(option.equals("LEFT")){
             turn(-120);
+            waitShort();
+            goY(.875);
         }else if(option.equals("CENTER")){
             turn(-85);
         }else if(option.equals("RIGHT")){
