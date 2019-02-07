@@ -1,8 +1,10 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.oldops;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name="Auto Op Crater Side Claim")
+import org.firstinspires.ftc.teamcode.AutoHelper;
+
+//@TeleOp(name="Auto Op Crater Side Claim")
 public class AutoCraterSideClaim extends AutoHelper {
     @Override
     public void runOpMode() throws InterruptedException {

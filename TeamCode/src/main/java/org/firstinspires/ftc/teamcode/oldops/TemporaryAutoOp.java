@@ -1,8 +1,10 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.oldops;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name="Auto Temporary (DO NOT RUN)")
+import org.firstinspires.ftc.teamcode.AutoHelper;
+
+//@TeleOp(name="Auto Temporary (DO NOT RUN)")
 public class TemporaryAutoOp extends AutoHelper {
     @Override
     public void runOpMode() throws InterruptedException {

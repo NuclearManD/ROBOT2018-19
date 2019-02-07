@@ -14,13 +14,12 @@ import org.firstinspires.ftc.teamcode.drivers.TelemetryUpdater;
 
 public abstract class AutoHelper extends LinearOpMode {
 
-    DcMotor lm;
-    Mecanum4WheelDriver driver;
-    LinearActuator lift;
-    ArmDriver arm;
-    Multitasker multi;
-    DcMotor[] motors;
-    ModernRoboticsI2cCompassSensor compass;
+    public DcMotor lm;
+    public Mecanum4WheelDriver driver;
+    public LinearActuator lift;
+    public ArmDriver arm;
+    public Multitasker multi;
+    public DcMotor[] motors;
 
     private SamplingOrderDetector detector;
 
@@ -32,7 +31,6 @@ public abstract class AutoHelper extends LinearOpMode {
         arm = new ArmDriver(hardwareMap.dcMotor.get("pully"), hardwareMap.dcMotor.get("angle"), hardwareMap.crservo.get("goboi"));
         multi = new Multitasker(this);
         motors = new DcMotor[]{hardwareMap.dcMotor.get("fl"), hardwareMap.dcMotor.get("fr"), hardwareMap.dcMotor.get("bl"), hardwareMap.dcMotor.get("br")};
-        compass = hardwareMap.get(ModernRoboticsI2cCompassSensor.class, "compass");
         //gyro = (IntegratingGyroscope) modernRoboticsI2cGyro;
         driver.init(motors, -1, .1f);
         multi.addTask(driver);
@@ -55,32 +53,32 @@ public abstract class AutoHelper extends LinearOpMode {
 
         detector.enable(); // Start detector
     }
-    String detectCube(){
+    public String detectCube(){
         return detector.getLastOrder().toString();
     }
-    void turn(float angle){
-        float mag = (float)Math.copySign(.3,angle);
+    public void turn(float angle){
+        float mag = (float)Math.copySign(.4,angle);
         driver.setR(mag);
         multi.waitTime(10);
         angle = Math.abs(angle);
         while(opModeIsActive() && Math.abs(driver.rotation)<angle){
             multi.yield();
-            if(Math.abs(driver.rotation)-angle>-5f)driver.setR(mag/5);
+            if(Math.abs(driver.rotation)-angle>-8f)driver.setR(mag/3);
         }
         driver.setR(0);
     }
-    void goY(double d){
-        float mag = (float)Math.copySign(.3,d);
+    public void goY(double d){
+        float mag = (float)Math.copySign(.45,d);
         driver.setY(mag);
         multi.waitTime(10);
         d = Math.abs(d);
         while(opModeIsActive() && Math.abs(driver.distance)<d){
             multi.yield();
-            if(Math.abs(driver.distance)-d>-.1f)driver.setY(mag/5);
+            if(Math.abs(driver.distance)-d>-.4f)driver.setY(mag/4);
         }
         driver.setY(0);
     }
-    void lower(){
+    public void lower(){
 
         // save start position
         long ref = lm.getCurrentPosition();
@@ -93,6 +91,7 @@ public abstract class AutoHelper extends LinearOpMode {
         }
         lift.setState(0);
         if (isStopRequested()) {
+            shutdown();
             return;
         }
 
@@ -109,32 +108,33 @@ public abstract class AutoHelper extends LinearOpMode {
         }
         lift.setState(0);
         if (isStopRequested()) {
+            shutdown();
             return;
         }
         driver.setY(.3);
         multi.waitTime(400);
         driver.setY(0);
     }
-    void stopMotors(){
+    public void stopMotors(){
         driver.motorSet(0,0,0,0);
         arm.off();
         arm.pullyoff();
         lift.setState(0);
     }
-    void waitShort(){
+    public void waitShort(){
         multi.waitTime(400);
     }
-    void waitLong(){
+    public void waitLong(){
         multi.waitTime(2500);
     }
-    void shutdown() {
+    public void shutdown() {
         stopMotors();
         detector.getLastOrder();
         detector.disable();
         detector.getLastOrder();
         detector.disable();
     }
-    void lowerAndSample(){
+    public void lowerAndSample(){
 
         // save start position
         long ref = lm.getCurrentPosition();
@@ -147,6 +147,7 @@ public abstract class AutoHelper extends LinearOpMode {
         }
         lift.setState(0);
         if (isStopRequested()) {
+            shutdown();
             return;
         }
         // detect before moving right or left
@@ -162,30 +163,42 @@ public abstract class AutoHelper extends LinearOpMode {
 
         // retract
         lift.setState(-1);
+        multi.waitTime(1200);
+        driver.setY(.3);
+        multi.waitTime(400);
+        driver.setY(0);
         while (opModeIsActive() && (lm.getCurrentPosition() - ref) < -10) {
             multi.yield();
         }
         lift.setState(0);
         if (isStopRequested()) {
+            shutdown();
             return;
         }
-        driver.setY(.3);
-        multi.waitTime(400);
-        driver.setY(0);
 
         if(option.equals("LEFT")){
             turn(-120);
             waitShort();
             goY(.875);
+            goY(-.825);
+            turn(30);
         }else if(option.equals("CENTER")){
             turn(-85);
             waitShort();
-            goY(.875);
+            goY(.8);
+            goY(-.75);
+            turn(-5);
         }else if(option.equals("RIGHT")){
-            turn(-60);
+            turn(-55);
             waitShort();
-            goY(.875);
+            goY(1);
+            goY(-.95);
+            turn(-25);
+        }else{
+            turn(-90);
         }
+        goY(.39);
+
         telemetry.addData("opt=",option);
         telemetry.update();
     }

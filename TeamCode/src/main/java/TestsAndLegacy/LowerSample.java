@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package TestsAndLegacy;
 import com.disnodeteam.dogecv.CameraViewDisplay;
 import com.disnodeteam.dogecv.DogeCV;
 import com.disnodeteam.dogecv.detectors.roverrukus.SamplingOrderDetector;
@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.drivers.Mecanum4WheelDriver;
 //begin stolen code
-@TeleOp(name="LowerAndSample")
+//@TeleOp(name="LowerAndSample")
 public class LowerSample extends OpMode {
     private SamplingOrderDetector detector;
 

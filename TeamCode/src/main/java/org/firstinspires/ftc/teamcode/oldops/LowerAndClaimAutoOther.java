@@ -1,9 +1,11 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.oldops;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name="Auto Op Claim, our crater")
-public class LowerAndClaimAuto extends AutoHelper {
+import org.firstinspires.ftc.teamcode.AutoHelper;
+
+//@TeleOp(name="Auto Op Claim, other crater")
+public class LowerAndClaimAutoOther extends AutoHelper {
 
     @Override
     public void runOpMode() {
@@ -39,11 +41,11 @@ public class LowerAndClaimAuto extends AutoHelper {
         }
 
         // turn
-        turn(95);
+        turn(-95);
 
         // go into crater
         driver.setY(.8);
-        driver.setR(.15);
+        driver.setR(-.15);
         multi.waitTime(1300);
         driver.setY(0);
         driver.setR(0);
