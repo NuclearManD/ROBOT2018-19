@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name="SampleParkThenClaim")
+@TeleOp(name="CraterSideSampleClaim")
 public class SampleParkThenClaim extends AutoHelper {
     @Override
     public void runOpMode() {
@@ -15,9 +15,9 @@ public class SampleParkThenClaim extends AutoHelper {
         turn(40);
         goY(1);
         turn(-90);
-        goY(2.5);
+        goY(2);
         arm.ColectBoiBack();
         multi.waitTime(2000);
-        goY(-3.2);
+        goY(-2.7);
     }
 }
