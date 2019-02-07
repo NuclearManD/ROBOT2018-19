@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  * Created by SCRoboticsDev on 1/3/2019.
  */
 
-public class LinerActuator {
+public class LinearActuator {
 
     DcMotor grab;
 
@@ -15,13 +15,13 @@ public class LinerActuator {
     // do this bc dont kn how far to extened
     // **plz change when you figuer out
 
-    public LinerActuator(DcMotor motor){
+    public LinearActuator(DcMotor motor){
         grab=motor;
     }
 
 
     public void extend(){
-        grab.setPower(x);
+        grab.setPower(-x);
         try{
             Thread.sleep(500);
         }catch (Exception e) {
@@ -31,7 +31,7 @@ public class LinerActuator {
     }
 
     public void NegExtend(){
-        grab.setPower(-x);
+        grab.setPower(x);
         try{
             Thread.sleep(450);
         }catch (Exception e) {

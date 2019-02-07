@@ -1,21 +1,13 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.disnodeteam.dogecv.CameraViewDisplay;
-import com.disnodeteam.dogecv.DogeCV;
 import com.disnodeteam.dogecv.detectors.roverrukus.SamplingOrderDetector;
-import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cCompassSensor;
-import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.IntegratingGyroscope;
 
-import org.firstinspires.ftc.robotcontroller.external.samples.SensorMRGyro;
-import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.drivers.ArmDriver;
-import org.firstinspires.ftc.teamcode.drivers.LinerActuator;
+import org.firstinspires.ftc.teamcode.drivers.LinearActuator;
 import org.firstinspires.ftc.teamcode.drivers.Mecanum4WheelDriver;
 import org.firstinspires.ftc.teamcode.drivers.Multitasker;
 import org.firstinspires.ftc.teamcode.drivers.TelemetryUpdater;
@@ -24,7 +16,7 @@ public abstract class AutoHelper extends LinearOpMode {
 
     DcMotor lm;
     Mecanum4WheelDriver driver;
-    LinerActuator lift;
+    LinearActuator lift;
     ArmDriver arm;
     Multitasker multi;
     DcMotor[] motors;
@@ -36,7 +28,7 @@ public abstract class AutoHelper extends LinearOpMode {
         lm = hardwareMap.dcMotor.get("lift");
         //sensorColor = hardwareMap.get(ColorSensor.class, "sensor_color_distance");
         driver = new Mecanum4WheelDriver();
-        lift = new LinerActuator(lm);
+        lift = new LinearActuator(lm);
         arm = new ArmDriver(hardwareMap.dcMotor.get("pully"), hardwareMap.dcMotor.get("angle"), hardwareMap.crservo.get("goboi"));
         multi = new Multitasker(this);
         motors = new DcMotor[]{hardwareMap.dcMotor.get("fl"), hardwareMap.dcMotor.get("fr"), hardwareMap.dcMotor.get("bl"), hardwareMap.dcMotor.get("br")};
@@ -96,7 +88,7 @@ public abstract class AutoHelper extends LinearOpMode {
         // drop
         lift.setState(1);
         // this loop makes the linear actuator displacement independent of battery life using encoders.
-        while (opModeIsActive() && (lm.getCurrentPosition() - ref) > -3050) {
+        while (opModeIsActive() && (lm.getCurrentPosition() - ref) > -8035) {
             multi.yield();
         }
         lift.setState(0);
@@ -150,7 +142,7 @@ public abstract class AutoHelper extends LinearOpMode {
         // drop
         lift.setState(1);
         // this loop makes the linear actuator displacement independent of battery life using encoders.
-        while (opModeIsActive() && (lm.getCurrentPosition() - ref) > -3050) {
+        while (opModeIsActive() && (lm.getCurrentPosition() - ref) > -8035) {
             multi.yield();
         }
         lift.setState(0);
@@ -159,6 +151,8 @@ public abstract class AutoHelper extends LinearOpMode {
         }
         // detect before moving right or left
         String option = detectCube();
+        detector.getLastOrder();
+        detector.disable();
 
         // unlatch
         multi.waitTime(100);
@@ -185,8 +179,12 @@ public abstract class AutoHelper extends LinearOpMode {
             goY(.875);
         }else if(option.equals("CENTER")){
             turn(-85);
+            waitShort();
+            goY(.875);
         }else if(option.equals("RIGHT")){
             turn(-60);
+            waitShort();
+            goY(.875);
         }
         telemetry.addData("opt=",option);
         telemetry.update();
