@@ -15,9 +15,13 @@ public class SampleParkThenClaim extends AutoHelper {
         turn(40);
         goY(1);
         turn(-90);
-        goY(2);
+        goY(2.25);
         arm.ColectBoiBack();
-        multi.waitTime(2000);
-        goY(-2.7);
+        multi.waitTime(1500);
+        driver.setR(-.05);
+        driver.setY(-.4);
+        multi.waitTime(500);
+        arm.ColectBoiOff();
+        goY(-3.8);
     }
 }

@@ -74,7 +74,7 @@ public abstract class AutoHelper extends LinearOpMode {
         d = Math.abs(d);
         while(opModeIsActive() && Math.abs(driver.distance)<d){
             multi.yield();
-            if(Math.abs(driver.distance)-d>-.4f)driver.setY(mag/4);
+            if(Math.abs(driver.distance)-d>-.46f)driver.setY(mag/4);
         }
         driver.setY(0);
     }
@@ -189,15 +189,15 @@ public abstract class AutoHelper extends LinearOpMode {
             goY(-.75);
             turn(-5);
         }else if(option.equals("RIGHT")){
-            turn(-55);
+            turn(-50);
             waitShort();
             goY(1);
-            goY(-.95);
-            turn(-25);
+            goY(-1);
+            turn(-30);
         }else{
             turn(-90);
         }
-        goY(.39);
+        goY(.45);
 
         telemetry.addData("opt=",option);
         telemetry.update();
