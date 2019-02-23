@@ -13,8 +13,8 @@ public class SampleParkNoClaim extends AutoHelper {
         turn(-90);
         goY(.71);
         turn(40);
-        goY(1);
-        turn(90);
+        goY(.8);
+        turn(95);
         goY(2);
     }
 }

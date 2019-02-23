@@ -63,7 +63,7 @@ public abstract class AutoHelper extends LinearOpMode {
         angle = Math.abs(angle);
         while(opModeIsActive() && Math.abs(driver.rotation)<angle){
             multi.yield();
-            if(Math.abs(driver.rotation)-angle>-8f)driver.setR(mag/3);
+            if(Math.abs(driver.rotation)-angle>-8f)driver.setR(mag/5);
         }
         driver.setR(0);
     }
@@ -74,7 +74,7 @@ public abstract class AutoHelper extends LinearOpMode {
         d = Math.abs(d);
         while(opModeIsActive() && Math.abs(driver.distance)<d){
             multi.yield();
-            if(Math.abs(driver.distance)-d>-.46f)driver.setY(mag/4);
+            if(Math.abs(driver.distance)-d>-.46f)driver.setY(mag/5);
         }
         driver.setY(0);
     }
@@ -97,9 +97,9 @@ public abstract class AutoHelper extends LinearOpMode {
 
         // unlatch
         multi.waitTime(100);
-        driver.setY(-.3);
-        multi.waitTime(600);
-        driver.setY(0);
+        //driver.setY(-.3);
+        goY(-.17);//multi.waitTime(400);
+        //driver.setY(0);
 
         // retract
         lift.setState(-1);
@@ -111,9 +111,9 @@ public abstract class AutoHelper extends LinearOpMode {
             shutdown();
             return;
         }
-        driver.setY(.3);
-        multi.waitTime(400);
-        driver.setY(0);
+        //driver.setY(.3);
+        goY(.17);//multi.waitTime(400);
+        //driver.setY(0);
     }
     public void stopMotors(){
         driver.motorSet(0,0,0,0);
@@ -179,25 +179,25 @@ public abstract class AutoHelper extends LinearOpMode {
         if(option.equals("LEFT")){
             turn(-120);
             waitShort();
-            goY(.875);
-            goY(-.825);
+            goY(.9);
+            goY(-.88);
             turn(30);
         }else if(option.equals("CENTER")){
-            turn(-85);
+            turn(-75);
             waitShort();
             goY(.8);
             goY(-.75);
             turn(-5);
         }else if(option.equals("RIGHT")){
-            turn(-50);
+            turn(-40);
             waitShort();
-            goY(1);
-            goY(-1);
+            goY(1.08);
+            goY(-1.03);
             turn(-30);
         }else{
             turn(-90);
         }
-        goY(.45);
+        goY(.44);
 
         telemetry.addData("opt=",option);
         telemetry.update();
