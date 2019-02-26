@@ -3,9 +3,11 @@ package org.firstinspires.ftc.teamcode;
 import com.disnodeteam.dogecv.CameraViewDisplay;
 import com.disnodeteam.dogecv.detectors.roverrukus.SamplingOrderDetector;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cCompassSensor;
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.drivers.ArmDriver;
 import org.firstinspires.ftc.teamcode.drivers.LinearActuator;
 import org.firstinspires.ftc.teamcode.drivers.Mecanum4WheelDriver;
@@ -21,11 +23,14 @@ public abstract class AutoHelper extends LinearOpMode {
     public Multitasker multi;
     public DcMotor[] motors;
 
+    public ModernRoboticsI2cRangeSensor rangeSensor;
+
     private SamplingOrderDetector detector;
 
     public void initHardware(){
         lm = hardwareMap.dcMotor.get("lift");
         //sensorColor = hardwareMap.get(ColorSensor.class, "sensor_color_distance");
+        rangeSensor = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, "distance");
         driver = new Mecanum4WheelDriver();
         lift = new LinearActuator(lm);
         arm = new ArmDriver(hardwareMap.dcMotor.get("pully"), hardwareMap.dcMotor.get("angle"), hardwareMap.crservo.get("goboi"));
@@ -134,7 +139,7 @@ public abstract class AutoHelper extends LinearOpMode {
         detector.getLastOrder();
         detector.disable();
     }
-    public void lowerAndSample(){
+    public void lowerAndSample() {
 
         // save start position
         long ref = lm.getCurrentPosition();
@@ -176,30 +181,46 @@ public abstract class AutoHelper extends LinearOpMode {
             return;
         }
 
-        if(option.equals("LEFT")){
+        if (option.equals("LEFT")) {
             turn(-120);
             waitShort();
             goY(.9);
             goY(-.88);
             turn(30);
-        }else if(option.equals("CENTER")){
+        } else if (option.equals("CENTER")) {
             turn(-75);
             waitShort();
             goY(.8);
             goY(-.75);
             turn(-5);
-        }else if(option.equals("RIGHT")){
+        } else if (option.equals("RIGHT")) {
             turn(-40);
             waitShort();
             goY(1.08);
             goY(-1.03);
             turn(-30);
-        }else{
+        } else {
             turn(-90);
         }
         goY(.44);
 
-        telemetry.addData("opt=",option);
+        telemetry.addData("opt=", option);
         telemetry.update();
+    }
+    public void rideWall(double distance){
+        float mag = (float)Math.copySign(.45,distance);
+        driver.setY(mag);
+        multi.waitTime(10);
+        distance = Math.abs(distance);
+        while(opModeIsActive() && Math.abs(driver.distance)<distance){
+            multi.yield();
+            if(Math.abs(driver.distance)-distance>-.46f)driver.setY(mag/5);
+            if(readDistance()>4)driver.setR(0.1*mag);
+            else driver.setR(-.1*mag);
+        }
+        driver.setY(0);
+    }
+    public double readDistance(){
+        return rangeSensor.getDistance(DistanceUnit.CM);
     }
 }
