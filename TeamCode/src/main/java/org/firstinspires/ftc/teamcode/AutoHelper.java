@@ -212,11 +212,21 @@ public abstract class AutoHelper extends LinearOpMode {
         driver.setY(mag);
         multi.waitTime(10);
         distance = Math.abs(distance);
+        double targ = 8;
         while(opModeIsActive() && Math.abs(driver.distance)<distance){
             multi.yield();
-            if(Math.abs(driver.distance)-distance>-.46f)driver.setY(mag/5);
-            if(readDistance()>4)driver.setR(0.1*mag);
-            else driver.setR(-.1*mag);
+            if(readDistance()<3.5){
+                driver.setR(-.12 * mag);
+                driver.setY(0);
+            }else {
+                if (Math.abs(driver.distance) - distance > -.46f) driver.setY(mag / 5);
+                else {
+                    if (readDistance() > targ)
+                        driver.setR(Math.min(.12 * mag, 0.05 * mag * Math.abs(targ - readDistance())));
+                    else
+                        driver.setR(Math.max(-.12 * mag, -0.05 * mag * Math.abs(targ - readDistance())));
+                }
+            }
         }
         driver.setY(0);
     }

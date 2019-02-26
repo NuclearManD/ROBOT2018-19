@@ -13,7 +13,7 @@ public class RideWallTest extends AutoHelper {
         while(opModeIsActive()){
             rideWall(3);
             multi.waitTime(1000);
-            rideWall(3);
+            rideWall(-3);
             multi.waitTime(1000);
         }
     }
