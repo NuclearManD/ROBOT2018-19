@@ -32,6 +32,8 @@ public class MainOpJack extends LinearOpMode {
 
         waitForStart();
 
+        hardwareMap.servo.get("parker").setPosition(1);
+
         float lastAngle = 0;
 
         while(opModeIsActive()){

@@ -17,7 +17,7 @@ public class SampleClaimNoPark extends AutoHelper {
         turn(95);
         goY(1.75);
         arm.ColectBoiBack();
-        multi.waitTime(1500);
+        multi.waitTime(2500);
         arm.ColectBoiOff();
     }
 }

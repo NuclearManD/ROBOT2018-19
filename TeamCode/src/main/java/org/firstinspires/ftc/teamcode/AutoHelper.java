@@ -6,6 +6,7 @@ import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cCompassSensor;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.drivers.ArmDriver;
@@ -23,6 +24,8 @@ public abstract class AutoHelper extends LinearOpMode {
     public Multitasker multi;
     public DcMotor[] motors;
 
+    public Servo parker;
+
     public ModernRoboticsI2cRangeSensor rangeSensor;
 
     private SamplingOrderDetector detector;
@@ -31,6 +34,7 @@ public abstract class AutoHelper extends LinearOpMode {
         lm = hardwareMap.dcMotor.get("lift");
         //sensorColor = hardwareMap.get(ColorSensor.class, "sensor_color_distance");
         rangeSensor = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, "distance");
+        parker=hardwareMap.servo.get("parker");
         driver = new Mecanum4WheelDriver();
         lift = new LinearActuator(lm);
         arm = new ArmDriver(hardwareMap.dcMotor.get("pully"), hardwareMap.dcMotor.get("angle"), hardwareMap.crservo.get("goboi"));
@@ -68,7 +72,7 @@ public abstract class AutoHelper extends LinearOpMode {
         angle = Math.abs(angle);
         while(opModeIsActive() && Math.abs(driver.rotation)<angle){
             multi.yield();
-            if(Math.abs(driver.rotation)-angle>-8f)driver.setR(mag/5);
+            if(Math.abs(driver.rotation)-angle>-8f)driver.setR(mag/3);
         }
         driver.setR(0);
     }
@@ -79,7 +83,7 @@ public abstract class AutoHelper extends LinearOpMode {
         d = Math.abs(d);
         while(opModeIsActive() && Math.abs(driver.distance)<d){
             multi.yield();
-            if(Math.abs(driver.distance)-d>-.46f)driver.setY(mag/5);
+            if(Math.abs(driver.distance)-d>-.46f)driver.setY(mag/3);
         }
         driver.setY(0);
     }
@@ -191,7 +195,7 @@ public abstract class AutoHelper extends LinearOpMode {
             turn(-75);
             waitShort();
             goY(.8);
-            goY(-.75);
+            goY(-.7);
             turn(-5);
         } else if (option.equals("RIGHT")) {
             turn(-40);
@@ -202,7 +206,7 @@ public abstract class AutoHelper extends LinearOpMode {
         } else {
             turn(-90);
         }
-        goY(.44);
+        goY(.45);
 
         telemetry.addData("opt=", option);
         telemetry.update();
@@ -212,25 +216,47 @@ public abstract class AutoHelper extends LinearOpMode {
         driver.setY(mag);
         multi.waitTime(10);
         distance = Math.abs(distance);
-        double targ = 8;
+        double low_targ = 6;
+        double high_targ= 8.5;
+        double clamp = .17;
+
+        double ls = readDistance();
+
         while(opModeIsActive() && Math.abs(driver.distance)<distance){
-            multi.yield();
-            if(readDistance()<3.5){
-                driver.setR(-.12 * mag);
-                driver.setY(0);
-            }else {
-                if (Math.abs(driver.distance) - distance > -.46f) driver.setY(mag / 5);
-                else {
-                    if (readDistance() > targ)
-                        driver.setR(Math.min(.12 * mag, 0.05 * mag * Math.abs(targ - readDistance())));
-                    else
-                        driver.setR(Math.max(-.12 * mag, -0.05 * mag * Math.abs(targ - readDistance())));
-                }
+            multi.waitTime(30);
+
+            double x  = readDistance();
+
+            double dx = x-ls;
+            ls = x;
+
+            driver.setY(mag);
+            if (Math.abs(driver.distance) - distance > -.46f){
+                driver.setY(mag / 3);
+                driver.setR(0);
+            }else if(x<low_targ){
+                double rv = x-low_targ - .05;
+                if (Math.abs(rv) > clamp)
+                    rv = Math.copySign(clamp, rv);
+                driver.setR(rv * mag);
+            }else if(x>high_targ){
+                double rv = x-high_targ - .05;
+                if (Math.abs(rv) > clamp)
+                    rv = Math.copySign(clamp, rv);
+                driver.setR(rv * mag);
+            }else{
+                driver.setR(mag*dx*0.5);
             }
         }
         driver.setY(0);
     }
     public double readDistance(){
         return rangeSensor.getDistance(DistanceUnit.CM);
+    }
+    public void activateParker(){
+        parker.setPosition(.7);
+    }
+    public void deactivateParker(){
+        parker.setPosition(1);
     }
 }
