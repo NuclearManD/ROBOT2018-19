@@ -200,8 +200,8 @@ public abstract class AutoHelper extends LinearOpMode {
         } else if (option.equals("RIGHT")) {
             turn(-40);
             waitShort();
-            goY(1.08);
-            goY(-1.03);
+            goY(1.05);
+            goY(-1.08);
             turn(-30);
         } else {
             turn(-90);
@@ -240,7 +240,7 @@ public abstract class AutoHelper extends LinearOpMode {
                     rv = Math.copySign(clamp, rv);
                 driver.setR(rv * mag);
             }else if(x>high_targ){
-                double rv = x-high_targ - .05;
+                double rv = 2*(x-high_targ+.05);
                 if (Math.abs(rv) > clamp)
                     rv = Math.copySign(clamp, rv);
                 driver.setR(rv * mag);

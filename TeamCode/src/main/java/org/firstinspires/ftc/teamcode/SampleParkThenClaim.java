@@ -14,7 +14,7 @@ public class SampleParkThenClaim extends AutoHelper {
         goY(.71);
         turn(40);
         goY(1);
-        turn(-80);
+        turn(-87);
         rideWall(2.1);
         arm.ColectBoiBack();
         multi.waitTime(1700);
